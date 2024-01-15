@@ -5,22 +5,21 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float speed = 5f;
 
     private PlayerInput playerInput;
+    private Rigidbody2D body;
 
     private void Awake()
     {
         playerInput = new PlayerInput();
     }
 
-    // Start is called before the first frame update
     void Start()
     {
-        
+        body = GetComponent<Rigidbody2D>();   
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
+        Move(speed * Time.deltaTime);
     }
 
     private void OnEnable()
@@ -31,5 +30,15 @@ public class PlayerController : MonoBehaviour
     private void OnDisable()
     {
         playerInput.Player.Disable();
+    }
+
+    private void Move(float moveSpeed)
+    {
+        // get move axes
+        var horizontal = Mathf.RoundToInt(playerInput.Player.Move.ReadValue<Vector2>().x);
+        var vertical = Mathf.RoundToInt(playerInput.Player.Move.ReadValue<Vector2>().y);
+
+        // move player
+        body.velocity = new Vector2(horizontal * moveSpeed, vertical * moveSpeed);
     }
 }
