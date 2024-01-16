@@ -16,7 +16,11 @@ public class WeaponAttachController : MonoBehaviour
 
             // attach to a collision GO
             transform.SetParent(collision.transform, false);
-            transform.localPosition = direction;
+            transform.localPosition = direction.normalized;
+
+            // change scale to 1 if attached to another weapon to prevent getting smaller
+            if (collision.tag == "Weapon")
+                transform.localScale = Vector3.one;
 
             _isAttached = true;
         }
