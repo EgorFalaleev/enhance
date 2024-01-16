@@ -6,6 +6,8 @@ public class PlayerController : MonoBehaviour
 
     private PlayerInput playerInput;
     private Rigidbody2D body;
+    private int _horizontal;
+    private int _vertical;
 
     private void Awake()
     {
@@ -19,7 +21,16 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        Move(speed * Time.deltaTime);
+        // get move axes
+        _horizontal = Mathf.RoundToInt(playerInput.Player.Move.ReadValue<Vector2>().x);
+        _vertical = Mathf.RoundToInt(playerInput.Player.Move.ReadValue<Vector2>().y);
+    }
+
+    private void FixedUpdate()
+    {
+        // move player
+        var direction = new Vector2(_horizontal, _vertical).normalized;
+        body.velocity = direction * speed * Time.fixedDeltaTime;
     }
 
     private void OnEnable()
@@ -30,15 +41,5 @@ public class PlayerController : MonoBehaviour
     private void OnDisable()
     {
         playerInput.Player.Disable();
-    }
-
-    private void Move(float moveSpeed)
-    {
-        // get move axes
-        var horizontal = Mathf.RoundToInt(playerInput.Player.Move.ReadValue<Vector2>().x);
-        var vertical = Mathf.RoundToInt(playerInput.Player.Move.ReadValue<Vector2>().y);
-
-        // move player
-        body.velocity = new Vector2(horizontal * moveSpeed, vertical * moveSpeed);
     }
 }
