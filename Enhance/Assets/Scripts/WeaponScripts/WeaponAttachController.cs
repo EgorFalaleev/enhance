@@ -14,6 +14,10 @@ public class WeaponAttachController : MonoBehaviour
         // can attach only once
         if (!_isAttached)
         {
+            // prevent enemy from collecting weapon
+            if (collision.tag == "Enemy")
+                return; 
+
             // calculate the direction of attachment
             var direction = transform.position - collision.transform.position;
 
