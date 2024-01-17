@@ -15,7 +15,7 @@ public class WeaponAttachController : MonoBehaviour
         if (!_isAttached)
         {
             // prevent enemy from collecting weapon
-            if (collision.tag == "Enemy")
+            if (collision.tag == Tags.ENEMY)
                 return; 
 
             // calculate the direction of attachment
@@ -23,10 +23,10 @@ public class WeaponAttachController : MonoBehaviour
 
             // attach to a collision GO
             transform.SetParent(collision.transform, false);
-            transform.localPosition = collision.tag == "Weapon" ? direction.normalized * WEAPON_ATTACH_MODIFIER: direction.normalized * PLAYER_ATTACH_MODIFIER;
+            transform.localPosition = collision.tag == Tags.WEAPON ? direction.normalized * WEAPON_ATTACH_MODIFIER: direction.normalized * PLAYER_ATTACH_MODIFIER;
 
             // change scale to 1 if attached to another weapon to prevent getting smaller
-            if (collision.tag == "Weapon")
+            if (collision.tag == Tags.WEAPON)
                 transform.localScale = Vector3.one;
 
             _isAttached = true;
