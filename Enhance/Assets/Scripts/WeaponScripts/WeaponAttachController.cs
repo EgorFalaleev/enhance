@@ -11,13 +11,16 @@ public class WeaponAttachController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        // enemy contact with weapon destroys it
+        if (collision.tag == Tags.ENEMY)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
         // can attach only once
         if (!_isAttached)
         {
-            // prevent enemy from collecting weapon
-            if (collision.tag == Tags.ENEMY)
-                return; 
-
             // calculate the direction of attachment
             var direction = transform.position - collision.transform.position;
 
