@@ -18,6 +18,7 @@ public class EnemyMovementController : MonoBehaviour
     {
         LookAtTarget(_target);
 
+        // determine direction to move
         var direction = _target.position - transform.position;
         _moveDirection = direction.normalized;
     }
@@ -34,7 +35,6 @@ public class EnemyMovementController : MonoBehaviour
 
     private void LookAtTarget(Transform target)
     {
-        //transform.LookAt(target.position);
         transform.right = target.position - transform.position;
     }
 }
