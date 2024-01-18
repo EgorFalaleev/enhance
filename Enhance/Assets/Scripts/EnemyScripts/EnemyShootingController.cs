@@ -4,15 +4,26 @@ using UnityEngine;
 
 public class EnemyShootingController : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField] private GameObject _bullet;
+    [SerializeField] private Transform _bulletInitialPosition;
+    [SerializeField] private float shootCooldown = 2f;
 
-    // Update is called once per frame
+    private float timer = 0f;
+
     void Update()
     {
-        
+        timer += Time.deltaTime;
+
+        // shoot periodically
+        if (timer > shootCooldown)
+        {
+            timer = 0;
+            Shoot();
+        }
+    }
+
+    private void Shoot()
+    {
+        Instantiate(_bullet, _bulletInitialPosition.position, Quaternion.identity);
     }
 }
