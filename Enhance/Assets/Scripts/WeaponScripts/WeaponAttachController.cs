@@ -33,6 +33,9 @@ public class WeaponAttachController : MonoBehaviour
                 transform.localScale = Vector3.one;
 
             _isAttached = true;
+
+            // weapon can shoot now
+            GetComponent<WeaponShooter>().IsWeaponAttached = true;
         }
     }
 }

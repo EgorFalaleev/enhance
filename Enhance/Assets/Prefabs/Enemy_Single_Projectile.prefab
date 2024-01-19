@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2909903539075319861}
   - component: {fileID: 4305496705376226646}
   - component: {fileID: 683763237167801143}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Enemy_Single_Projectile
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -176,7 +176,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2393904168656638013}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Projectile_Start
   m_TagString: Untagged
   m_Icon: {fileID: 0}

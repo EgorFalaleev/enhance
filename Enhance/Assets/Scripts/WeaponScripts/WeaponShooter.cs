@@ -2,17 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WeaponShooter : MonoBehaviour
+public class WeaponShooter : Shooter
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public bool IsWeaponAttached { get; set; }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        
+        // weapon can shoot only if attached to player
+        if (IsWeaponAttached)
+            ShootWithCooldown(_bullet, _bulletInitialPosition, shootCooldown);
     }
 }
