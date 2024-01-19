@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: -3693388662174123423}
   - component: {fileID: 1328004623504440460}
   - component: {fileID: 3615004762476860599}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Enemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -107,7 +107,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!61 &1328004623504440460
 BoxCollider2D:
   m_ObjectHideFlags: 0

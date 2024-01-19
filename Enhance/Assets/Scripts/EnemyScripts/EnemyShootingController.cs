@@ -18,12 +18,12 @@ public class EnemyShootingController : MonoBehaviour
         if (timer > shootCooldown)
         {
             timer = 0;
-            Shoot();
+            Shoot(_bullet, _bulletInitialPosition);
         }
     }
 
-    private void Shoot()
+    private void Shoot(GameObject bulletPrefab, Transform bulletInitialPos)
     {
-        Instantiate(_bullet, _bulletInitialPosition.position, Quaternion.identity);
+        Instantiate(bulletPrefab, bulletInitialPos.position, Quaternion.identity);
     }
 }
