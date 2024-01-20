@@ -10,6 +10,6 @@ public class WeaponShooter : Shooter
     {
         // weapon can shoot only if attached to player
         if (IsWeaponAttached)
-            ShootWithCooldown(_bullet, _bulletInitialPosition, shootCooldown);
+            ShootWithCooldown(_bullet, _bulletInitialPosition, _shootCooldown);
     }
 }

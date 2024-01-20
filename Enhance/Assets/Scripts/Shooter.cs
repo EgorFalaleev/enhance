@@ -6,13 +6,13 @@ public abstract class Shooter : MonoBehaviour
 {
     [SerializeField] protected GameObject _bullet;
     [SerializeField] protected Transform _bulletInitialPosition;
-    [SerializeField] protected float shootCooldown = 2f;
+    [SerializeField] protected float _shootCooldown = 2f;
 
     private float timer = 0f;
 
     void Update()
     {
-        ShootWithCooldown(_bullet, _bulletInitialPosition, shootCooldown);
+        ShootWithCooldown(_bullet, _bulletInitialPosition, _shootCooldown);
     }
 
     protected void ShootWithCooldown(GameObject bulletPrefab, Transform bulletInitialPos, float cooldown)
