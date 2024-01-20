@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 835451650119584041}
   - component: {fileID: 112118542222013199}
   - component: {fileID: 8119289472428168912}
+  - component: {fileID: 7719772631528357243}
   m_Layer: 8
   m_Name: Weapon_Projectile
   m_TagString: Weapon_Projectile
@@ -147,3 +148,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 10
+--- !u!114 &7719772631528357243
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2788556448846239719}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ad7a4a3b3753c84b8f388a7e483d7e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _visionRadius: 10
+  _enemyLayerMask:
+    serializedVersion: 2
+    m_Bits: 64

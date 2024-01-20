@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ClosestEnemyFinder : MonoBehaviour
 {
-    [SerializeField] private float _visionRadius;
+    [SerializeField] private float _visionRadius = 10f;
     [SerializeField] private LayerMask _enemyLayerMask;
 
     public GameObject FindClosestEnemy()

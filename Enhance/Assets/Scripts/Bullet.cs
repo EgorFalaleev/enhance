@@ -16,6 +16,12 @@ public class Bullet : MonoBehaviour
         // shoot the player
         if (gameObject.CompareTag(Tags.ENEMY_PROJECTILE))
             _target = GameObject.FindGameObjectWithTag(Tags.PLAYER).transform;
+        // shoot the closest enemy
+        else if (gameObject.CompareTag(Tags.WEAPON_PROJECTILE))
+        {
+            var closestEnemyFinder = GetComponent<ClosestEnemyFinder>();
+            _target = closestEnemyFinder.FindClosestEnemy().transform; 
+        }
 
         // aim at target
         Vector3 direction = _target.position - transform.position;
