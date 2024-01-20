@@ -11,9 +11,6 @@ public class ClosestEnemyFinder : MonoBehaviour
 
     public bool FindClosestEnemy()
     {
-        // remove later, visible range radius
-        Debug.DrawLine(transform.position, new Vector3(transform.position.x + _visionRadius, transform.position.y + _visionRadius, transform.position.z));
-
         // find all enemies within radius
         var enemyInRangeColliders = Physics2D.OverlapCircleAll(transform.position, _visionRadius, _enemyLayerMask);
         
@@ -33,6 +30,7 @@ public class ClosestEnemyFinder : MonoBehaviour
                 }
             }
         }
+        // no enemies in visible range
         else
             return false;
 
