@@ -1,17 +1,17 @@
 using UnityEngine;
-using static UnityEngine.GraphicsBuffer;
 
 public class EnemyMovementController : MonoBehaviour
 {
-    [SerializeField] private Transform _target;
     [SerializeField] private float moveSpeed = 100f;
 
+    private Transform _target;
     private Rigidbody2D _rb;
     private Vector3 _moveDirection;
 
     void Start()
     {
         _rb = GetComponent<Rigidbody2D>();
+        _target = GameObject.FindGameObjectWithTag(Tags.PLAYER).transform;
     }
 
     void Update()
