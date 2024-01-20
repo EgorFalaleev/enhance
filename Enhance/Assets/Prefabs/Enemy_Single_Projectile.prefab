@@ -123,7 +123,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7281b96d808918c459d30e4db2b0036a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _target: {fileID: 0}
   moveSpeed: 80
 --- !u!60 &4305496705376226646
 PolygonCollider2D:
@@ -167,8 +166,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _bullet: {fileID: 8027913780797553765, guid: afa3f8c3eb430af48bf808ed26cb920d, type: 3}
   _bulletInitialPosition: {fileID: 2393904168656638013}
-  _shootCooldown: 2
-  _distanceToShoot: 6
+  _shootCooldown: 1
+  _distanceToShoot: 8
 --- !u!114 &3783812903421214306
 MonoBehaviour:
   m_ObjectHideFlags: 0

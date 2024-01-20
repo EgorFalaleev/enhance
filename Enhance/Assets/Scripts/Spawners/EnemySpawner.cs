@@ -9,9 +9,9 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private float _minSpawnRadius = 8f;
     [SerializeField] private float _maxSpawnRadius = 10f;
     [SerializeField] private float _timeTillNextWave = 10f;
+    [SerializeField] private GameObject _spawnedEnemiesContainer;
 
     private float _timer = 0f;
-    private int _enemyIndex;
     private int _numberEnemiesToSpawnNextWave = 10;
 
     void Start()
@@ -29,10 +29,7 @@ public class EnemySpawner : MonoBehaviour
         {
             _timer = 0f;
 
-            int randomEnemyIndex = Random.Range(0, _enemyPrefabs.Count);
-            GameObject enemyToSpawn = _enemyPrefabs[randomEnemyIndex];
-
-            Instantiate(enemyToSpawn, GenerateRandomSpawnPosition(), Quaternion.identity);
+            SpawnWave();
         }
     }
 
@@ -45,5 +42,17 @@ public class EnemySpawner : MonoBehaviour
         Vector3 spawnPosition = new Vector3(transform.position.x + Mathf.Sin(randomAngle) * radius, transform.position.y + Mathf.Cos(randomAngle) * radius, transform.position.z);
 
         return spawnPosition; 
+    }
+
+    private void SpawnWave()
+    {
+        for (int i = 0; i < _numberEnemiesToSpawnNextWave; i++) 
+        {
+            int randomEnemyIndex = Random.Range(0, _enemyPrefabs.Count);
+            GameObject enemyToSpawn = _enemyPrefabs[randomEnemyIndex];
+
+            GameObject newEnemy = Instantiate(enemyToSpawn, GenerateRandomSpawnPosition(), Quaternion.identity);
+            newEnemy.transform.SetParent(_spawnedEnemiesContainer.transform);
+        }
     }
 }
