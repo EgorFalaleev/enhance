@@ -20,18 +20,30 @@ public class Bullet : MonoBehaviour
         else if (gameObject.CompareTag(Tags.WEAPON_PROJECTILE))
         {
             var closestEnemyFinder = GetComponent<ClosestEnemyFinder>();
-            _target = closestEnemyFinder.FindClosestEnemy().transform; 
+
+            if (closestEnemyFinder.FindClosestEnemy())
+                _target = closestEnemyFinder.ClosestEnemy;
+            else
+                Destroy(gameObject);
         }
 
-        // aim at target
-        Vector3 direction = _target.position - transform.position;
-        _rb.velocity = direction.normalized * speed;
-
-        transform.right = direction;
+        AimAtTarget(_target);
     }
 
     void Update()
     {
         
+    }
+
+    private void AimAtTarget(Transform target)
+    {
+        if (target != null)
+        {
+            // aim at target
+            Vector3 direction = _target.position - transform.position;
+            _rb.velocity = direction.normalized * speed;
+
+            transform.right = direction;
+        }
     }
 }

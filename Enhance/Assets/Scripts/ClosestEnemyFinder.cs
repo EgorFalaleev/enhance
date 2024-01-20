@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class ClosestEnemyFinder : MonoBehaviour
 {
+    public Transform ClosestEnemy {  get; private set; }
+
     [SerializeField] private float _visionRadius = 10f;
     [SerializeField] private LayerMask _enemyLayerMask;
 
-    public GameObject FindClosestEnemy()
+    public bool FindClosestEnemy()
     {
         // remove later, visible range radius
         Debug.DrawLine(transform.position, new Vector3(transform.position.x + _visionRadius, transform.position.y + _visionRadius, transform.position.z));
@@ -15,21 +17,25 @@ public class ClosestEnemyFinder : MonoBehaviour
         // find all enemies within radius
         var enemyInRangeColliders = Physics2D.OverlapCircleAll(transform.position, _visionRadius, _enemyLayerMask);
         
-        GameObject closestEnemy = null;
         float shortestDistance = Mathf.Infinity;
 
-        foreach (var enemy in enemyInRangeColliders)
+        if (enemyInRangeColliders.Length > 0)
         {
-            var distanceToEnemy = Vector3.Distance(transform.position, enemy.transform.position);
-
-            // update closest enemy
-            if (distanceToEnemy < shortestDistance)
+            foreach (var enemy in enemyInRangeColliders)
             {
-                shortestDistance = distanceToEnemy;
-                closestEnemy = enemy.gameObject;
+                var distanceToEnemy = Vector3.Distance(transform.position, enemy.transform.position);
+
+                // update closest enemy
+                if (distanceToEnemy < shortestDistance)
+                {
+                    shortestDistance = distanceToEnemy;
+                    ClosestEnemy = enemy.gameObject.transform;
+                }
             }
         }
+        else
+            return false;
 
-        return closestEnemy;
+        return true;
     }
 }
