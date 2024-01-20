@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    [SerializeField] private float speed = 10f;
+    [SerializeField] private float _speed = 10f;
+    [SerializeField] private float _timeToDestroy = 5f;
 
     private Transform _target;
     private Rigidbody2D _rb;
+    private float _timer = 0;
 
     void Start()
     {
@@ -30,6 +32,16 @@ public class Bullet : MonoBehaviour
         AimAtTarget(_target);
     }
 
+    private void Update()
+    {
+        _timer += Time.deltaTime;
+
+        if (_timer > _timeToDestroy)
+        {
+            Destroy(gameObject);
+        }
+    }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         Destroy(gameObject);
@@ -46,7 +58,7 @@ public class Bullet : MonoBehaviour
         {
             // aim at target
             Vector3 direction = _target.position - transform.position;
-            _rb.velocity = direction.normalized * speed;
+            _rb.velocity = direction.normalized * _speed;
 
             transform.right = direction;
         }
