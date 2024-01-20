@@ -385,7 +385,8 @@ MonoBehaviour:
   _playerTransform: {fileID: 1028160762}
   _minSpawnRadius: 10
   _maxSpawnRadius: 15
-  _timeTillNextWave: 5
+  _timeTillNextWave: 6
+  _timeTillSingleEnemy: 3
   _spawnedEnemiesContainer: {fileID: 855764217}
 --- !u!4 &504070672
 Transform:
