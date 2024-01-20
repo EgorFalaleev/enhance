@@ -12,7 +12,7 @@ public class WeaponAttachController : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         // enemy contact with weapon destroys it
-        if (collision.tag == Tags.ENEMY)
+        if (collision.CompareTag(Tags.ENEMY) || collision.CompareTag(Tags.ENEMY_PROJECTILE))
         {
             Destroy(gameObject);
             return;
@@ -33,6 +33,9 @@ public class WeaponAttachController : MonoBehaviour
                 transform.localScale = Vector3.one;
 
             _isAttached = true;
+
+            // weapon can shoot now
+            GetComponent<WeaponShooter>().IsWeaponAttached = true;
         }
     }
 }

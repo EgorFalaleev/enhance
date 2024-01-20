@@ -476,6 +476,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy_Single_Projectile (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 2240532377615570089, guid: 2fc07cbeaa83ef54598c5cf631e1d5df, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2909903539075319861, guid: 2fc07cbeaa83ef54598c5cf631e1d5df, type: 3}
       propertyPath: _target
       value: 
@@ -662,6 +666,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 7033670284700621850, guid: 206177294f2a8f946b2c80db96810c1e, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 206177294f2a8f946b2c80db96810c1e, type: 3}
 --- !u!1001 &1187405553
@@ -785,6 +793,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 7033670284700621850, guid: 206177294f2a8f946b2c80db96810c1e, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 206177294f2a8f946b2c80db96810c1e, type: 3}
 --- !u!1001 &1408322995
@@ -797,6 +809,10 @@ PrefabInstance:
     - target: {fileID: 2240532377615570089, guid: 2fc07cbeaa83ef54598c5cf631e1d5df, type: 3}
       propertyPath: m_Name
       value: Enemy_Single_Projectile (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2240532377615570089, guid: 2fc07cbeaa83ef54598c5cf631e1d5df, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2909903539075319861, guid: 2fc07cbeaa83ef54598c5cf631e1d5df, type: 3}
       propertyPath: _target
@@ -870,11 +886,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5098577498881917340, guid: 206177294f2a8f946b2c80db96810c1e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -7.54
+      value: -2.36
       objectReference: {fileID: 0}
     - target: {fileID: 5098577498881917340, guid: 206177294f2a8f946b2c80db96810c1e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.96
+      value: 1.13
       objectReference: {fileID: 0}
     - target: {fileID: 5098577498881917340, guid: 206177294f2a8f946b2c80db96810c1e, type: 3}
       propertyPath: m_LocalPosition.z
@@ -911,6 +927,10 @@ PrefabInstance:
     - target: {fileID: 7033670284700621850, guid: 206177294f2a8f946b2c80db96810c1e, type: 3}
       propertyPath: m_Name
       value: Enemy (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7033670284700621850, guid: 206177294f2a8f946b2c80db96810c1e, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 206177294f2a8f946b2c80db96810c1e, type: 3}
@@ -1260,6 +1280,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 5113051843251352235, guid: 1ef7f7963ab9a654f8e85eefc2c0a720, type: 3}
+      propertyPath: _visionRadius
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5113051843251352235, guid: 1ef7f7963ab9a654f8e85eefc2c0a720, type: 3}
+      propertyPath: _enemyLayerMask.m_Bits
+      value: 64
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1ef7f7963ab9a654f8e85eefc2c0a720, type: 3}
 --- !u!1001 &3247022567855156030
@@ -1447,6 +1475,10 @@ PrefabInstance:
     - target: {fileID: 7033670284700621850, guid: 206177294f2a8f946b2c80db96810c1e, type: 3}
       propertyPath: m_Name
       value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 7033670284700621850, guid: 206177294f2a8f946b2c80db96810c1e, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 206177294f2a8f946b2c80db96810c1e, type: 3}

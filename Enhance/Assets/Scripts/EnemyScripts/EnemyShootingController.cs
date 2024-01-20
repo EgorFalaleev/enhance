@@ -2,28 +2,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyShootingController : MonoBehaviour
+public class EnemyShootingController : Shooter
 {
-    [SerializeField] private GameObject _bullet;
-    [SerializeField] private Transform _bulletInitialPosition;
-    [SerializeField] private float shootCooldown = 2f;
+    [SerializeField] private float _distanceToShoot = 10f;
 
-    private float timer = 0f;
+    private Transform _target;
 
-    void Update()
+    private void Start()
     {
-        timer += Time.deltaTime;
-
-        // shoot periodically
-        if (timer > shootCooldown)
-        {
-            timer = 0;
-            Shoot(_bullet, _bulletInitialPosition);
-        }
+        _target = GameObject.FindGameObjectWithTag(Tags.PLAYER).transform;
     }
 
-    private void Shoot(GameObject bulletPrefab, Transform bulletInitialPos)
+    private void Update()
     {
-        Instantiate(bulletPrefab, bulletInitialPos.position, Quaternion.identity);
+        var distanceToPlayer = Vector3.Distance(transform.position, _target.position);
+
+        if (distanceToPlayer < _distanceToShoot)
+        {
+            ShootWithCooldown(_bullet, _bulletInitialPosition, _shootCooldown);
+        }
     }
 }
