@@ -190,7 +190,7 @@ MonoBehaviour:
   _minSpawnRadius: 10
   _maxSpawnRadius: 15
   _spawnedObjectsContainer: {fileID: 855764217}
-  _timeTillNextWave: 6
+  _timeTillNextWave: 10
   _timeTillSingleEnemy: 3
 --- !u!4 &504070672
 Transform:

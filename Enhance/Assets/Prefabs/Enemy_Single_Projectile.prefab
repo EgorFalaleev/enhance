@@ -166,8 +166,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _bullet: {fileID: 8027913780797553765, guid: afa3f8c3eb430af48bf808ed26cb920d, type: 3}
   _bulletInitialPosition: {fileID: 2393904168656638013}
-  _shootCooldown: 1
-  _distanceToShoot: 8
+  _shootCooldown: 1.5
+  _distanceToShoot: 10
 --- !u!114 &3783812903421214306
 MonoBehaviour:
   m_ObjectHideFlags: 0
