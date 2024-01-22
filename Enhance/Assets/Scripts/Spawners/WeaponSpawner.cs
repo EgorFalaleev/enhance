@@ -7,6 +7,7 @@ public class WeaponSpawner : Spawner
     [SerializeField] private float _timeTillNextWeaponSpawn = 5f;
 
     private float _timer = 0f;
+    private LevelUpSystem _levelUpSystem;
 
     void Start()
     {
@@ -24,5 +25,17 @@ public class WeaponSpawner : Spawner
             _timer = 0f;
             SpawnRandomObject();
         }
+    }
+
+    public void SetLevelUpSystem(LevelUpSystem levelUpSystem)
+    {
+        _levelUpSystem = levelUpSystem;
+
+        levelUpSystem.OnLevelChanged += LevelUpSystem_OnLevelChanged;
+    }
+
+    private void LevelUpSystem_OnLevelChanged(object sender, System.EventArgs e)
+    {
+        SpawnRandomObject();
     }
 }

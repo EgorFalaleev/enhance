@@ -160,3 +160,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0fb5365e1db20c4da2928905a4a6fee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _dropItemPrefab: {fileID: 2859132613199727654, guid: af55f5187178409409495e538c6d559b, type: 3}
