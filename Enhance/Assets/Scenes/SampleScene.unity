@@ -1081,5 +1081,13 @@ PrefabInstance:
       propertyPath: _enemyLayerMask.m_Bits
       value: 64
       objectReference: {fileID: 0}
+    - target: {fileID: 6199692663601706063, guid: 1ef7f7963ab9a654f8e85eefc2c0a720, type: 3}
+      propertyPath: _levelWindow
+      value: 
+      objectReference: {fileID: 1565046327}
+    - target: {fileID: 6199692663601706063, guid: 1ef7f7963ab9a654f8e85eefc2c0a720, type: 3}
+      propertyPath: _weaponSpawner
+      value: 
+      objectReference: {fileID: 1548416798}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1ef7f7963ab9a654f8e85eefc2c0a720, type: 3}
