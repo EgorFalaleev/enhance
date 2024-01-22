@@ -27,6 +27,11 @@ public class LevelUpSystem
         return _level;
     }
 
+    public float GetExperiencePercentage()
+    {
+        return (float)_experience / _requiredExpToNextLevel;
+    }
+
     public void AddExperience(int amount)
     {
         _experience += amount;
