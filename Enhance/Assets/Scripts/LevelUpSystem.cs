@@ -36,7 +36,7 @@ public class LevelUpSystem
     {
         _experience += amount;
 
-        if (_experience >= _requiredExpToNextLevel) 
+        while (_experience >= _requiredExpToNextLevel) 
         {
             LevelUp();
         }
@@ -44,6 +44,19 @@ public class LevelUpSystem
         // notify subscribers about exp change
         if (OnExperienceChanged != null)
             OnExperienceChanged(this, EventArgs.Empty);
+    }
+
+    // equation for required exp calculation from https://oldschool.runescape.wiki/w/Experience
+    public int CalculateRequiredExp(int level)
+    {
+        int requiredExp = 0;
+
+        for (int i = 1; i <= level; i++)
+        {
+            requiredExp += (int)Math.Floor(i + ADDITION_MULTIPLIER * Math.Pow(POWER_MULTIPLIER, i / DIVISION_MULTIPLIER));
+        }
+
+        return requiredExp / 4;
     }
 
     private void LevelUp()
@@ -57,16 +70,4 @@ public class LevelUpSystem
             OnLevelChanged(this, EventArgs.Empty);
     }
 
-    // equation for required exp calculation from https://oldschool.runescape.wiki/w/Experience
-    private int CalculateRequiredExp(int level)
-    {
-        int requiredExp = 0;
-
-        for (int i = 1; i <= level; i++) 
-        {
-            requiredExp += (int)Math.Floor(i + ADDITION_MULTIPLIER * Math.Pow(POWER_MULTIPLIER, i / DIVISION_MULTIPLIER));
-        }
-
-        return requiredExp / 4;
-    }
 }
