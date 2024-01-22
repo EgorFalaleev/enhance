@@ -116,6 +116,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _experienceAmount: 20
+  _timeTillDestroy: 30
 --- !u!50 &-320296586574690682
 Rigidbody2D:
   serializedVersion: 4

@@ -5,6 +5,14 @@ using UnityEngine;
 public class ExperienceItem : MonoBehaviour
 {
     [SerializeField] private int _experienceAmount = 20;
+    [SerializeField] private float _timeTillDestroy = 30f;
+
+    private void Start()
+    {
+        transform.SetParent(GameObject.Find("ExpItems").transform);
+
+        Destroy(gameObject, _timeTillDestroy);
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
