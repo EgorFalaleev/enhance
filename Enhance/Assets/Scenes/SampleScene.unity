@@ -186,6 +186,7 @@ MonoBehaviour:
   _prefabsToSpawn:
   - {fileID: 7033670284700621850, guid: 206177294f2a8f946b2c80db96810c1e, type: 3}
   - {fileID: 2240532377615570089, guid: 2fc07cbeaa83ef54598c5cf631e1d5df, type: 3}
+  - {fileID: 5635717500219866862, guid: 6204e4cb2ef70ef4b94497e15c6d92cd, type: 3}
   _spawnCenter: {fileID: 1028160762}
   _minSpawnRadius: 10
   _maxSpawnRadius: 15
