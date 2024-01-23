@@ -1,4 +1,6 @@
+using System.Collections;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
@@ -9,6 +11,13 @@ public class PlayerController : MonoBehaviour
     private int _horizontal;
     private int _vertical;
 
+    [Header("Dash properties")]
+    [SerializeField] private float _dashingPower = 24f;
+    [SerializeField] private float _dashingTime = 0.2f;
+    [SerializeField] private float _dashingCooldown = 1f;
+    private bool _canDash = true;
+    private bool _isDashing;
+
     private void Awake()
     {
         playerInput = new PlayerInput();
@@ -16,11 +25,16 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
-        body = GetComponent<Rigidbody2D>();   
+        body = GetComponent<Rigidbody2D>();
+        _canDash = true;
     }
 
     void Update()
     {
+        // cannot move while dashing
+        if (_isDashing)
+            return;
+
         // get move axes
         _horizontal = Mathf.RoundToInt(playerInput.Player.Move.ReadValue<Vector2>().x);
         _vertical = Mathf.RoundToInt(playerInput.Player.Move.ReadValue<Vector2>().y);
@@ -28,6 +42,10 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
+        // cannot move while dashing
+        if (_isDashing)
+            return;
+
         // move player
         var direction = new Vector2(_horizontal, _vertical).normalized;
         body.velocity = direction * speed * Time.fixedDeltaTime;
@@ -41,5 +59,29 @@ public class PlayerController : MonoBehaviour
     private void OnDisable()
     {
         playerInput.Player.Disable();
+    }
+
+    public void Dash(InputAction.CallbackContext context)
+    {
+        if (context.performed && _canDash)
+        {
+            StartCoroutine(Dash());
+        }
+    }
+
+    private IEnumerator Dash()
+    {
+        _canDash = false;
+        _isDashing = true;
+
+        // calculate dash direction
+        var direction = new Vector2(_horizontal, _vertical).normalized;
+        body.velocity = direction * _dashingPower;
+
+        yield return new WaitForSeconds(_dashingTime);
+        _isDashing = false;
+
+        yield return new WaitForSeconds(_dashingCooldown);
+        _canDash = true;
     }
 }
