@@ -109,7 +109,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!58 &5635717500219866863
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -170,5 +170,4 @@ MonoBehaviour:
   _minSpawnRadius: 1
   _maxSpawnRadius: 2
   _spawnedObjectsContainer: {fileID: 0}
-  _enemyPrefab: {fileID: 0}
   _numberOfEnemiesToSpawn: 2

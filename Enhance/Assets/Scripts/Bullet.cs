@@ -32,7 +32,7 @@ public class Bullet : MonoBehaviour
         AimAtTarget(_target);
     }
 
-    private void Update()
+    protected virtual void Update()
     {
         _timer += Time.deltaTime;
 
