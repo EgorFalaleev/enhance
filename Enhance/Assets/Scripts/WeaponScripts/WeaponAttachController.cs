@@ -11,6 +11,7 @@ public class WeaponAttachController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        Debug.Log(collision.name);
         // enemy contact with weapon destroys it
         if (collision.CompareTag(Tags.ENEMY) || collision.CompareTag(Tags.ENEMY_PROJECTILE))
         {
@@ -18,7 +19,7 @@ public class WeaponAttachController : MonoBehaviour
             return;
         }
 
-        // can attach only once
+        // can attach only once 
         if (!_isAttached)
         {
             // calculate the direction of attachment

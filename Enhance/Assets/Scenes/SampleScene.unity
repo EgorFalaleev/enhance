@@ -670,6 +670,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _prefabsToSpawn:
   - {fileID: 3247022566325955673, guid: 496f9992e2a3c8c4a9dc95df9144db1b, type: 3}
+  - {fileID: 3247022566325955673, guid: 6a21d2048cf58624fb93fabb32ec6522, type: 3}
   _spawnCenter: {fileID: 1028160762}
   _minSpawnRadius: 4
   _maxSpawnRadius: 7
