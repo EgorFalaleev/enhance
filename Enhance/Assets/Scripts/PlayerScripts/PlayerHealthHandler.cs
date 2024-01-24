@@ -3,6 +3,9 @@ using UnityEngine;
 
 public class PlayerHealthHandler : DamageableObject
 {
+    [SerializeField] private GameStatsController _gameStatsController;
+    [SerializeField] private GameOverScreen _gameOverScreen;
+
     private void Start()
     {
         OnDie += PlayerHealthHandler_OnDie;
@@ -10,6 +13,9 @@ public class PlayerHealthHandler : DamageableObject
 
     private void PlayerHealthHandler_OnDie(object sender, EventArgs e)
     {
+        _gameStatsController.Level = GetComponent<Player>()._levelUpSystem.GetLevel();
+        // need to find something better than that
+        _gameOverScreen.SetupGameOverScreen(_gameStatsController.Level, _gameStatsController.EnemiesKilled);
         Destroy(gameObject); 
     }
 

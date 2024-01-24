@@ -6,6 +6,7 @@ using UnityEngine;
 public class EnemyHealthController : DamageableObject
 {
     [SerializeField] private GameObject _dropItemPrefab;
+    [SerializeField] private GameStatsController _gameStatsController;
 
     private void Start()
     {
@@ -31,6 +32,7 @@ public class EnemyHealthController : DamageableObject
     private void EnemyHealthController_OnDie(object sender, EventArgs e)
     {
         Instantiate(_dropItemPrefab, transform.position, Quaternion.identity);
+        _gameStatsController.EnemiesKilled++;
         Destroy(gameObject);
     }
 

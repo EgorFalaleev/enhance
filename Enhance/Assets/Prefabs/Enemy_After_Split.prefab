@@ -153,6 +153,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _health: 2
   _dropItemPrefab: {fileID: 2859132613199727654, guid: af55f5187178409409495e538c6d559b, type: 3}
+  _gameStatsController: {fileID: 11400000, guid: 5c81fab1c992bd04abb23de73b4401e4, type: 2}
 --- !u!114 &-6635992032587741599
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -167,4 +168,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _flashDurationInSeconds: 0.2
   _deathParticleSystem: {fileID: 2512561134542352883, guid: 14a73ef4c25d7534d990997bc7bf02b8, type: 3}
-  _flashColor: {r: 1, g: 1, b: 1, a: 0}

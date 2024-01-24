@@ -12,7 +12,7 @@ public class GameOverScreen : MonoBehaviour
     {
         gameObject.SetActive(true);
 
-        _levelNumberText.text = "Level: " + level.ToString();
-        _enemiesKilledNumberText.text = "Enemies killed: " + enemiesKilled.ToString();
+        _levelNumberText.text = level.ToString();
+        _enemiesKilledNumberText.text = enemiesKilled.ToString();
     }
 }
