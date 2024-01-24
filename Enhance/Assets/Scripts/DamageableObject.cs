@@ -8,7 +8,7 @@ public abstract class DamageableObject : MonoBehaviour
     public event EventHandler OnDie;
     public event EventHandler OnDamageTaken;
 
-    [SerializeField] private int _health = 4;
+    [SerializeField] protected int _health = 4;
 
     public void ReceiveDamage(int amount)
     {

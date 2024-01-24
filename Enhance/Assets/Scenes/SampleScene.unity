@@ -1322,6 +1322,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1949879626}
   - component: {fileID: 1949879627}
+  - component: {fileID: 1949879628}
   m_Layer: 5
   m_Name: HeartsContainer
   m_TagString: Untagged
@@ -1378,6 +1379,24 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!114 &1949879628
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1949879625}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1dcacce7d881b88499d9a2e9b50b95b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _heartImages:
+  - {fileID: 1469975134}
+  - {fileID: 192838725}
+  - {fileID: 2681308}
+  _fullHeartImage: {fileID: 21300000, guid: 3fd57d63bf69ed04ba56e1005a5a4824, type: 3}
+  _emptyHeartImage: {fileID: 21300000, guid: 493cf0f24a500c24f922a9e7ec1d0e57, type: 3}
 --- !u!1 &2144317434
 GameObject:
   m_ObjectHideFlags: 0

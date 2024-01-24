@@ -25,4 +25,9 @@ public class PlayerHealthHandler : DamageableObject
             ReceiveDamage(1);
         }
     }
+
+    public int GetHealth()
+    {
+        return _health;
+    }
 }
