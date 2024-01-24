@@ -9,6 +9,7 @@ public class EnemyVfxController : MonoBehaviour
 
     [Header("Death vfx")]
     [SerializeField] private GameObject _deathParticleSystem;
+    [SerializeField] private Color _flashColor;
 
     private SpriteRenderer _spriteRenderer;
     private Color _originalColor;
@@ -47,7 +48,7 @@ public class EnemyVfxController : MonoBehaviour
 
     private IEnumerator FlashCoroutine()
     {
-        _spriteRenderer.color = Color.white;
+        _spriteRenderer.color = _flashColor;
 
         yield return new WaitForSeconds(_flashDurationInSeconds);
 
