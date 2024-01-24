@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyVfxController : MonoBehaviour
+public class PlayerVfxController : MonoBehaviour
 {
     [Header("Flash parameters")]
     [SerializeField] private float _flashDurationInSeconds = 0.2f;
@@ -14,24 +14,25 @@ public class EnemyVfxController : MonoBehaviour
     private Color _originalColor;
     private Coroutine _flashCoroutine;
 
+
     void Start()
     {
         _spriteRenderer = GetComponent<SpriteRenderer>();
         _originalColor = _spriteRenderer.color;
 
-        GetComponent<EnemyHealthController>().OnDamageTaken += EnemyVfxController_OnDamageTaken;
-        GetComponent<EnemyHealthController>().OnDie += EnemyVfxController_OnDie;
+        GetComponent<PlayerHealthHandler>().OnDamageTaken += PlayerVfxController_OnDamageTaken; ;
+        GetComponent<PlayerHealthHandler>().OnDie += PlayerVfxController_OnDie; ;
     }
 
-    private void EnemyVfxController_OnDie(object sender, System.EventArgs e)
+    private void PlayerVfxController_OnDamageTaken(object sender, System.EventArgs e)
+    {
+        Flash();
+    }
+
+    private void PlayerVfxController_OnDie(object sender, System.EventArgs e)
     {
         GameObject deathParticles = Instantiate(_deathParticleSystem, transform.position, Quaternion.identity);
         Destroy(deathParticles, deathParticles.GetComponent<ParticleSystem>().main.duration);
-    }
-
-    private void EnemyVfxController_OnDamageTaken(object sender, System.EventArgs e)
-    {
-        Flash();
     }
 
     private void Flash()
@@ -55,4 +56,5 @@ public class EnemyVfxController : MonoBehaviour
         _spriteRenderer.color = _originalColor;
         _flashCoroutine = null;
     }
+
 }
