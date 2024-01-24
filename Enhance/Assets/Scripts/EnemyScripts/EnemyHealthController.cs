@@ -20,7 +20,14 @@ public class EnemyHealthController : MonoBehaviour
         if (collision.gameObject.CompareTag(Tags.WEAPON_PROJECTILE))
         {
             ReceiveDamage(collision.gameObject.GetComponent<Bullet>().GetDamage());
-            return;
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag(Tags.WEAPON_PROJECTILE))
+        {
+            ReceiveDamage(collision.gameObject.GetComponent<Bullet>().GetDamage());
         }
     }
 
