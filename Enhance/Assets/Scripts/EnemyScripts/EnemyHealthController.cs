@@ -6,6 +6,7 @@ using UnityEngine;
 public class EnemyHealthController : MonoBehaviour
 {
     public event EventHandler OnDie;
+    public event EventHandler OnDamageTaken;
 
     [SerializeField] private int _health = 4;
     [SerializeField] private GameObject _dropItemPrefab;
@@ -40,6 +41,9 @@ public class EnemyHealthController : MonoBehaviour
     public void ReceiveDamage(int amount)
     {
         _health -= amount;
+        if (OnDamageTaken != null)
+            OnDamageTaken(this, EventArgs.Empty);
+
 
         if (_health <= 0)
         {
