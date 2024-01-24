@@ -3,12 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyHealthController : MonoBehaviour
+public class EnemyHealthController : DamageableObject
 {
-    public event EventHandler OnDie;
-    public event EventHandler OnDamageTaken;
-
-    [SerializeField] private int _health = 4;
     [SerializeField] private GameObject _dropItemPrefab;
 
     private void Start()
@@ -38,17 +34,4 @@ public class EnemyHealthController : MonoBehaviour
         Destroy(gameObject);
     }
 
-    public void ReceiveDamage(int amount)
-    {
-        _health -= amount;
-        if (OnDamageTaken != null)
-            OnDamageTaken(this, EventArgs.Empty);
-
-
-        if (_health <= 0)
-        {
-            if (OnDie != null)
-                OnDie(this, EventArgs.Empty);
-        }
-    }
 }
