@@ -1,9 +1,12 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class WeaponAttachController : MonoBehaviour
 {
+    public event EventHandler OnDie;
+
     private const float WEAPON_ATTACH_MODIFIER = 1.25f;
     private const float PLAYER_ATTACH_MODIFIER = 0.9f;
 
@@ -11,10 +14,12 @@ public class WeaponAttachController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log(collision.name);
         // enemy contact with weapon destroys it
         if (collision.CompareTag(Tags.ENEMY) || collision.CompareTag(Tags.ENEMY_PROJECTILE))
         {
+            if (OnDie != null)
+                OnDie(this, EventArgs.Empty);
+
             Destroy(gameObject);
             return;
         }

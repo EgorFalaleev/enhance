@@ -177,3 +177,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _flashDurationInSeconds: 0.1
   _deathParticleSystem: {fileID: 2512561134542352883, guid: 14a73ef4c25d7534d990997bc7bf02b8, type: 3}
+  _flashColor: {r: 1, g: 1, b: 1, a: 0}
