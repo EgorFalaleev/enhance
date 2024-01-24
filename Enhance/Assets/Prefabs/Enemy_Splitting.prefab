@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 5635717500219866859}
   - component: {fileID: 4794073469182110340}
   - component: {fileID: -5593208521561732548}
+  - component: {fileID: 5513083157863194568}
   m_Layer: 6
   m_Name: Enemy_Splitting
   m_TagString: Enemy
@@ -151,6 +152,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0fb5365e1db20c4da2928905a4a6fee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _health: 4
   _dropItemPrefab: {fileID: 2859132613199727654, guid: af55f5187178409409495e538c6d559b, type: 3}
 --- !u!114 &-5593208521561732548
 MonoBehaviour:
@@ -171,3 +173,17 @@ MonoBehaviour:
   _maxSpawnRadius: 2
   _spawnedObjectsContainer: {fileID: 0}
   _numberOfEnemiesToSpawn: 2
+--- !u!114 &5513083157863194568
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5635717500219866862}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21d9eaed9d853874e9d5598a02b5ba5c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _flashDurationInSeconds: 0.2
+  _deathParticleSystem: {fileID: 2512561134542352883, guid: 14a73ef4c25d7534d990997bc7bf02b8, type: 3}

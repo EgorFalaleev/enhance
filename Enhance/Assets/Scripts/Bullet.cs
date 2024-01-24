@@ -6,6 +6,7 @@ public class Bullet : MonoBehaviour
 {
     [SerializeField] private float _speed = 10f;
     [SerializeField] private float _timeToDestroy = 5f;
+    [SerializeField] private int _damage = 1;
 
     private Transform _target;
     private Rigidbody2D _rb;
@@ -62,5 +63,10 @@ public class Bullet : MonoBehaviour
 
             transform.right = direction;
         }
+    }
+
+    public int GetDamage()
+    {
+        return _damage;
     }
 }
