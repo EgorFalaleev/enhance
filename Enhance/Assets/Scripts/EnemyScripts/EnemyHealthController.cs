@@ -7,18 +7,37 @@ public class EnemyHealthController : MonoBehaviour
 {
     public event EventHandler OnDie;
 
+    [SerializeField] private int _health = 4;
     [SerializeField] private GameObject _dropItemPrefab;
+
+    private void Start()
+    {
+        OnDie += EnemyHealthController_OnDie;
+    }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag(Tags.WEAPON_PROJECTILE))
         {
+            ReceiveDamage(collision.gameObject.GetComponent<Bullet>().GetDamage());
+            return;
+        }
+    }
+
+    private void EnemyHealthController_OnDie(object sender, EventArgs e)
+    {
+        Instantiate(_dropItemPrefab, transform.position, Quaternion.identity);
+        Destroy(gameObject);
+    }
+
+    public void ReceiveDamage(int amount)
+    {
+        _health -= amount;
+
+        if (_health <= 0)
+        {
             if (OnDie != null)
                 OnDie(this, EventArgs.Empty);
-
-            Instantiate(_dropItemPrefab, transform.position, Quaternion.identity);
-            Destroy(gameObject);
-            return;
         }
     }
 }
