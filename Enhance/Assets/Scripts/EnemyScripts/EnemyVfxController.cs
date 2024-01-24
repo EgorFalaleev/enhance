@@ -7,6 +7,9 @@ public class EnemyVfxController : MonoBehaviour
     [Header("Flash parameters")]
     [SerializeField] private float _flashDurationInSeconds = 0.2f;
 
+    [Header("Death vfx")]
+    [SerializeField] private GameObject _deathParticleSystem;
+
     private SpriteRenderer _spriteRenderer;
     private Color _originalColor;
     private Coroutine _flashCoroutine;
@@ -17,6 +20,13 @@ public class EnemyVfxController : MonoBehaviour
         _originalColor = _spriteRenderer.color;
 
         GetComponent<EnemyHealthController>().OnDamageTaken += EnemyVfxController_OnDamageTaken;
+        GetComponent<EnemyHealthController>().OnDie += EnemyVfxController_OnDie;
+    }
+
+    private void EnemyVfxController_OnDie(object sender, System.EventArgs e)
+    {
+        GameObject deathParticles = Instantiate(_deathParticleSystem, transform.position, Quaternion.identity);
+        Destroy(deathParticles, deathParticles.GetComponent<ParticleSystem>().main.duration);
     }
 
     private void EnemyVfxController_OnDamageTaken(object sender, System.EventArgs e)

@@ -195,8 +195,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21d9eaed9d853874e9d5598a02b5ba5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _flashMaterial: {fileID: 2100000, guid: 274bf351a6879014ca867283fdf06a12, type: 2}
   _flashDurationInSeconds: 0.2
+  _deathParticleSystem: {fileID: 2512561134542352883, guid: 14a73ef4c25d7534d990997bc7bf02b8, type: 3}
 --- !u!1 &7477340479364560320
 GameObject:
   m_ObjectHideFlags: 0
