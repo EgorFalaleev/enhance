@@ -45,6 +45,7 @@ GameObject:
   - component: {fileID: 3247022566325955669}
   - component: {fileID: 3247022566325955666}
   - component: {fileID: 3981518421640563356}
+  - component: {fileID: -2924318753608481418}
   m_Layer: 10
   m_Name: Weapon_AoE
   m_TagString: Weapon
@@ -184,3 +185,16 @@ MonoBehaviour:
   _bullet: {fileID: 4529449556431175778, guid: 5cdef376bc8bd874ebbb0f8dab14689b, type: 3}
   _bulletInitialPosition: {fileID: 1966057087854039864}
   _shootCooldown: 5
+--- !u!114 &-2924318753608481418
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3247022566325955673}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 12922122891a80f4fa6a32d0b881cb27, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _deathParticleSystem: {fileID: 2512561134542352883, guid: 2409cd7b746ff0740bdbe07874dcb902, type: 3}
