@@ -162,8 +162,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _health: 4
-  _dropItemPrefab: {fileID: 2859132613199727654, guid: af55f5187178409409495e538c6d559b, type: 3}
   _gameStatsController: {fileID: 11400000, guid: 5c81fab1c992bd04abb23de73b4401e4, type: 2}
+  _experienceAmount: 20
 --- !u!114 &-8597406816143197641
 MonoBehaviour:
   m_ObjectHideFlags: 0
