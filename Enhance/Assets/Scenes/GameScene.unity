@@ -743,11 +743,13 @@ MonoBehaviour:
   - {fileID: 2240532377615570089, guid: 2fc07cbeaa83ef54598c5cf631e1d5df, type: 3}
   - {fileID: 5635717500219866862, guid: 6204e4cb2ef70ef4b94497e15c6d92cd, type: 3}
   _spawnCenter: {fileID: 1028160762}
-  _minSpawnRadius: 10
-  _maxSpawnRadius: 15
+  _minSpawnRadius: 15
+  _maxSpawnRadius: 20
   _spawnedObjectsContainer: {fileID: 855764217}
   _timeTillNextWave: 10
   _timeTillSingleEnemy: 3
+  _maxEnemiesToSpawnPerWave: 25
+  _enemiesPerWaveDifference: 2
 --- !u!4 &504070672
 Transform:
   m_ObjectHideFlags: 0

@@ -7,4 +7,10 @@ public class GameStatsController : ScriptableObject
 {
     public int Level { get; set; }
     public int EnemiesKilled { get; set; }
+
+    public void ResetStats()
+    {
+        Level = 1;
+        EnemiesKilled = 0;
+    }
 }

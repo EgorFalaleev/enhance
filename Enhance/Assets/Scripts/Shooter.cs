@@ -8,7 +8,7 @@ public abstract class Shooter : MonoBehaviour
     [SerializeField] protected Transform _bulletInitialPosition;
     [SerializeField] protected float _shootCooldown = 2f;
 
-    private float timer = 0f;
+    private float _timer = 0f;
 
     void Update()
     {
@@ -17,12 +17,12 @@ public abstract class Shooter : MonoBehaviour
 
     protected void ShootWithCooldown(GameObject bulletPrefab, Transform bulletInitialPos, float cooldown)
     {
-        timer += Time.deltaTime;
+        _timer += Time.deltaTime;
 
         // shoot periodically
-        if (timer > cooldown)
+        if (_timer > cooldown)
         {
-            timer = 0;
+            _timer = 0;
             Instantiate(bulletPrefab, bulletInitialPos.position, Quaternion.identity);
         }
     }

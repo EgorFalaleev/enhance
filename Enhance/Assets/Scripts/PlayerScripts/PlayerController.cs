@@ -10,11 +10,13 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D body;
     private int _horizontal;
     private int _vertical;
+    private bool _isAlive;
 
     [Header("Dash properties")]
     [SerializeField] private float _dashingPower = 24f;
     [SerializeField] private float _dashingTime = 0.2f;
     [SerializeField] private float _dashingCooldown = 1f;
+    [SerializeField] private TrailRenderer _trailRenderer;
     private bool _canDash = true;
     private bool _isDashing;
 
@@ -27,12 +29,17 @@ public class PlayerController : MonoBehaviour
     {
         body = GetComponent<Rigidbody2D>();
         _canDash = true;
+        _isAlive = true;
+        GetComponent<PlayerHealthHandler>().OnDie += PlayerController_OnDie;
     }
 
     void Update()
     {
         // cannot move while dashing
         if (_isDashing)
+            return;
+
+        if (!_isAlive)
             return;
 
         // get move axes
@@ -44,6 +51,9 @@ public class PlayerController : MonoBehaviour
     {
         // cannot move while dashing
         if (_isDashing)
+            return;
+
+        if (!_isAlive)
             return;
 
         // move player
@@ -78,10 +88,18 @@ public class PlayerController : MonoBehaviour
         var direction = new Vector2(_horizontal, _vertical).normalized;
         body.velocity = direction * _dashingPower;
 
+        _trailRenderer.emitting = true;
+
         yield return new WaitForSeconds(_dashingTime);
         _isDashing = false;
+        _trailRenderer.emitting = false;
 
         yield return new WaitForSeconds(_dashingCooldown);
         _canDash = true;
+    }
+
+    private void PlayerController_OnDie(object sender, System.EventArgs e)
+    {
+        _isAlive = false;
     }
 }

@@ -6,10 +6,12 @@ public class EnemySpawner : Spawner
 {
     [SerializeField] private float _timeTillNextWave = 10f;
     [SerializeField] private float _timeTillSingleEnemy = 3f;
+    [SerializeField] private int _maxEnemiesToSpawnPerWave = 25;
+    [SerializeField] private int _enemiesPerWaveDifference = 2;
 
     private float _waveTimer = 0f;
     private float _singleEnemyTimer = 0f;
-    private int _numberOfEnemiesToSpawnNextWave = 10;
+    private int _numberOfEnemiesToSpawnNextWave = 3;
 
     protected override void Update()
     {
@@ -22,7 +24,7 @@ public class EnemySpawner : Spawner
         {
             _waveTimer = 0f;
 
-            SpawnMultipleObjects(_numberOfEnemiesToSpawnNextWave);
+            SpawnMultipleObjects(CalculateNextWaveAmount());
         }
 
         if (_singleEnemyTimer > _timeTillSingleEnemy)
@@ -30,5 +32,15 @@ public class EnemySpawner : Spawner
             _singleEnemyTimer = 0f;
             SpawnRandomObject();
         }
+    }
+
+    private int CalculateNextWaveAmount()
+    {
+        _numberOfEnemiesToSpawnNextWave += _enemiesPerWaveDifference;
+
+        if (_numberOfEnemiesToSpawnNextWave > _maxEnemiesToSpawnPerWave)
+            _numberOfEnemiesToSpawnNextWave = _maxEnemiesToSpawnPerWave;
+
+        return _numberOfEnemiesToSpawnNextWave;
     }
 }
