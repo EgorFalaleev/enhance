@@ -1228,7 +1228,7 @@ MonoBehaviour:
   _spawnedObjectsContainer: {fileID: 855764217}
   _timeTillNextWave: 10
   _timeTillSingleEnemy: 3
-  _maxEnemiesToSpawnPerWave: 25
+  _maxEnemiesToSpawnPerWave: 20
   _enemiesPerWaveDifference: 2
 --- !u!4 &504070672
 Transform:
@@ -2909,10 +2909,10 @@ MonoBehaviour:
   - {fileID: 3247022566325955673, guid: 496f9992e2a3c8c4a9dc95df9144db1b, type: 3}
   - {fileID: 3247022566325955673, guid: 6a21d2048cf58624fb93fabb32ec6522, type: 3}
   _spawnCenter: {fileID: 1028160762}
-  _minSpawnRadius: 4
-  _maxSpawnRadius: 7
+  _minSpawnRadius: 2
+  _maxSpawnRadius: 5
   _spawnedObjectsContainer: {fileID: 423134236}
-  _timeTillNextWeaponSpawn: 5
+  _timeTillNextWeaponSpawn: 3
 --- !u!1 &1550407413
 GameObject:
   m_ObjectHideFlags: 0
