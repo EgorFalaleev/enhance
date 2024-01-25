@@ -18,8 +18,9 @@ public class PlayerHealthHandler : DamageableObject
     private void PlayerHealthHandler_OnDie(object sender, EventArgs e)
     {
         _gameStatsController.Level = GetComponent<Player>()._levelUpSystem.GetLevel();
+        _gameStatsController.SetHighScore(_gameStatsController.EnemiesKilled);
         // need to find something better than that
-        _gameOverScreen.SetupGameOverScreen(_gameStatsController.Level, _gameStatsController.EnemiesKilled);
+        _gameOverScreen.SetupGameOverScreen(_gameStatsController.Level, _gameStatsController.EnemiesKilled, _gameStatsController.GetHighScore());
         
         GetComponent<SpriteRenderer>().enabled = false;
         GetComponent<PlayerController>().enabled = false;
