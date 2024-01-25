@@ -19,6 +19,11 @@ public class EnemyHealthController : DamageableObject
         {
             ReceiveDamage(collision.gameObject.GetComponent<Bullet>().GetDamage());
         }
+
+        if (collision.gameObject.CompareTag(Tags.PLAYER))
+        {
+            ReceiveDamage(_health);
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -26,6 +31,12 @@ public class EnemyHealthController : DamageableObject
         if (collision.CompareTag(Tags.WEAPON_PROJECTILE))
         {
             ReceiveDamage(collision.gameObject.GetComponent<Bullet>().GetDamage());
+        }
+
+        // destroy enemy on collision with weapon
+        if (collision.CompareTag(Tags.WEAPON))
+        {
+            ReceiveDamage(_health);
         }
     }
 
