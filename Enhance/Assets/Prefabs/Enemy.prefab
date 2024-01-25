@@ -79,7 +79,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0.9716981, g: 0.1512549, b: 0.1512549, a: 1}
+  m_Color: {r: 0.96862745, g: 0.17254902, b: 0.14509805, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -148,7 +148,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7281b96d808918c459d30e4db2b0036a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 150
+  moveSpeed: 175
 --- !u!114 &7370623949946472125
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -162,8 +162,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _health: 4
-  _dropItemPrefab: {fileID: 2859132613199727654, guid: af55f5187178409409495e538c6d559b, type: 3}
   _gameStatsController: {fileID: 11400000, guid: 5c81fab1c992bd04abb23de73b4401e4, type: 2}
+  _experienceAmount: 20
 --- !u!114 &-8597406816143197641
 MonoBehaviour:
   m_ObjectHideFlags: 0

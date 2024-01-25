@@ -5,8 +5,8 @@ using UnityEngine;
 
 public class EnemyHealthController : DamageableObject
 {
-    [SerializeField] private GameObject _dropItemPrefab;
     [SerializeField] private GameStatsController _gameStatsController;
+    [SerializeField] private int _experienceAmount;
 
     private void Start()
     {
@@ -19,6 +19,11 @@ public class EnemyHealthController : DamageableObject
         {
             ReceiveDamage(collision.gameObject.GetComponent<Bullet>().GetDamage());
         }
+
+        if (collision.gameObject.CompareTag(Tags.PLAYER))
+        {
+            ReceiveDamage(_health);
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -27,11 +32,17 @@ public class EnemyHealthController : DamageableObject
         {
             ReceiveDamage(collision.gameObject.GetComponent<Bullet>().GetDamage());
         }
+
+        // destroy enemy on collision with weapon
+        if (collision.CompareTag(Tags.WEAPON))
+        {
+            ReceiveDamage(_health);
+        }
     }
 
     private void EnemyHealthController_OnDie(object sender, EventArgs e)
     {
-        Instantiate(_dropItemPrefab, transform.position, Quaternion.identity);
+        FindObjectOfType<Player>().GetComponent<Player>()._levelUpSystem.AddExperience(_experienceAmount);
         _gameStatsController.EnemiesKilled++;
         Destroy(gameObject);
     }

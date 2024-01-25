@@ -6,6 +6,7 @@ using UnityEngine;
 public class WeaponAttachController : MonoBehaviour
 {
     public event EventHandler OnDie;
+    public bool IsAttached { get { return _isAttached;} }
 
     private const float WEAPON_ATTACH_MODIFIER = 1.25f;
     private const float PLAYER_ATTACH_MODIFIER = 0.9f;
@@ -44,4 +45,5 @@ public class WeaponAttachController : MonoBehaviour
             GetComponent<WeaponShooter>().IsWeaponAttached = true;
         }
     }
+
 }

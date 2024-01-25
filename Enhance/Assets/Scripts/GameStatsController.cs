@@ -12,5 +12,17 @@ public class GameStatsController : ScriptableObject
     {
         Level = 1;
         EnemiesKilled = 0;
+
+    }
+
+    public void SetHighScore(int value)
+    {
+        if (value > GetHighScore())
+            PlayerPrefs.SetInt("HighScore", value);
+    }
+
+    public int GetHighScore()
+    {
+        return PlayerPrefs.GetInt("HighScore", 0); 
     }
 }
