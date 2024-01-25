@@ -9,6 +9,8 @@ public class PlayerHealthHandler : DamageableObject
     private void Start()
     {
         OnDie += PlayerHealthHandler_OnDie;
+
+        _gameStatsController.ResetStats();
     }
 
     private void PlayerHealthHandler_OnDie(object sender, EventArgs e)
