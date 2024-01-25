@@ -8,6 +8,8 @@ public class PlayerHealthHandler : DamageableObject
 
     private void Start()
     {
+        Time.timeScale = 1f;
+
         OnDie += PlayerHealthHandler_OnDie;
 
         _gameStatsController.ResetStats();
@@ -20,8 +22,8 @@ public class PlayerHealthHandler : DamageableObject
         _gameOverScreen.SetupGameOverScreen(_gameStatsController.Level, _gameStatsController.EnemiesKilled);
         
         GetComponent<SpriteRenderer>().enabled = false;
-        GetComponent<CircleCollider2D>().enabled = false;
-        GetComponent<PlayerController>().enabled = false;    
+        GetComponent<PlayerController>().enabled = false;
+        Time.timeScale = 0f;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
