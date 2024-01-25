@@ -18,7 +18,10 @@ public class PlayerHealthHandler : DamageableObject
         _gameStatsController.Level = GetComponent<Player>()._levelUpSystem.GetLevel();
         // need to find something better than that
         _gameOverScreen.SetupGameOverScreen(_gameStatsController.Level, _gameStatsController.EnemiesKilled);
-        Destroy(gameObject); 
+        
+        GetComponent<SpriteRenderer>().enabled = false;
+        GetComponent<CircleCollider2D>().enabled = false;
+        GetComponent<PlayerController>().enabled = false;    
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
