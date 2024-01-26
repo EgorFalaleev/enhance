@@ -14,17 +14,14 @@ public class EnemyMovementController : MonoBehaviour
         _target = GameObject.FindGameObjectWithTag(Tags.PLAYER).transform;
     }
 
-    void Update()
+    private void FixedUpdate()
     {
         LookAtTarget(_target);
 
         // determine direction to move
         var direction = _target.position - transform.position;
         _moveDirection = direction.normalized;
-    }
 
-    private void FixedUpdate()
-    {
         MoveTowardsTarget(_moveDirection, moveSpeed * Time.fixedDeltaTime);
     }
 
