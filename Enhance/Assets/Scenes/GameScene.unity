@@ -1493,8 +1493,8 @@ MonoBehaviour:
   - {fileID: 2240532377615570089, guid: 2fc07cbeaa83ef54598c5cf631e1d5df, type: 3}
   - {fileID: 5635717500219866862, guid: 6204e4cb2ef70ef4b94497e15c6d92cd, type: 3}
   _spawnCenter: {fileID: 1028160762}
-  _minSpawnRadius: 15
-  _maxSpawnRadius: 20
+  _minSpawnRadius: 16
+  _maxSpawnRadius: 22
   _spawnedObjectsContainer: {fileID: 855764217}
   _timeTillNextWave: 10
   _timeTillSingleEnemy: 3
@@ -3286,7 +3286,7 @@ MonoBehaviour:
   _minSpawnRadius: 2
   _maxSpawnRadius: 5
   _spawnedObjectsContainer: {fileID: 423134236}
-  _timeTillNextWeaponSpawn: 3
+  _timeTillNextWeaponSpawn: 2
 --- !u!1 &1550407413
 GameObject:
   m_ObjectHideFlags: 0

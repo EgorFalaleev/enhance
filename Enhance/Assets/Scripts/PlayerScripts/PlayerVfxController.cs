@@ -48,7 +48,7 @@ public class PlayerVfxController : MonoBehaviour
 
     private IEnumerator FlashCoroutine()
     {
-        _spriteRenderer.color = Color.white;
+        _spriteRenderer.color = Color.red;
 
         yield return new WaitForSeconds(_flashDurationInSeconds);
 

@@ -148,7 +148,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7281b96d808918c459d30e4db2b0036a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 175
+  moveSpeed: 250
 --- !u!114 &7370623949946472125
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -161,7 +161,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0fb5365e1db20c4da2928905a4a6fee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _health: 4
+  _health: 5
   _gameStatsController: {fileID: 11400000, guid: 5c81fab1c992bd04abb23de73b4401e4, type: 2}
   _experienceAmount: 20
 --- !u!114 &-8597406816143197641
