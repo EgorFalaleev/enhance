@@ -8,6 +8,11 @@ public class ObjectPoolingManager : MonoBehaviour
 {
     public static List<PooledObjectInfo> ObjectPools = new();
 
+    private void Start()
+    {
+        ObjectPools.Clear();
+    }
+
     public static GameObject SpawnObject(GameObject objectToSpawn, Vector3 spawnPosition, Quaternion spawnRotation)
     {
         // check if pool exists
