@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyHealthController : DamageableObject
@@ -8,9 +6,25 @@ public class EnemyHealthController : DamageableObject
     [SerializeField] private GameStatsController _gameStatsController;
     [SerializeField] private int _experienceAmount;
 
+    private int _maxHealth;
+    private Color _defaultColor;
+    private SpriteRenderer _renderer;
+
+    private void Awake()
+    {
+        _maxHealth = _health;
+        _renderer = GetComponent<SpriteRenderer>();
+        _defaultColor = _renderer.color;
+    }
+
     private void Start()
     {
         OnDie += EnemyHealthController_OnDie;
+    }
+
+    private void OnEnable()
+    {
+        ResetEnemyState();
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -44,7 +58,14 @@ public class EnemyHealthController : DamageableObject
     {
         FindObjectOfType<Player>().GetComponent<Player>()._levelUpSystem.AddExperience(_experienceAmount);
         _gameStatsController.EnemiesKilled++;
-        Destroy(gameObject);
+        
+        ObjectPoolingManager.ReturnObjectToPool(gameObject);
     }
 
+    private void ResetEnemyState()
+    {
+        // TODO: refactor to set state from config
+        _health = _maxHealth;
+        _renderer.color = _defaultColor;
+    }
 }

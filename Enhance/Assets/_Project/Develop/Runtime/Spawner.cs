@@ -33,8 +33,7 @@ public abstract class Spawner : MonoBehaviour
 
     protected void SpawnSpecificObject(GameObject objectToSpawn)
     {
-        GameObject newObject = Instantiate(objectToSpawn, GenerateRandomSpawnPosition(), Quaternion.identity);
-        newObject.transform.SetParent(_spawnedObjectsContainer.transform);
+        ObjectPoolingManager.SpawnObject(objectToSpawn, GenerateRandomSpawnPosition(), Quaternion.identity);
     }
 
     private Vector3 GenerateRandomSpawnPosition()

@@ -34,6 +34,8 @@ public class ObjectPoolingManager : MonoBehaviour
         if (spawnableObject == null)
         {
             spawnableObject = Instantiate(objectToSpawn, spawnPosition, spawnRotation);
+            
+            // TODO: set parent object for spawned object
         }
         // inactive object exists, use it
         else
