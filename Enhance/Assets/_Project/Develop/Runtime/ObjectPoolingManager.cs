@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -7,24 +6,39 @@ using UnityEngine;
 public class ObjectPoolingManager : MonoBehaviour
 {
     public static List<PooledObjectInfo> ObjectPools = new();
+    public static List<GameObject> PooledObjectsContainers = new();
+
+    private static GameObject _mainContainer;
+
+    private void Awake()
+    {
+        _mainContainer = new GameObject("Pooled Objects");
+    }
 
     private void Start()
     {
         ObjectPools.Clear();
+        PooledObjectsContainers.Clear();
     }
 
     public static GameObject SpawnObject(GameObject objectToSpawn, Vector3 spawnPosition, Quaternion spawnRotation)
     {
         // check if pool exists
         PooledObjectInfo pool = ObjectPools.Find(pool => pool.ObjectName == objectToSpawn.name);
+        
+        // check if parent container object for spawnable object exist
+        string parentContainerName = objectToSpawn.name + "_Container";
+        GameObject parentContainer = PooledObjectsContainers.Find(container => container.name == parentContainerName);
 
         // create pool if it doesn't exist
         if (pool == null)
         {
             pool = new PooledObjectInfo() { ObjectName = objectToSpawn.name };
             ObjectPools.Add(pool);
-            
-            Debug.Log($"pool created for: {pool.ObjectName}");
+
+            parentContainer = new GameObject(parentContainerName);
+            parentContainer.transform.SetParent(_mainContainer.transform);
+            PooledObjectsContainers.Add(parentContainer);
         }
 
         // check for inactive objects in pool
@@ -35,7 +49,11 @@ public class ObjectPoolingManager : MonoBehaviour
         {
             spawnableObject = Instantiate(objectToSpawn, spawnPosition, spawnRotation);
             
-            // TODO: set parent object for spawned object
+            // set parent object for spawned object
+            if (parentContainer != null)
+            {
+                spawnableObject.transform.SetParent(parentContainer.transform);
+            }
         }
         // inactive object exists, use it
         else
