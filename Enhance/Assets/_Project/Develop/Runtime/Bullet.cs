@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Bullet : MonoBehaviour
@@ -12,10 +10,15 @@ public class Bullet : MonoBehaviour
     private Rigidbody2D _rb;
     private float _timer = 0;
 
-    void Start()
+    void Awake()
     {
         _rb = GetComponent<Rigidbody2D>();
+    }
 
+    protected virtual void OnEnable()
+    {
+        _timer = 0f;
+        
         // shoot the player
         if (gameObject.CompareTag(Tags.ENEMY_PROJECTILE))
             _target = GameObject.FindGameObjectWithTag(Tags.PLAYER).transform;
@@ -27,7 +30,7 @@ public class Bullet : MonoBehaviour
             if (closestEnemyFinder.FindClosestEnemy())
                 _target = closestEnemyFinder.ClosestEnemy;
             else
-                Destroy(gameObject);
+                ObjectPoolingManager.ReturnObjectToPool(gameObject);
         }
 
         AimAtTarget(_target);
@@ -39,18 +42,18 @@ public class Bullet : MonoBehaviour
 
         if (_timer > _timeToDestroy)
         {
-            Destroy(gameObject);
+            ObjectPoolingManager.ReturnObjectToPool(gameObject);
         }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        Destroy(gameObject);
+        ObjectPoolingManager.ReturnObjectToPool(gameObject);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Destroy(gameObject);
+        ObjectPoolingManager.ReturnObjectToPool(gameObject);
     }
 
     private void AimAtTarget(Transform target)

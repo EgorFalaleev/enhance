@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -5,7 +6,7 @@ using UnityEngine;
 
 public class ObjectPoolingManager : MonoBehaviour
 {
-    public static List<PooledObjectInfo> ObjectPools = new List<PooledObjectInfo>();
+    public static List<PooledObjectInfo> ObjectPools = new();
 
     public static GameObject SpawnObject(GameObject objectToSpawn, Vector3 spawnPosition, Quaternion spawnRotation)
     {
@@ -17,6 +18,8 @@ public class ObjectPoolingManager : MonoBehaviour
         {
             pool = new PooledObjectInfo() { ObjectName = objectToSpawn.name };
             ObjectPools.Add(pool);
+            
+            Debug.Log($"pool created for: {pool.ObjectName}");
         }
 
         // check for inactive objects in pool

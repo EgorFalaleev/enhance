@@ -23,7 +23,7 @@ public abstract class Shooter : MonoBehaviour
         if (_timer > cooldown)
         {
             _timer = 0;
-            Instantiate(bulletPrefab, bulletInitialPos.position, Quaternion.identity);
+            ObjectPoolingManager.SpawnObject(bulletPrefab, bulletInitialPos.position, Quaternion.identity);
         }
     }
 }
