@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,9 +7,22 @@ public class AoEProjectile : Bullet
 {
     [SerializeField] private float _scaleIncrement = 0.1f;
 
-    // AoE projectiles does not destroy on collisions
+    private Vector3 _initialScale;
+
+    // AoE projectiles do not destroy on collisions
     private void OnCollisionEnter2D(Collision2D collision) { }
     private void OnTriggerEnter2D(Collider2D collision) { }
+
+    private void Start()
+    {
+        _initialScale = transform.localScale;
+    }
+
+    protected override void OnEnable()
+    {
+        transform.localScale = _initialScale;
+        base.OnEnable();
+    }
 
     protected override void Update()
     { 

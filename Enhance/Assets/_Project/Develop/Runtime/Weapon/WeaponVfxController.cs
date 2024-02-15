@@ -1,6 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
+using System;
 using UnityEngine;
 
 public class WeaponVfxController : MonoBehaviour
@@ -24,24 +22,24 @@ public class WeaponVfxController : MonoBehaviour
         _playerController.OnDashEnd += _playerController_OnDashEnd;
     }
 
-    private void _playerController_OnDashEnd(object sender, System.EventArgs e)
+    private void _playerController_OnDashEnd(object sender, EventArgs e)
     {
         if (_trailRenderer != null)
         _trailRenderer.emitting = false;
     }
 
-    private void _playerController_OnDashStart(object sender, System.EventArgs e)
+    private void _playerController_OnDashStart(object sender, EventArgs e)
     {
         if (_trailRenderer != null)
         _trailRenderer.emitting = true;
     }
 
-    private void WeaponVfxController_OnDie(object sender, System.EventArgs e)
+    private void WeaponVfxController_OnDie(object sender, EventArgs e)
     {
         _playerController.OnDashStart -= _playerController_OnDashStart;
         _playerController.OnDashEnd -= _playerController_OnDashEnd;
-        GameObject deathParticles = Instantiate(_deathParticleSystem, transform.position, Quaternion.identity);
-        Destroy(deathParticles, deathParticles.GetComponent<ParticleSystem>().main.duration);
+
+        ObjectPoolingManager.SpawnObject(_deathParticleSystem, transform.position, Quaternion.identity);
     }
 
     public void StartDashing()

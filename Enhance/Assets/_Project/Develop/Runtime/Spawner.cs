@@ -8,7 +8,6 @@ public abstract class Spawner : MonoBehaviour
     [SerializeField] protected Transform _spawnCenter;
     [SerializeField] protected float _minSpawnRadius = 8f;
     [SerializeField] protected float _maxSpawnRadius = 10f;
-    [SerializeField] protected GameObject _spawnedObjectsContainer;
 
     protected virtual void Update()
     {
@@ -33,8 +32,7 @@ public abstract class Spawner : MonoBehaviour
 
     protected void SpawnSpecificObject(GameObject objectToSpawn)
     {
-        GameObject newObject = Instantiate(objectToSpawn, GenerateRandomSpawnPosition(), Quaternion.identity);
-        newObject.transform.SetParent(_spawnedObjectsContainer.transform);
+        ObjectPoolingManager.SpawnObject(objectToSpawn, GenerateRandomSpawnPosition(), Quaternion.identity);
     }
 
     private Vector3 GenerateRandomSpawnPosition()

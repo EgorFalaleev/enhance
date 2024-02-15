@@ -4,11 +4,10 @@ using UnityEngine;
 
 public class PlayerVfxController : MonoBehaviour
 {
-    [Header("Flash parameters")]
-    [SerializeField] private float _flashDurationInSeconds = 0.2f;
+    [Header("Flash parameters")] [SerializeField]
+    private float _flashDurationInSeconds = 0.2f;
 
-    [Header("Death vfx")]
-    [SerializeField] private GameObject _deathParticleSystem;
+    [Header("Death vfx")] [SerializeField] private GameObject _deathParticleSystem;
 
     private SpriteRenderer _spriteRenderer;
     private Color _originalColor;
@@ -20,8 +19,8 @@ public class PlayerVfxController : MonoBehaviour
         _spriteRenderer = GetComponent<SpriteRenderer>();
         _originalColor = _spriteRenderer.color;
 
-        GetComponent<PlayerHealthHandler>().OnDamageTaken += PlayerVfxController_OnDamageTaken; ;
-        GetComponent<PlayerHealthHandler>().OnDie += PlayerVfxController_OnDie; ;
+        GetComponent<PlayerHealthHandler>().OnDamageTaken += PlayerVfxController_OnDamageTaken;
+        GetComponent<PlayerHealthHandler>().OnDie += PlayerVfxController_OnDie;
     }
 
     private void PlayerVfxController_OnDamageTaken(object sender, System.EventArgs e)
@@ -31,8 +30,7 @@ public class PlayerVfxController : MonoBehaviour
 
     private void PlayerVfxController_OnDie(object sender, System.EventArgs e)
     {
-        GameObject deathParticles = Instantiate(_deathParticleSystem, transform.position, Quaternion.identity);
-        Destroy(deathParticles, deathParticles.GetComponent<ParticleSystem>().main.duration);
+        ObjectPoolingManager.SpawnObject(_deathParticleSystem, transform.position, Quaternion.identity);
     }
 
     private void Flash()
@@ -56,5 +54,4 @@ public class PlayerVfxController : MonoBehaviour
         _spriteRenderer.color = _originalColor;
         _flashCoroutine = null;
     }
-
 }
