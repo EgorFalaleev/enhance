@@ -25,8 +25,7 @@ public class EnemyVfxController : MonoBehaviour
 
     private void EnemyVfxController_OnDie(object sender, System.EventArgs e)
     {
-        GameObject deathParticles = Instantiate(_deathParticleSystem, transform.position, Quaternion.identity);
-        Destroy(deathParticles, deathParticles.GetComponent<ParticleSystem>().main.duration);
+        ObjectPoolingManager.SpawnObject(_deathParticleSystem, transform.position, Quaternion.identity);
     }
 
     private void EnemyVfxController_OnDamageTaken(object sender, System.EventArgs e)
