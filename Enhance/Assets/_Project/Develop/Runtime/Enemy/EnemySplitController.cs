@@ -9,7 +9,6 @@ public class EnemySplitController : Spawner
     void Start()
     {
         GetComponent<EnemyHealthController>().OnDie += EnemySplitController_OnDie;
-        _spawnedObjectsContainer = GameObject.Find("Enemies");
     }
 
     private void EnemySplitController_OnDie(object sender, System.EventArgs e)
