@@ -1,11 +1,12 @@
+using Enhance.Data;
 using UnityEngine;
 
 namespace Enhance.Runtime.Enemy
 {
     public class EnemyMovementController : MonoBehaviour
     {
-        [SerializeField] private float moveSpeed = 100f;
-
+        [SerializeField] private EnemyConfigSO _enemyConfig;
+        
         private Transform _target;
         private Rigidbody2D _rb;
         private Vector3 _moveDirection;
@@ -24,12 +25,7 @@ namespace Enhance.Runtime.Enemy
             var direction = _target.position - transform.position;
             _moveDirection = direction.normalized;
 
-            MoveTowardsTarget(_moveDirection, moveSpeed * Time.fixedDeltaTime);
-        }
-
-        private void MoveTowardsTarget(Vector3 direction, float speed)
-        {
-            _rb.velocity = direction * speed;
+            _rb.velocity = Time.fixedDeltaTime * _enemyConfig.MoveSpeed * _moveDirection;
         }
 
         private void LookAtTarget(Transform target)

@@ -29,13 +29,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7033670284700621850}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 5.63, y: 3.9, z: 0}
   m_LocalScale: {x: 0.75, y: 0.75, z: 0.75}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &5611255436678846330
 SpriteRenderer:
@@ -106,6 +106,12 @@ Rigidbody2D:
   m_AngularDrag: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
   m_Interpolate: 1
   m_SleepingMode: 1
   m_CollisionDetection: 0
@@ -120,6 +126,25 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -148,7 +173,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7281b96d808918c459d30e4db2b0036a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 250
+  _enemyConfig: {fileID: 11400000, guid: 306bf5af1048f6247b6b315712c59142, type: 2}
 --- !u!114 &7370623949946472125
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -161,9 +186,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0fb5365e1db20c4da2928905a4a6fee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _health: 5
+  _enemyConfig: {fileID: 11400000, guid: 306bf5af1048f6247b6b315712c59142, type: 2}
   _gameStatsController: {fileID: 11400000, guid: 5c81fab1c992bd04abb23de73b4401e4, type: 2}
-  _experienceAmount: 20
 --- !u!114 &-8597406816143197641
 MonoBehaviour:
   m_ObjectHideFlags: 0

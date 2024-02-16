@@ -1,27 +1,24 @@
 using System;
+using Enhance.Data;
 using UnityEngine;
 
 namespace Enhance.Runtime.Enemy
 {
-    public class EnemyHealthController : DamageableObject
+    public class EnemyHealthController : MonoBehaviour, IDamageable
     {
+        [SerializeField] private EnemyConfigSO _enemyConfig;
         [SerializeField] private GameStatsController _gameStatsController;
-        [SerializeField] private int _experienceAmount;
 
-        private int _maxHealth;
-        private Color _defaultColor;
-        private SpriteRenderer _renderer;
+        private SpriteRenderer _spriteRenderer;
+
+        public int CurrentHealth { get; private set; }
+
+        public event EventHandler OnDamageTaken;
+        public event EventHandler OnDie;
 
         private void Awake()
         {
-            _maxHealth = _health;
-            _renderer = GetComponent<SpriteRenderer>();
-            _defaultColor = _renderer.color;
-        }
-
-        private void Start()
-        {
-            OnDie += EnemyHealthController_OnDie;
+            _spriteRenderer = GetComponent<SpriteRenderer>();
         }
 
         private void OnEnable()
@@ -33,12 +30,13 @@ namespace Enhance.Runtime.Enemy
         {
             if (collision.gameObject.CompareTag(Tags.WEAPON_PROJECTILE))
             {
-                ReceiveDamage(collision.gameObject.GetComponent<Bullet>().GetDamage());
+                TakeDamage(collision.gameObject.GetComponent<Bullet>().GetDamage());
             }
 
+            // collision with player kills enemy
             if (collision.gameObject.CompareTag(Tags.PLAYER))
             {
-                ReceiveDamage(_health);
+                TakeDamage(CurrentHealth);
             }
         }
 
@@ -46,29 +44,45 @@ namespace Enhance.Runtime.Enemy
         {
             if (collision.CompareTag(Tags.WEAPON_PROJECTILE))
             {
-                ReceiveDamage(collision.gameObject.GetComponent<Bullet>().GetDamage());
+                TakeDamage(collision.gameObject.GetComponent<Bullet>().GetDamage());
             }
 
             // destroy enemy on collision with weapon
             if (collision.CompareTag(Tags.WEAPON))
             {
-                ReceiveDamage(_health);
+                TakeDamage(CurrentHealth);
             }
-        }
-
-        private void EnemyHealthController_OnDie(object sender, EventArgs e)
-        {
-            FindObjectOfType<Player.Player>().GetComponent<Player.Player>()._levelUpSystem.AddExperience(_experienceAmount);
-            _gameStatsController.EnemiesKilled++;
-        
-            ObjectPoolingManager.ReturnObjectToPool(gameObject);
         }
 
         private void ResetEnemyState()
         {
-            // TODO: refactor to set state from config
-            _health = _maxHealth;
-            _renderer.color = _defaultColor;
+            CurrentHealth = _enemyConfig.MaxHealth;
+            _spriteRenderer.color = _enemyConfig.InitialColor;
+        }
+
+        public void TakeDamage(int amount)
+        {
+            CurrentHealth -= amount;
+
+            if (OnDamageTaken != null)
+                OnDamageTaken(this, EventArgs.Empty);
+
+            if (CurrentHealth <= 0)
+            {
+                if (OnDie != null)
+                    OnDie(this, EventArgs.Empty);
+
+                Die();
+            }
+        }
+
+        public void Die()
+        {
+            FindObjectOfType<Player.Player>().GetComponent<Player.Player>()._levelUpSystem
+                .AddExperience(_enemyConfig.ExperienceAmount);
+            _gameStatsController.EnemiesKilled++;
+
+            ObjectPoolingManager.ReturnObjectToPool(gameObject);
         }
     }
 }
