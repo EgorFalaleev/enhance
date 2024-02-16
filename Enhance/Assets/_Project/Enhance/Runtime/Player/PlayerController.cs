@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using Enhance.Data;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -10,7 +11,7 @@ namespace Enhance.Runtime.Player
         public event EventHandler OnDashStart;
         public event EventHandler OnDashEnd;
 
-        [SerializeField] private float speed = 5f;
+        [SerializeField] private PlayerConfigSO _playerConfig;
 
         private PlayerInput playerInput;
         private Rigidbody2D body;
@@ -19,9 +20,6 @@ namespace Enhance.Runtime.Player
         private bool _isAlive;
 
         [Header("Dash properties")]
-        [SerializeField] private float _dashingPower = 24f;
-        [SerializeField] private float _dashingTime = 0.2f;
-        [SerializeField] private float _dashingCooldown = 1f;
         [SerializeField] private TrailRenderer _trailRenderer;
         private bool _canDash = true;
         private bool _isDashing;
@@ -64,7 +62,7 @@ namespace Enhance.Runtime.Player
 
             // move player
             var direction = new Vector2(_horizontal, _vertical).normalized;
-            body.velocity = direction * speed * Time.fixedDeltaTime;
+            body.velocity = _playerConfig.MoveSpeed * Time.fixedDeltaTime * direction;
         }
 
         private void OnEnable()
@@ -100,18 +98,18 @@ namespace Enhance.Runtime.Player
 
             // calculate dash direction
             var direction = new Vector2(_horizontal, _vertical).normalized;
-            body.velocity = direction * _dashingPower;
+            body.velocity = direction * _playerConfig.DashingPower;
 
             _trailRenderer.emitting = true;
 
-            yield return new WaitForSeconds(_dashingTime);
+            yield return new WaitForSeconds(_playerConfig.DashingTime);
             _isDashing = false;
             _trailRenderer.emitting = false;
 
             if (OnDashEnd != null)
                 OnDashEnd(this, EventArgs.Empty);
 
-            yield return new WaitForSeconds(_dashingCooldown);
+            yield return new WaitForSeconds(_playerConfig.DashingCooldown);
             _canDash = true;
         }
 

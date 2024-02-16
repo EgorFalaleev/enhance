@@ -20,7 +20,7 @@ namespace Enhance.Runtime.UI
 
         private void _playerHealthHandler_OnDamageTaken(object sender, System.EventArgs e)
         {
-            SetHeartImages(_playerHealthHandler.GetHealth());
+            SetHeartImages(_playerHealthHandler.CurrentHealth);
         }
 
         private void SetHeartImages(int health)

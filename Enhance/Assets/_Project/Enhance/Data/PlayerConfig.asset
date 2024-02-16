@@ -12,6 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70655719db4af2c46a3c4c6344247a92, type: 3}
   m_Name: PlayerConfig
   m_EditorClassIdentifier: 
-  _maxHealth: 0
-  _moveSpeed: 0
-  _attackRange: 0
+  <MaxHealth>k__BackingField: 3
+  <MoveSpeed>k__BackingField: 250
+  <AttackRange>k__BackingField: 10
+  <DashingPower>k__BackingField: 24
+  <DashingTime>k__BackingField: 0.15
+  <DashingCooldown>k__BackingField: 0.75
