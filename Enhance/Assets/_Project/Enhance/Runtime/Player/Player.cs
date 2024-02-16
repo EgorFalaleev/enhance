@@ -1,18 +1,21 @@
-using System.Collections;
-using System.Collections.Generic;
+using Enhance.Runtime.UI;
+using Enhance.Runtime.Weapon;
 using UnityEngine;
 
-public class Player : MonoBehaviour
+namespace Enhance.Runtime.Player
 {
-    [SerializeField] private GameObject _levelWindow;
-    [SerializeField] private GameObject _weaponSpawner;
-
-    public LevelUpSystem _levelUpSystem;
-
-    void Start()
+    public class Player : MonoBehaviour
     {
-        _levelUpSystem = new LevelUpSystem();
-        _levelWindow.GetComponent<LevelUpUIController>().SetLevelUpSystem(_levelUpSystem);
-        _weaponSpawner.GetComponent<WeaponSpawner>().SetLevelUpSystem(_levelUpSystem);
+        [SerializeField] private GameObject _levelWindow;
+        [SerializeField] private GameObject _weaponSpawner;
+
+        public LevelUpSystem _levelUpSystem;
+
+        void Start()
+        {
+            _levelUpSystem = new LevelUpSystem();
+            _levelWindow.GetComponent<LevelUpUIController>().SetLevelUpSystem(_levelUpSystem);
+            _weaponSpawner.GetComponent<WeaponSpawner>().SetLevelUpSystem(_levelUpSystem);
+        }
     }
 }

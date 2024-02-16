@@ -1,57 +1,59 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerVfxController : MonoBehaviour
+namespace Enhance.Runtime.Player
 {
-    [Header("Flash parameters")] [SerializeField]
-    private float _flashDurationInSeconds = 0.2f;
-
-    [Header("Death vfx")] [SerializeField] private GameObject _deathParticleSystem;
-
-    private SpriteRenderer _spriteRenderer;
-    private Color _originalColor;
-    private Coroutine _flashCoroutine;
-
-
-    void Start()
+    public class PlayerVfxController : MonoBehaviour
     {
-        _spriteRenderer = GetComponent<SpriteRenderer>();
-        _originalColor = _spriteRenderer.color;
+        [Header("Flash parameters")] [SerializeField]
+        private float _flashDurationInSeconds = 0.2f;
 
-        GetComponent<PlayerHealthHandler>().OnDamageTaken += PlayerVfxController_OnDamageTaken;
-        GetComponent<PlayerHealthHandler>().OnDie += PlayerVfxController_OnDie;
-    }
+        [Header("Death vfx")] [SerializeField] private GameObject _deathParticleSystem;
 
-    private void PlayerVfxController_OnDamageTaken(object sender, System.EventArgs e)
-    {
-        Flash();
-    }
+        private SpriteRenderer _spriteRenderer;
+        private Color _originalColor;
+        private Coroutine _flashCoroutine;
 
-    private void PlayerVfxController_OnDie(object sender, System.EventArgs e)
-    {
-        ObjectPoolingManager.SpawnObject(_deathParticleSystem, transform.position, Quaternion.identity);
-    }
 
-    private void Flash()
-    {
-        // should not execute multiple flash coroutines simultaneously
-        if (_flashCoroutine != null)
+        void Start()
         {
-            StopCoroutine(_flashCoroutine);
+            _spriteRenderer = GetComponent<SpriteRenderer>();
+            _originalColor = _spriteRenderer.color;
+
+            GetComponent<PlayerHealthHandler>().OnDamageTaken += PlayerVfxController_OnDamageTaken;
+            GetComponent<PlayerHealthHandler>().OnDie += PlayerVfxController_OnDie;
         }
 
-        _flashCoroutine = StartCoroutine(FlashCoroutine());
-    }
+        private void PlayerVfxController_OnDamageTaken(object sender, System.EventArgs e)
+        {
+            Flash();
+        }
 
-    private IEnumerator FlashCoroutine()
-    {
-        _spriteRenderer.color = Color.red;
+        private void PlayerVfxController_OnDie(object sender, System.EventArgs e)
+        {
+            ObjectPoolingManager.SpawnObject(_deathParticleSystem, transform.position, Quaternion.identity);
+        }
 
-        yield return new WaitForSeconds(_flashDurationInSeconds);
+        private void Flash()
+        {
+            // should not execute multiple flash coroutines simultaneously
+            if (_flashCoroutine != null)
+            {
+                StopCoroutine(_flashCoroutine);
+            }
 
-        // return to original settings
-        _spriteRenderer.color = _originalColor;
-        _flashCoroutine = null;
+            _flashCoroutine = StartCoroutine(FlashCoroutine());
+        }
+
+        private IEnumerator FlashCoroutine()
+        {
+            _spriteRenderer.color = Color.red;
+
+            yield return new WaitForSeconds(_flashDurationInSeconds);
+
+            // return to original settings
+            _spriteRenderer.color = _originalColor;
+            _flashCoroutine = null;
+        }
     }
 }

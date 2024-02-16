@@ -1,46 +1,47 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemySpawner : Spawner
+namespace Enhance.Runtime.Enemy
 {
-    [SerializeField] private float _timeTillNextWave = 10f;
-    [SerializeField] private float _timeTillSingleEnemy = 3f;
-    [SerializeField] private int _maxEnemiesToSpawnPerWave = 25;
-    [SerializeField] private int _enemiesPerWaveDifference = 2;
-
-    private float _waveTimer = 0f;
-    private float _singleEnemyTimer = 0f;
-    private int _numberOfEnemiesToSpawnNextWave = 3;
-
-    protected override void Update()
+    public class EnemySpawner : Spawner
     {
-        base.Update();
+        [SerializeField] private float _timeTillNextWave = 10f;
+        [SerializeField] private float _timeTillSingleEnemy = 3f;
+        [SerializeField] private int _maxEnemiesToSpawnPerWave = 25;
+        [SerializeField] private int _enemiesPerWaveDifference = 2;
 
-        _waveTimer += Time.deltaTime;
-        _singleEnemyTimer += Time.deltaTime;
+        private float _waveTimer = 0f;
+        private float _singleEnemyTimer = 0f;
+        private int _numberOfEnemiesToSpawnNextWave = 3;
 
-        if ( _waveTimer > _timeTillNextWave )
+        protected override void Update()
         {
-            _waveTimer = 0f;
+            base.Update();
 
-            SpawnMultipleObjects(CalculateNextWaveAmount());
+            _waveTimer += Time.deltaTime;
+            _singleEnemyTimer += Time.deltaTime;
+
+            if ( _waveTimer > _timeTillNextWave )
+            {
+                _waveTimer = 0f;
+
+                SpawnMultipleObjects(CalculateNextWaveAmount());
+            }
+
+            if (_singleEnemyTimer > _timeTillSingleEnemy)
+            {
+                _singleEnemyTimer = 0f;
+                SpawnRandomObject();
+            }
         }
 
-        if (_singleEnemyTimer > _timeTillSingleEnemy)
+        private int CalculateNextWaveAmount()
         {
-            _singleEnemyTimer = 0f;
-            SpawnRandomObject();
+            _numberOfEnemiesToSpawnNextWave += _enemiesPerWaveDifference;
+
+            if (_numberOfEnemiesToSpawnNextWave > _maxEnemiesToSpawnPerWave)
+                _numberOfEnemiesToSpawnNextWave = _maxEnemiesToSpawnPerWave;
+
+            return _numberOfEnemiesToSpawnNextWave;
         }
-    }
-
-    private int CalculateNextWaveAmount()
-    {
-        _numberOfEnemiesToSpawnNextWave += _enemiesPerWaveDifference;
-
-        if (_numberOfEnemiesToSpawnNextWave > _maxEnemiesToSpawnPerWave)
-            _numberOfEnemiesToSpawnNextWave = _maxEnemiesToSpawnPerWave;
-
-        return _numberOfEnemiesToSpawnNextWave;
     }
 }

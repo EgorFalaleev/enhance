@@ -1,9 +1,12 @@
 using UnityEngine;
 
-public class ParticleSystemLifecycleController : MonoBehaviour
+namespace Enhance.Runtime
 {
-    private void OnParticleSystemStopped()
+    public class ParticleSystemLifecycleController : MonoBehaviour
     {
-        ObjectPoolingManager.ReturnObjectToPool(gameObject);
+        private void OnParticleSystemStopped()
+        {
+            ObjectPoolingManager.ReturnObjectToPool(gameObject);
+        }
     }
 }

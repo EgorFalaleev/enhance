@@ -1,39 +1,41 @@
-using System.Collections;
-using System.Collections.Generic;
+using Enhance.Runtime.Player;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PlayerHealthUIController : MonoBehaviour
+namespace Enhance.Runtime.UI
 {
-    [SerializeField] private Image[] _heartImages;
-    [SerializeField] private Sprite _fullHeartImage;
-    [SerializeField] private Sprite _emptyHeartImage;
-
-    private PlayerHealthHandler _playerHealthHandler;
-
-    void Start()
+    public class PlayerHealthUIController : MonoBehaviour
     {
-        _playerHealthHandler = GameObject.FindGameObjectWithTag(Tags.PLAYER).GetComponent<PlayerHealthHandler>();
-        _playerHealthHandler.OnDamageTaken += _playerHealthHandler_OnDamageTaken;
-    }
+        [SerializeField] private Image[] _heartImages;
+        [SerializeField] private Sprite _fullHeartImage;
+        [SerializeField] private Sprite _emptyHeartImage;
 
-    private void _playerHealthHandler_OnDamageTaken(object sender, System.EventArgs e)
-    {
-        SetHeartImages(_playerHealthHandler.GetHealth());
-    }
+        private PlayerHealthHandler _playerHealthHandler;
 
-    private void SetHeartImages(int health)
-    {
-        // first fill all images with empty hearts
-        foreach (var image in _heartImages)
+        void Start()
         {
-            image.sprite = _emptyHeartImage;
+            _playerHealthHandler = GameObject.FindGameObjectWithTag(Tags.PLAYER).GetComponent<PlayerHealthHandler>();
+            _playerHealthHandler.OnDamageTaken += _playerHealthHandler_OnDamageTaken;
         }
 
-        // then set full heart images depending on HP
-        for (int i = 0; i < health; i++)
+        private void _playerHealthHandler_OnDamageTaken(object sender, System.EventArgs e)
         {
-            _heartImages[i].sprite = _fullHeartImage;
+            SetHeartImages(_playerHealthHandler.GetHealth());
+        }
+
+        private void SetHeartImages(int health)
+        {
+            // first fill all images with empty hearts
+            foreach (var image in _heartImages)
+            {
+                image.sprite = _emptyHeartImage;
+            }
+
+            // then set full heart images depending on HP
+            for (int i = 0; i < health; i++)
+            {
+                _heartImages[i].sprite = _fullHeartImage;
+            }
         }
     }
 }

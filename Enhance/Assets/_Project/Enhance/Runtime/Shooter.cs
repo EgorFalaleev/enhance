@@ -1,29 +1,30 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class Shooter : MonoBehaviour 
+namespace Enhance.Runtime
 {
-    [SerializeField] protected GameObject _bullet;
-    [SerializeField] protected Transform _bulletInitialPosition;
-    [SerializeField] protected float _shootCooldown = 2f;
-
-    private float _timer = 0f;
-
-    void Update()
+    public abstract class Shooter : MonoBehaviour 
     {
-        ShootWithCooldown(_bullet, _bulletInitialPosition, _shootCooldown);
-    }
+        [SerializeField] protected GameObject _bullet;
+        [SerializeField] protected Transform _bulletInitialPosition;
+        [SerializeField] protected float _shootCooldown = 2f;
 
-    protected void ShootWithCooldown(GameObject bulletPrefab, Transform bulletInitialPos, float cooldown)
-    {
-        _timer += Time.deltaTime;
+        private float _timer = 0f;
 
-        // shoot periodically
-        if (_timer > cooldown)
+        void Update()
         {
-            _timer = 0;
-            ObjectPoolingManager.SpawnObject(bulletPrefab, bulletInitialPos.position, Quaternion.identity);
+            ShootWithCooldown(_bullet, _bulletInitialPosition, _shootCooldown);
+        }
+
+        protected void ShootWithCooldown(GameObject bulletPrefab, Transform bulletInitialPos, float cooldown)
+        {
+            _timer += Time.deltaTime;
+
+            // shoot periodically
+            if (_timer > cooldown)
+            {
+                _timer = 0;
+                ObjectPoolingManager.SpawnObject(bulletPrefab, bulletInitialPos.position, Quaternion.identity);
+            }
         }
     }
 }

@@ -1,21 +1,22 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemySplitController : Spawner
+namespace Enhance.Runtime.Enemy
 {
-    [SerializeField] private int _numberOfEnemiesToSpawn = 2;
-
-    void Start()
+    public class EnemySplitController : Spawner
     {
-        GetComponent<EnemyHealthController>().OnDie += EnemySplitController_OnDie;
-    }
+        [SerializeField] private int _numberOfEnemiesToSpawn = 2;
 
-    private void EnemySplitController_OnDie(object sender, System.EventArgs e)
-    {
-        for (int i = 0; i < _numberOfEnemiesToSpawn; i++)
+        void Start()
         {
-            SpawnSpecificObject(_prefabsToSpawn[0]);
+            GetComponent<EnemyHealthController>().OnDie += EnemySplitController_OnDie;
+        }
+
+        private void EnemySplitController_OnDie(object sender, System.EventArgs e)
+        {
+            for (int i = 0; i < _numberOfEnemiesToSpawn; i++)
+            {
+                SpawnSpecificObject(_prefabsToSpawn[0]);
+            }
         }
     }
 }

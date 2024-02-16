@@ -1,15 +1,14 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class WeaponShooter : Shooter
+namespace Enhance.Runtime.Weapon
 {
-    public bool IsWeaponAttached { get; set; }
-
-    private void Update()
+    public class WeaponShooter : Shooter
     {
-        // weapon can shoot only if attached to player
-        if (IsWeaponAttached)
-            ShootWithCooldown(_bullet, _bulletInitialPosition, _shootCooldown);
+        public bool IsWeaponAttached { get; set; }
+
+        private void Update()
+        {
+            // weapon can shoot only if attached to player
+            if (IsWeaponAttached)
+                ShootWithCooldown(_bullet, _bulletInitialPosition, _shootCooldown);
+        }
     }
 }

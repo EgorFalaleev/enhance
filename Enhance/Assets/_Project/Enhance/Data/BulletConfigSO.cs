@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace _Project.Develop.Data
+namespace Enhance.Data
 {
     [CreateAssetMenu(fileName = "BulletConfig", menuName = "ScriptableObjects/BulletConfig")]
     public class BulletConfigSO : ScriptableObject

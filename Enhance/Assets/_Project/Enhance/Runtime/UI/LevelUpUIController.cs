@@ -1,46 +1,47 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class LevelUpUIController : MonoBehaviour
+namespace Enhance.Runtime.UI
 {
-    [SerializeField] private TMP_Text _levelText;
-    [SerializeField] private Image _experienceBarImg;
-
-    private LevelUpSystem _levelUpSystem;
-
-    public void SetLevelUpSystem(LevelUpSystem levelUpSystem)
+    public class LevelUpUIController : MonoBehaviour
     {
-        _levelUpSystem = levelUpSystem;
+        [SerializeField] private TMP_Text _levelText;
+        [SerializeField] private Image _experienceBarImg;
 
-        // set ui elements
-        SetLevelText(levelUpSystem.GetLevel());
-        SetExperienceBarFill(levelUpSystem.GetExperiencePercentage());
+        private LevelUpSystem _levelUpSystem;
 
-        // subscribe to exp and lvl change
-        levelUpSystem.OnLevelChanged += LevelUpSystem_OnLevelChanged;
-        levelUpSystem.OnExperienceChanged += LevelUpSystem_OnExperienceChanged;
-    }
+        public void SetLevelUpSystem(LevelUpSystem levelUpSystem)
+        {
+            _levelUpSystem = levelUpSystem;
 
-    private void LevelUpSystem_OnExperienceChanged(object sender, System.EventArgs e)
-    {
-        SetExperienceBarFill(_levelUpSystem.GetExperiencePercentage());
-    }
+            // set ui elements
+            SetLevelText(levelUpSystem.GetLevel());
+            SetExperienceBarFill(levelUpSystem.GetExperiencePercentage());
 
-    private void LevelUpSystem_OnLevelChanged(object sender, System.EventArgs e)
-    {
-        SetLevelText(_levelUpSystem.GetLevel());
-    }
+            // subscribe to exp and lvl change
+            levelUpSystem.OnLevelChanged += LevelUpSystem_OnLevelChanged;
+            levelUpSystem.OnExperienceChanged += LevelUpSystem_OnExperienceChanged;
+        }
 
-    private void SetExperienceBarFill(float experiencePercentage)
-    {
-        _experienceBarImg.fillAmount = experiencePercentage;
-    }
+        private void LevelUpSystem_OnExperienceChanged(object sender, System.EventArgs e)
+        {
+            SetExperienceBarFill(_levelUpSystem.GetExperiencePercentage());
+        }
 
-    private void SetLevelText(int level)
-    {
-        _levelText.text = level.ToString();
+        private void LevelUpSystem_OnLevelChanged(object sender, System.EventArgs e)
+        {
+            SetLevelText(_levelUpSystem.GetLevel());
+        }
+
+        private void SetExperienceBarFill(float experiencePercentage)
+        {
+            _experienceBarImg.fillAmount = experiencePercentage;
+        }
+
+        private void SetLevelText(int level)
+        {
+            _levelText.text = level.ToString();
+        }
     }
 }

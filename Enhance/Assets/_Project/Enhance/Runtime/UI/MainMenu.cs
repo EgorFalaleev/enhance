@@ -1,19 +1,20 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class MainMenu : MonoBehaviour
+namespace Enhance.Runtime.UI
 {
-    private const int GAME_SCENE_INDEX = 1;
-
-    public void PlayGame()
+    public class MainMenu : MonoBehaviour
     {
-        SceneManager.LoadScene(GAME_SCENE_INDEX);
-    }
+        private const int GAME_SCENE_INDEX = 1;
 
-    public void Quit()
-    {
-        Application.Quit();
+        public void PlayGame()
+        {
+            SceneManager.LoadScene(GAME_SCENE_INDEX);
+        }
+
+        public void Quit()
+        {
+            Application.Quit();
+        }
     }
 }

@@ -3,118 +3,121 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerController : MonoBehaviour
+namespace Enhance.Runtime.Player
 {
-    public event EventHandler OnDashStart;
-    public event EventHandler OnDashEnd;
-
-    [SerializeField] private float speed = 5f;
-
-    private PlayerInput playerInput;
-    private Rigidbody2D body;
-    private int _horizontal;
-    private int _vertical;
-    private bool _isAlive;
-
-    [Header("Dash properties")]
-    [SerializeField] private float _dashingPower = 24f;
-    [SerializeField] private float _dashingTime = 0.2f;
-    [SerializeField] private float _dashingCooldown = 1f;
-    [SerializeField] private TrailRenderer _trailRenderer;
-    private bool _canDash = true;
-    private bool _isDashing;
-
-    private void Awake()
+    public class PlayerController : MonoBehaviour
     {
-        playerInput = new PlayerInput();
-    }
+        public event EventHandler OnDashStart;
+        public event EventHandler OnDashEnd;
 
-    void Start()
-    {
-        body = GetComponent<Rigidbody2D>();
-        _canDash = true;
-        _isAlive = true;
-        GetComponent<PlayerHealthHandler>().OnDie += PlayerController_OnDie;
-    }
+        [SerializeField] private float speed = 5f;
 
-    void Update()
-    {
-        // cannot move while dashing
-        if (_isDashing)
-            return;
+        private PlayerInput playerInput;
+        private Rigidbody2D body;
+        private int _horizontal;
+        private int _vertical;
+        private bool _isAlive;
 
-        if (!_isAlive)
-            return;
+        [Header("Dash properties")]
+        [SerializeField] private float _dashingPower = 24f;
+        [SerializeField] private float _dashingTime = 0.2f;
+        [SerializeField] private float _dashingCooldown = 1f;
+        [SerializeField] private TrailRenderer _trailRenderer;
+        private bool _canDash = true;
+        private bool _isDashing;
 
-        // get move axes
-        _horizontal = Mathf.RoundToInt(playerInput.Player.Move.ReadValue<Vector2>().x);
-        _vertical = Mathf.RoundToInt(playerInput.Player.Move.ReadValue<Vector2>().y);
-    }
-
-    private void FixedUpdate()
-    {
-        // cannot move while dashing
-        if (_isDashing)
-            return;
-
-        if (!_isAlive)
-            return;
-
-        // move player
-        var direction = new Vector2(_horizontal, _vertical).normalized;
-        body.velocity = direction * speed * Time.fixedDeltaTime;
-    }
-
-    private void OnEnable()
-    {
-        playerInput.Player.Enable();
-    }
-
-    private void OnDisable()
-    {
-        playerInput.Player.Disable();
-    }
-
-    public void Dash(InputAction.CallbackContext context)
-    {
-        if (context.performed && _canDash)
+        private void Awake()
         {
-            StartCoroutine(Dash());
+            playerInput = new PlayerInput();
         }
-    }
 
-    public bool IsDashing()
-    {
-        return _isDashing;
-    }
+        void Start()
+        {
+            body = GetComponent<Rigidbody2D>();
+            _canDash = true;
+            _isAlive = true;
+            GetComponent<PlayerHealthHandler>().OnDie += PlayerController_OnDie;
+        }
 
-    private IEnumerator Dash()
-    {
-        _canDash = false;
-        _isDashing = true;
+        void Update()
+        {
+            // cannot move while dashing
+            if (_isDashing)
+                return;
 
-        if (OnDashStart != null)
-            OnDashStart(this, EventArgs.Empty);
+            if (!_isAlive)
+                return;
 
-        // calculate dash direction
-        var direction = new Vector2(_horizontal, _vertical).normalized;
-        body.velocity = direction * _dashingPower;
+            // get move axes
+            _horizontal = Mathf.RoundToInt(playerInput.Player.Move.ReadValue<Vector2>().x);
+            _vertical = Mathf.RoundToInt(playerInput.Player.Move.ReadValue<Vector2>().y);
+        }
 
-        _trailRenderer.emitting = true;
+        private void FixedUpdate()
+        {
+            // cannot move while dashing
+            if (_isDashing)
+                return;
 
-        yield return new WaitForSeconds(_dashingTime);
-        _isDashing = false;
-        _trailRenderer.emitting = false;
+            if (!_isAlive)
+                return;
 
-        if (OnDashEnd != null)
-            OnDashEnd(this, EventArgs.Empty);
+            // move player
+            var direction = new Vector2(_horizontal, _vertical).normalized;
+            body.velocity = direction * speed * Time.fixedDeltaTime;
+        }
 
-        yield return new WaitForSeconds(_dashingCooldown);
-        _canDash = true;
-    }
+        private void OnEnable()
+        {
+            playerInput.Player.Enable();
+        }
 
-    private void PlayerController_OnDie(object sender, System.EventArgs e)
-    {
-        _isAlive = false;
+        private void OnDisable()
+        {
+            playerInput.Player.Disable();
+        }
+
+        public void Dash(InputAction.CallbackContext context)
+        {
+            if (context.performed && _canDash)
+            {
+                StartCoroutine(Dash());
+            }
+        }
+
+        public bool IsDashing()
+        {
+            return _isDashing;
+        }
+
+        private IEnumerator Dash()
+        {
+            _canDash = false;
+            _isDashing = true;
+
+            if (OnDashStart != null)
+                OnDashStart(this, EventArgs.Empty);
+
+            // calculate dash direction
+            var direction = new Vector2(_horizontal, _vertical).normalized;
+            body.velocity = direction * _dashingPower;
+
+            _trailRenderer.emitting = true;
+
+            yield return new WaitForSeconds(_dashingTime);
+            _isDashing = false;
+            _trailRenderer.emitting = false;
+
+            if (OnDashEnd != null)
+                OnDashEnd(this, EventArgs.Empty);
+
+            yield return new WaitForSeconds(_dashingCooldown);
+            _canDash = true;
+        }
+
+        private void PlayerController_OnDie(object sender, System.EventArgs e)
+        {
+            _isAlive = false;
+        }
     }
 }

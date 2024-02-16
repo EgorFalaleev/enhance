@@ -1,37 +1,40 @@
 using UnityEngine;
 
-public class EnemyMovementController : MonoBehaviour
+namespace Enhance.Runtime.Enemy
 {
-    [SerializeField] private float moveSpeed = 100f;
-
-    private Transform _target;
-    private Rigidbody2D _rb;
-    private Vector3 _moveDirection;
-
-    void Start()
+    public class EnemyMovementController : MonoBehaviour
     {
-        _rb = GetComponent<Rigidbody2D>();
-        _target = GameObject.FindGameObjectWithTag(Tags.PLAYER).transform;
-    }
+        [SerializeField] private float moveSpeed = 100f;
 
-    private void FixedUpdate()
-    {
-        LookAtTarget(_target);
+        private Transform _target;
+        private Rigidbody2D _rb;
+        private Vector3 _moveDirection;
 
-        // determine direction to move
-        var direction = _target.position - transform.position;
-        _moveDirection = direction.normalized;
+        void Start()
+        {
+            _rb = GetComponent<Rigidbody2D>();
+            _target = GameObject.FindGameObjectWithTag(Tags.PLAYER).transform;
+        }
 
-        MoveTowardsTarget(_moveDirection, moveSpeed * Time.fixedDeltaTime);
-    }
+        private void FixedUpdate()
+        {
+            LookAtTarget(_target);
 
-    private void MoveTowardsTarget(Vector3 direction, float speed)
-    {
-        _rb.velocity = direction * speed;
-    }
+            // determine direction to move
+            var direction = _target.position - transform.position;
+            _moveDirection = direction.normalized;
 
-    private void LookAtTarget(Transform target)
-    {
-        transform.right = target.position - transform.position;
+            MoveTowardsTarget(_moveDirection, moveSpeed * Time.fixedDeltaTime);
+        }
+
+        private void MoveTowardsTarget(Vector3 direction, float speed)
+        {
+            _rb.velocity = direction * speed;
+        }
+
+        private void LookAtTarget(Transform target)
+        {
+            transform.right = target.position - transform.position;
+        }
     }
 }

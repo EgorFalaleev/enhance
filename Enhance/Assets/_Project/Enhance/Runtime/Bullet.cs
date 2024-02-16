@@ -1,75 +1,78 @@
 using UnityEngine;
 
-public class Bullet : MonoBehaviour
+namespace Enhance.Runtime
 {
-    [SerializeField] private float _speed = 10f;
-    [SerializeField] private float _timeToDestroy = 5f;
-    [SerializeField] private int _damage = 1;
-
-    private Transform _target;
-    private Rigidbody2D _rb;
-    private float _timer = 0;
-
-    void Awake()
+    public class Bullet : MonoBehaviour
     {
-        _rb = GetComponent<Rigidbody2D>();
-    }
+        [SerializeField] private float _speed = 10f;
+        [SerializeField] private float _timeToDestroy = 5f;
+        [SerializeField] private int _damage = 1;
 
-    protected virtual void OnEnable()
-    {
-        _timer = 0f;
-        
-        // shoot the player
-        if (gameObject.CompareTag(Tags.ENEMY_PROJECTILE))
-            _target = GameObject.FindGameObjectWithTag(Tags.PLAYER).transform;
-        // shoot the closest enemy
-        else if (gameObject.CompareTag(Tags.WEAPON_PROJECTILE))
+        private Transform _target;
+        private Rigidbody2D _rb;
+        private float _timer = 0;
+
+        void Awake()
         {
-            var closestEnemyFinder = GetComponent<ClosestEnemyFinder>();
-
-            if (closestEnemyFinder.FindClosestEnemy())
-                _target = closestEnemyFinder.ClosestEnemy;
-            else
-                ObjectPoolingManager.ReturnObjectToPool(gameObject);
+            _rb = GetComponent<Rigidbody2D>();
         }
 
-        AimAtTarget(_target);
-    }
+        protected virtual void OnEnable()
+        {
+            _timer = 0f;
+        
+            // shoot the player
+            if (gameObject.CompareTag(Tags.ENEMY_PROJECTILE))
+                _target = GameObject.FindGameObjectWithTag(Tags.PLAYER).transform;
+            // shoot the closest enemy
+            else if (gameObject.CompareTag(Tags.WEAPON_PROJECTILE))
+            {
+                var closestEnemyFinder = GetComponent<ClosestEnemyFinder>();
 
-    protected virtual void Update()
-    {
-        _timer += Time.deltaTime;
+                if (closestEnemyFinder.FindClosestEnemy())
+                    _target = closestEnemyFinder.ClosestEnemy;
+                else
+                    ObjectPoolingManager.ReturnObjectToPool(gameObject);
+            }
 
-        if (_timer > _timeToDestroy)
+            AimAtTarget(_target);
+        }
+
+        protected virtual void Update()
+        {
+            _timer += Time.deltaTime;
+
+            if (_timer > _timeToDestroy)
+            {
+                ObjectPoolingManager.ReturnObjectToPool(gameObject);
+            }
+        }
+
+        private void OnCollisionEnter2D(Collision2D collision)
         {
             ObjectPoolingManager.ReturnObjectToPool(gameObject);
         }
-    }
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        ObjectPoolingManager.ReturnObjectToPool(gameObject);
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        ObjectPoolingManager.ReturnObjectToPool(gameObject);
-    }
-
-    private void AimAtTarget(Transform target)
-    {
-        if (target != null)
+        private void OnTriggerEnter2D(Collider2D collision)
         {
-            // aim at target
-            Vector3 direction = _target.position - transform.position;
-            _rb.velocity = direction.normalized * _speed;
-
-            transform.right = direction;
+            ObjectPoolingManager.ReturnObjectToPool(gameObject);
         }
-    }
 
-    public int GetDamage()
-    {
-        return _damage;
+        private void AimAtTarget(Transform target)
+        {
+            if (target != null)
+            {
+                // aim at target
+                Vector3 direction = _target.position - transform.position;
+                _rb.velocity = direction.normalized * _speed;
+
+                transform.right = direction;
+            }
+        }
+
+        public int GetDamage()
+        {
+            return _damage;
+        }
     }
 }

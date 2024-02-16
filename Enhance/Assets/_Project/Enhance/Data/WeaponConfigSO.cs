@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace _Project.Develop.Data
+namespace Enhance.Data
 {
     [CreateAssetMenu(fileName = "WeaponConfig", menuName = "ScriptableObjects/WeaponConfig")]
     public class WeaponConfigSO : ScriptableObject

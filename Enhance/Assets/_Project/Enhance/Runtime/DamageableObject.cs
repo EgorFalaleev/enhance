@@ -1,24 +1,27 @@
 using System;
 using UnityEngine;
 
-public abstract class DamageableObject : MonoBehaviour
+namespace Enhance.Runtime
 {
-    public event EventHandler OnDie;
-    public event EventHandler OnDamageTaken;
-
-    [SerializeField] protected int _health = 4;
-
-    public void ReceiveDamage(int amount)
+    public abstract class DamageableObject : MonoBehaviour
     {
-        _health -= amount;
-        if (OnDamageTaken != null)
-            OnDamageTaken(this, EventArgs.Empty);
+        public event EventHandler OnDie;
+        public event EventHandler OnDamageTaken;
 
+        [SerializeField] protected int _health = 4;
 
-        if (_health <= 0)
+        public void ReceiveDamage(int amount)
         {
-            if (OnDie != null)
-                OnDie(this, EventArgs.Empty);
+            _health -= amount;
+            if (OnDamageTaken != null)
+                OnDamageTaken(this, EventArgs.Empty);
+
+
+            if (_health <= 0)
+            {
+                if (OnDie != null)
+                    OnDie(this, EventArgs.Empty);
+            }
         }
     }
 }

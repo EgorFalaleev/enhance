@@ -1,15 +1,16 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class GameStatsUIController : MonoBehaviour
+namespace Enhance.Runtime.UI
 {
-    [SerializeField] private GameStatsController _gameStats;
-    [SerializeField] private TMP_Text _enemiesKilledNumberText;
-
-    private void Update()
+    public class GameStatsUIController : MonoBehaviour
     {
-        _enemiesKilledNumberText.text = _gameStats.EnemiesKilled.ToString();
+        [SerializeField] private GameStatsController _gameStats;
+        [SerializeField] private TMP_Text _enemiesKilledNumberText;
+
+        private void Update()
+        {
+            _enemiesKilledNumberText.text = _gameStats.EnemiesKilled.ToString();
+        }
     }
 }

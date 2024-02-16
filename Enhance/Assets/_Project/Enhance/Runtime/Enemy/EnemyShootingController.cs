@@ -1,25 +1,26 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyShootingController : Shooter
+namespace Enhance.Runtime.Enemy
 {
-    [SerializeField] private float _distanceToShoot = 10f;
-
-    private Transform _target;
-
-    private void Start()
+    public class EnemyShootingController : Shooter
     {
-        _target = GameObject.FindGameObjectWithTag(Tags.PLAYER).transform;
-    }
+        [SerializeField] private float _distanceToShoot = 10f;
 
-    private void Update()
-    {
-        var distanceToPlayer = Vector3.Distance(transform.position, _target.position);
+        private Transform _target;
 
-        if (distanceToPlayer < _distanceToShoot)
+        private void Start()
         {
-            ShootWithCooldown(_bullet, _bulletInitialPosition, _shootCooldown);
+            _target = GameObject.FindGameObjectWithTag(Tags.PLAYER).transform;
+        }
+
+        private void Update()
+        {
+            var distanceToPlayer = Vector3.Distance(transform.position, _target.position);
+
+            if (distanceToPlayer < _distanceToShoot)
+            {
+                ShootWithCooldown(_bullet, _bulletInitialPosition, _shootCooldown);
+            }
         }
     }
 }

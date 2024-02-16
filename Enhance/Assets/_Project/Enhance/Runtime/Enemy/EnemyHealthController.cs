@@ -1,71 +1,74 @@
 using System;
 using UnityEngine;
 
-public class EnemyHealthController : DamageableObject
+namespace Enhance.Runtime.Enemy
 {
-    [SerializeField] private GameStatsController _gameStatsController;
-    [SerializeField] private int _experienceAmount;
-
-    private int _maxHealth;
-    private Color _defaultColor;
-    private SpriteRenderer _renderer;
-
-    private void Awake()
+    public class EnemyHealthController : DamageableObject
     {
-        _maxHealth = _health;
-        _renderer = GetComponent<SpriteRenderer>();
-        _defaultColor = _renderer.color;
-    }
+        [SerializeField] private GameStatsController _gameStatsController;
+        [SerializeField] private int _experienceAmount;
 
-    private void Start()
-    {
-        OnDie += EnemyHealthController_OnDie;
-    }
+        private int _maxHealth;
+        private Color _defaultColor;
+        private SpriteRenderer _renderer;
 
-    private void OnEnable()
-    {
-        ResetEnemyState();
-    }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag(Tags.WEAPON_PROJECTILE))
+        private void Awake()
         {
-            ReceiveDamage(collision.gameObject.GetComponent<Bullet>().GetDamage());
+            _maxHealth = _health;
+            _renderer = GetComponent<SpriteRenderer>();
+            _defaultColor = _renderer.color;
         }
 
-        if (collision.gameObject.CompareTag(Tags.PLAYER))
+        private void Start()
         {
-            ReceiveDamage(_health);
-        }
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.CompareTag(Tags.WEAPON_PROJECTILE))
-        {
-            ReceiveDamage(collision.gameObject.GetComponent<Bullet>().GetDamage());
+            OnDie += EnemyHealthController_OnDie;
         }
 
-        // destroy enemy on collision with weapon
-        if (collision.CompareTag(Tags.WEAPON))
+        private void OnEnable()
         {
-            ReceiveDamage(_health);
+            ResetEnemyState();
         }
-    }
 
-    private void EnemyHealthController_OnDie(object sender, EventArgs e)
-    {
-        FindObjectOfType<Player>().GetComponent<Player>()._levelUpSystem.AddExperience(_experienceAmount);
-        _gameStatsController.EnemiesKilled++;
+        private void OnCollisionEnter2D(Collision2D collision)
+        {
+            if (collision.gameObject.CompareTag(Tags.WEAPON_PROJECTILE))
+            {
+                ReceiveDamage(collision.gameObject.GetComponent<Bullet>().GetDamage());
+            }
+
+            if (collision.gameObject.CompareTag(Tags.PLAYER))
+            {
+                ReceiveDamage(_health);
+            }
+        }
+
+        private void OnTriggerEnter2D(Collider2D collision)
+        {
+            if (collision.CompareTag(Tags.WEAPON_PROJECTILE))
+            {
+                ReceiveDamage(collision.gameObject.GetComponent<Bullet>().GetDamage());
+            }
+
+            // destroy enemy on collision with weapon
+            if (collision.CompareTag(Tags.WEAPON))
+            {
+                ReceiveDamage(_health);
+            }
+        }
+
+        private void EnemyHealthController_OnDie(object sender, EventArgs e)
+        {
+            FindObjectOfType<Player.Player>().GetComponent<Player.Player>()._levelUpSystem.AddExperience(_experienceAmount);
+            _gameStatsController.EnemiesKilled++;
         
-        ObjectPoolingManager.ReturnObjectToPool(gameObject);
-    }
+            ObjectPoolingManager.ReturnObjectToPool(gameObject);
+        }
 
-    private void ResetEnemyState()
-    {
-        // TODO: refactor to set state from config
-        _health = _maxHealth;
-        _renderer.color = _defaultColor;
+        private void ResetEnemyState()
+        {
+            // TODO: refactor to set state from config
+            _health = _maxHealth;
+            _renderer.color = _defaultColor;
+        }
     }
 }

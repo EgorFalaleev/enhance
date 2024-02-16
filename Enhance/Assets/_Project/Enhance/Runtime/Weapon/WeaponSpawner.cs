@@ -1,41 +1,42 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class WeaponSpawner : Spawner
+namespace Enhance.Runtime.Weapon
 {
-    [SerializeField] private float _timeTillNextWeaponSpawn = 5f;
-
-    private float _timer = 0f;
-    private LevelUpSystem _levelUpSystem;
-
-    void Start()
+    public class WeaponSpawner : Spawner
     {
-        SpawnRandomObject();
-    }
+        [SerializeField] private float _timeTillNextWeaponSpawn = 5f;
 
-    protected override void Update()
-    {
-        base.Update();
+        private float _timer = 0f;
+        private LevelUpSystem _levelUpSystem;
 
-        _timer += Time.deltaTime;
-
-        if (_timer > _timeTillNextWeaponSpawn)
+        void Start()
         {
-            _timer = 0f;
             SpawnRandomObject();
         }
-    }
 
-    public void SetLevelUpSystem(LevelUpSystem levelUpSystem)
-    {
-        _levelUpSystem = levelUpSystem;
+        protected override void Update()
+        {
+            base.Update();
 
-        levelUpSystem.OnLevelChanged += LevelUpSystem_OnLevelChanged;
-    }
+            _timer += Time.deltaTime;
 
-    private void LevelUpSystem_OnLevelChanged(object sender, System.EventArgs e)
-    {
-        SpawnRandomObject();
+            if (_timer > _timeTillNextWeaponSpawn)
+            {
+                _timer = 0f;
+                SpawnRandomObject();
+            }
+        }
+
+        public void SetLevelUpSystem(LevelUpSystem levelUpSystem)
+        {
+            _levelUpSystem = levelUpSystem;
+
+            levelUpSystem.OnLevelChanged += LevelUpSystem_OnLevelChanged;
+        }
+
+        private void LevelUpSystem_OnLevelChanged(object sender, System.EventArgs e)
+        {
+            SpawnRandomObject();
+        }
     }
 }

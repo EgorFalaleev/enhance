@@ -1,31 +1,32 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class GameOverScreen : MonoBehaviour
+namespace Enhance.Runtime.UI
 {
-    [SerializeField] private TMP_Text _levelNumberText;
-    [SerializeField] private TMP_Text _enemiesKilledNumberText;
-    [SerializeField] private TMP_Text _highScoreText;
-
-    public void SetupGameOverScreen(int level, int enemiesKilled, int highScore)
+    public class GameOverScreen : MonoBehaviour
     {
-        gameObject.SetActive(true);
+        [SerializeField] private TMP_Text _levelNumberText;
+        [SerializeField] private TMP_Text _enemiesKilledNumberText;
+        [SerializeField] private TMP_Text _highScoreText;
 
-        _levelNumberText.text = level.ToString();
-        _enemiesKilledNumberText.text = enemiesKilled.ToString();
-        _highScoreText.text = highScore.ToString();
-    }
+        public void SetupGameOverScreen(int level, int enemiesKilled, int highScore)
+        {
+            gameObject.SetActive(true);
 
-    public void GoToMainMenu()
-    {
-        SceneManager.LoadScene(0);
-    }
+            _levelNumberText.text = level.ToString();
+            _enemiesKilledNumberText.text = enemiesKilled.ToString();
+            _highScoreText.text = highScore.ToString();
+        }
 
-    public void RestartGame()
-    {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        public void GoToMainMenu()
+        {
+            SceneManager.LoadScene(0);
+        }
+
+        public void RestartGame()
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }
     }
 }

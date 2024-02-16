@@ -1,54 +1,58 @@
 using System;
+using Enhance.Runtime.Player;
 using UnityEngine;
 
-public class WeaponVfxController : MonoBehaviour
+namespace Enhance.Runtime.Weapon
 {
-    [Header("Death vfx")]
-    [SerializeField] private GameObject _deathParticleSystem;
-
-    [Header("Trail vfx")]
-    [SerializeField] private TrailRenderer _trailRenderer;
-
-    private PlayerController _playerController;
-    private WeaponAttachController _weaponAttachController;
-
-    void Start()
+    public class WeaponVfxController : MonoBehaviour
     {
-        _weaponAttachController = GetComponent<WeaponAttachController>();
-        _weaponAttachController.OnDie += WeaponVfxController_OnDie;
+        [Header("Death vfx")]
+        [SerializeField] private GameObject _deathParticleSystem;
 
-        _playerController = GameObject.FindGameObjectWithTag(Tags.PLAYER).GetComponent<PlayerController>();
-        _playerController.OnDashStart += _playerController_OnDashStart;
-        _playerController.OnDashEnd += _playerController_OnDashEnd;
-    }
+        [Header("Trail vfx")]
+        [SerializeField] private TrailRenderer _trailRenderer;
 
-    private void _playerController_OnDashEnd(object sender, EventArgs e)
-    {
-        if (_trailRenderer != null)
-        _trailRenderer.emitting = false;
-    }
+        private PlayerController _playerController;
+        private WeaponAttachController _weaponAttachController;
 
-    private void _playerController_OnDashStart(object sender, EventArgs e)
-    {
-        if (_trailRenderer != null)
-        _trailRenderer.emitting = true;
-    }
+        void Start()
+        {
+            _weaponAttachController = GetComponent<WeaponAttachController>();
+            _weaponAttachController.OnDie += WeaponVfxController_OnDie;
 
-    private void WeaponVfxController_OnDie(object sender, EventArgs e)
-    {
-        _playerController.OnDashStart -= _playerController_OnDashStart;
-        _playerController.OnDashEnd -= _playerController_OnDashEnd;
+            _playerController = GameObject.FindGameObjectWithTag(Tags.PLAYER).GetComponent<PlayerController>();
+            _playerController.OnDashStart += _playerController_OnDashStart;
+            _playerController.OnDashEnd += _playerController_OnDashEnd;
+        }
 
-        ObjectPoolingManager.SpawnObject(_deathParticleSystem, transform.position, Quaternion.identity);
-    }
+        private void _playerController_OnDashEnd(object sender, EventArgs e)
+        {
+            if (_trailRenderer != null)
+                _trailRenderer.emitting = false;
+        }
 
-    public void StartDashing()
-    {
-        _trailRenderer.emitting = true;
-    }
+        private void _playerController_OnDashStart(object sender, EventArgs e)
+        {
+            if (_trailRenderer != null)
+                _trailRenderer.emitting = true;
+        }
 
-    public void StopDashing()
-    {
-        _trailRenderer.emitting = false;
+        private void WeaponVfxController_OnDie(object sender, EventArgs e)
+        {
+            _playerController.OnDashStart -= _playerController_OnDashStart;
+            _playerController.OnDashEnd -= _playerController_OnDashEnd;
+
+            ObjectPoolingManager.SpawnObject(_deathParticleSystem, transform.position, Quaternion.identity);
+        }
+
+        public void StartDashing()
+        {
+            _trailRenderer.emitting = true;
+        }
+
+        public void StopDashing()
+        {
+            _trailRenderer.emitting = false;
+        }
     }
 }
