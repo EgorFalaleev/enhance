@@ -5,6 +5,6 @@ namespace Enhance.Runtime
 {
     public interface IShooter
     {
-        public void Shoot(BulletConfigSO bulletConfig, Transform target, Transform shootPosition);
+        public void Shoot(BulletConfigSO bulletConfig, Transform shootPosition);
     }
 }

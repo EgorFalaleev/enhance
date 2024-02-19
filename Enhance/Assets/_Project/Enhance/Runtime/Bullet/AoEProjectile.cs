@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Enhance.Runtime
+namespace Enhance.Runtime.Bullet
 {
     public class AoEProjectile : Bullet
     {
