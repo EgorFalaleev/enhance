@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 7656157944376537484}
   - component: {fileID: 2909903539075319861}
   - component: {fileID: 4305496705376226646}
-  - component: {fileID: 683763237167801143}
   - component: {fileID: 3783812903421214306}
   - component: {fileID: 402813577099982436}
   m_Layer: 6
@@ -179,22 +178,6 @@ PolygonCollider2D:
       - {x: -0.5, y: 0.513457}
       - {x: -0.5026914, y: -0.51076543}
   m_UseDelaunayMesh: 0
---- !u!114 &683763237167801143
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2240532377615570089}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c403b104dd4f2924abd463c2c39c9e2b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _bullet: {fileID: 8027913780797553765, guid: afa3f8c3eb430af48bf808ed26cb920d, type: 3}
-  _bulletInitialPosition: {fileID: 2393904168656638013}
-  _shootCooldown: 1.5
-  _distanceToShoot: 10
 --- !u!114 &3783812903421214306
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -232,8 +215,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2393904168656638013}
+  - component: {fileID: 8432347166920116205}
   m_Layer: 6
-  m_Name: Projectile_Start
+  m_Name: Shooting_point
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -254,3 +238,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 5405064419165560753}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8432347166920116205
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7477340479364560320}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c403b104dd4f2924abd463c2c39c9e2b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _enemyConfig: {fileID: 11400000, guid: 6f725af8f4d7c1e40a24d2aa0284a8df, type: 2}
+  _bulletConfig: {fileID: 11400000, guid: 7b607d6139bb8e640b7ead20953c2589, type: 2}

@@ -5,8 +5,9 @@ namespace Enhance.Data
     [CreateAssetMenu(fileName = "BulletConfig", menuName = "ScriptableObjects/BulletConfig")]
     public class BulletConfigSO : ScriptableObject
     {
-        [SerializeField] private float _speed;
-        [SerializeField] private int _damage;
-        [SerializeField] private float _lifeTime;
+        [field: SerializeField] public GameObject BulletPrefab { get; private set; }
+        [field: SerializeField] public float Speed { get; private set; }
+        [field: SerializeField] public int Damage { get; private set; }
+        [field: SerializeField] public float LifeTime { get; private set; }
     }
 }
