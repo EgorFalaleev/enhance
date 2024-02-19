@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 19d69e8d18a012444b7d6c527453285c, type: 3}
-  m_Name: Bullet_Enemy_Single_Config
+  m_Name: Bullet_Weapon_AoE_Config
   m_EditorClassIdentifier: 
-  <BulletPrefab>k__BackingField: {fileID: 8027913780797553765, guid: afa3f8c3eb430af48bf808ed26cb920d, type: 3}
-  <Speed>k__BackingField: 10
+  <BulletPrefab>k__BackingField: {fileID: 4529449556431175778, guid: 5cdef376bc8bd874ebbb0f8dab14689b, type: 3}
+  <Speed>k__BackingField: 5
   <Damage>k__BackingField: 1
-  <LifeTime>k__BackingField: 4
+  <LifeTime>k__BackingField: 6
