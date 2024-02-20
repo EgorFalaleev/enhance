@@ -9,5 +9,6 @@ namespace Enhance.Data
         [field: SerializeField] public float Speed { get; private set; }
         [field: SerializeField] public int Damage { get; private set; }
         [field: SerializeField] public float LifeTime { get; private set; }
+        [field: SerializeField] public float DetectionRadius { get; private set; }
     }
 }

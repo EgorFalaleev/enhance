@@ -8,6 +8,5 @@ namespace Enhance.Data
         [field: SerializeField] public int MaxHealth { get; private set; }
         [field: SerializeField] public float LifeTime { get; private set; }
         [field: SerializeField] public float ShootingCooldown { get; private set; }
-        [field: SerializeField] public float AttackRange { get; private set; }
     }
 }

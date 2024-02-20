@@ -15,7 +15,7 @@ namespace Enhance.Runtime.Weapon
 
         private void Update()
         {
-            // dont't shoot if weapon is not attached
+            // don't shoot if weapon is not attached
             if (!IsWeaponAttached)
                 return;
             
@@ -30,9 +30,6 @@ namespace Enhance.Runtime.Weapon
 
         public void Shoot(BulletConfigSO bulletConfig, Transform shootPosition)
         {
-            if (!FindAndSetClosestEnemy())
-                return;
-            
             ObjectPoolingManager.SpawnObject(bulletConfig.BulletPrefab, shootPosition.position, Quaternion.identity);
         }
         
