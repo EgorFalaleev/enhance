@@ -28,11 +28,6 @@ namespace Enhance.Runtime.Enemy
 
         private void OnCollisionEnter2D(Collision2D collision)
         {
-            if (collision.gameObject.CompareTag(Tags.WEAPON_PROJECTILE))
-            {
-                TakeDamage(collision.gameObject.GetComponent<Bullet.Bullet>().GetDamage());
-            }
-
             // collision with player kills enemy
             if (collision.gameObject.CompareTag(Tags.PLAYER))
             {
@@ -42,11 +37,6 @@ namespace Enhance.Runtime.Enemy
 
         private void OnTriggerEnter2D(Collider2D collision)
         {
-            if (collision.CompareTag(Tags.WEAPON_PROJECTILE))
-            {
-                TakeDamage(collision.gameObject.GetComponent<Bullet.Bullet>().GetDamage());
-            }
-
             // destroy enemy on collision with weapon
             if (collision.CompareTag(Tags.WEAPON))
             {

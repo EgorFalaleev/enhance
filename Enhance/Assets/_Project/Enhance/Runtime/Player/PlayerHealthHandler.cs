@@ -27,12 +27,8 @@ namespace Enhance.Runtime.Player
 
         private void OnCollisionEnter2D(Collision2D collision)
         {
-            if (collision.gameObject.CompareTag(Tags.ENEMY_PROJECTILE))
-            {
-                TakeDamage(collision.gameObject.GetComponent<Bullet.Bullet>().GetDamage());
-            }
             // bumping into enemy always deals 1 damage
-            else if (collision.gameObject.CompareTag(Tags.ENEMY))
+            if (collision.gameObject.CompareTag(Tags.ENEMY))
             {
                 TakeDamage(1);
             }

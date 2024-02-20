@@ -37,7 +37,7 @@ namespace Enhance.Runtime.Weapon
         private void OnTriggerEnter2D(Collider2D collision)
         {
             // enemy contact with weapon destroys it
-            if (collision.CompareTag(Tags.ENEMY) || collision.CompareTag(Tags.ENEMY_PROJECTILE))
+            if (collision.CompareTag(Tags.ENEMY))
             {
                 TakeDamage(CurrentHealth);
             }
