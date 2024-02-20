@@ -2,12 +2,13 @@ using System;
 
 namespace Enhance.Runtime
 {
-    public class LevelUpSystem 
+    public class LevelUpSystem
     {
         public event EventHandler OnExperienceChanged;
         public event EventHandler OnLevelChanged;
 
-        private int _level;
+        public int Level { get; private set; }
+
         private int _experience;
         private int _requiredExpToNextLevel;
 
@@ -17,14 +18,9 @@ namespace Enhance.Runtime
 
         public LevelUpSystem()
         {
-            _level = 1;
+            Level = 1;
             _experience = 0;
-            _requiredExpToNextLevel = CalculateRequiredExp(_level);
-        }
-
-        public int GetLevel()
-        {
-            return _level;
+            _requiredExpToNextLevel = CalculateRequiredExp(Level);
         }
 
         public float GetExperiencePercentage()
@@ -36,7 +32,7 @@ namespace Enhance.Runtime
         {
             _experience += amount;
 
-            while (_experience >= _requiredExpToNextLevel) 
+            while (_experience >= _requiredExpToNextLevel)
             {
                 LevelUp();
             }
@@ -53,7 +49,8 @@ namespace Enhance.Runtime
 
             for (int i = 1; i <= level; i++)
             {
-                requiredExp += (int)Math.Floor(i + ADDITION_MULTIPLIER * Math.Pow(POWER_MULTIPLIER, i / DIVISION_MULTIPLIER));
+                requiredExp +=
+                    (int)Math.Floor(i + ADDITION_MULTIPLIER * Math.Pow(POWER_MULTIPLIER, i / DIVISION_MULTIPLIER));
             }
 
             return requiredExp / 4;
@@ -61,14 +58,13 @@ namespace Enhance.Runtime
 
         private void LevelUp()
         {
-            _level++;
+            Level++;
             _experience -= _requiredExpToNextLevel;
-            _requiredExpToNextLevel = CalculateRequiredExp(_level);
+            _requiredExpToNextLevel = CalculateRequiredExp(Level);
 
             // notify subscribers about lvl change
-            if (OnLevelChanged != null) 
+            if (OnLevelChanged != null)
                 OnLevelChanged(this, EventArgs.Empty);
         }
-
     }
 }

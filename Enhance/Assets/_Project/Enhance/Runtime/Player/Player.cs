@@ -9,13 +9,13 @@ namespace Enhance.Runtime.Player
         [SerializeField] private GameObject _levelWindow;
         [SerializeField] private GameObject _weaponSpawner;
 
-        public LevelUpSystem _levelUpSystem;
+        public LevelUpSystem LevelSystem { get; private set; }
 
         void Start()
         {
-            _levelUpSystem = new LevelUpSystem();
-            _levelWindow.GetComponent<LevelUpUIController>().SetLevelUpSystem(_levelUpSystem);
-            _weaponSpawner.GetComponent<WeaponSpawner>().SetLevelUpSystem(_levelUpSystem);
+            LevelSystem = new LevelUpSystem();
+            _levelWindow.GetComponent<LevelUpUIController>().SetLevelUpSystem(LevelSystem);
+            _weaponSpawner.GetComponent<WeaponSpawner>().SetLevelUpSystem(LevelSystem);
         }
     }
 }

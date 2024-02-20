@@ -52,7 +52,7 @@ namespace Enhance.Runtime.Player
 
         public void Die()
         {
-            _gameStatsController.Level = GetComponent<Player>()._levelUpSystem.GetLevel();
+            _gameStatsController.Level = GetComponent<Player>().LevelSystem.Level;
             _gameStatsController.SetHighScore(_gameStatsController.EnemiesKilled);
             // TODO: need to find something better than that
             _gameOverScreen.SetupGameOverScreen(_gameStatsController.Level, _gameStatsController.EnemiesKilled, _gameStatsController.GetHighScore());

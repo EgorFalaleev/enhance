@@ -68,7 +68,7 @@ namespace Enhance.Runtime.Enemy
 
         public void Die()
         {
-            FindObjectOfType<Player.Player>().GetComponent<Player.Player>()._levelUpSystem
+            FindObjectOfType<Player.Player>().GetComponent<Player.Player>().LevelSystem
                 .AddExperience(_enemyConfig.ExperienceAmount);
             _gameStatsController.EnemiesKilled++;
 
