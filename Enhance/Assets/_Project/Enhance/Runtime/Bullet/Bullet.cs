@@ -8,7 +8,7 @@ namespace Enhance.Runtime.Bullet
         [SerializeField] protected BulletConfigSO _bulletConfig;
 
         protected Transform _target;
-        
+
         private Rigidbody2D _rb;
         private float _timer = 0;
 

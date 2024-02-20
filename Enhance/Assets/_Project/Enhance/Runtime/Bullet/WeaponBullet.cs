@@ -8,16 +8,17 @@ namespace Enhance.Runtime.Bullet
         {
             if (!FindAndSetClosestEnemy())
                 ObjectPoolingManager.ReturnObjectToPool(gameObject);
-            
+
             base.OnEnable();
         }
-        
+
         private bool FindAndSetClosestEnemy()
         {
             // find all enemies within radius
             // TODO: replace with OverlapCircle()
-            var enemyInRangeColliders = Physics2D.OverlapCircleAll(transform.position, _bulletConfig.DetectionRadius, LayerMask.GetMask("Enemy"));
-        
+            var enemyInRangeColliders = Physics2D.OverlapCircleAll(transform.position, _bulletConfig.DetectionRadius,
+                LayerMask.GetMask("Enemy"));
+
             float shortestDistance = Mathf.Infinity;
 
             if (enemyInRangeColliders.Length > 0)

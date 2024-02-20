@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Enhance.Runtime.Bullet
 {
-    public class AoEProjectile : Bullet
+    public class WeaponAoEBullet : WeaponBullet
     {
         [SerializeField] private float _scaleIncrement = 0.1f;
 
