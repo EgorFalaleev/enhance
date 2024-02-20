@@ -30,13 +30,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5635717500219866862}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -3.23, y: 2.1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &5635717500219866861
 SpriteRenderer:
@@ -107,6 +107,12 @@ Rigidbody2D:
   m_AngularDrag: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
   m_Interpolate: 1
   m_SleepingMode: 1
   m_CollisionDetection: 0
@@ -121,6 +127,25 @@ CircleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -139,7 +164,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7281b96d808918c459d30e4db2b0036a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 125
+  _enemyConfig: {fileID: 11400000, guid: 07e3fe338534f47468cb03575e534069, type: 2}
 --- !u!114 &4794073469182110340
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -152,9 +177,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0fb5365e1db20c4da2928905a4a6fee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _health: 4
+  _enemyConfig: {fileID: 11400000, guid: 07e3fe338534f47468cb03575e534069, type: 2}
   _gameStatsController: {fileID: 11400000, guid: 5c81fab1c992bd04abb23de73b4401e4, type: 2}
-  _experienceAmount: 20
 --- !u!114 &-5593208521561732548
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -167,12 +191,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b6a2234a9382184d8104edc9f37e8e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _prefabsToSpawn:
-  - {fileID: 5635717500219866862, guid: acd4c7d079ae3364db0d0479d49f5058, type: 3}
-  _spawnCenter: {fileID: 5635717500219866858}
-  _minSpawnRadius: 1
-  _maxSpawnRadius: 2
-  _spawnedObjectsContainer: {fileID: 0}
+  _spawnerConfig: {fileID: 11400000, guid: c3feab77aea884d4580f42b5a9f507e7, type: 2}
   _numberOfEnemiesToSpawn: 2
 --- !u!114 &5513083157863194568
 MonoBehaviour:

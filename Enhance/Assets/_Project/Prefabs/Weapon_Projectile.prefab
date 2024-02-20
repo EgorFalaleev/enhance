@@ -12,8 +12,7 @@ GameObject:
   - component: {fileID: 4716551512109970854}
   - component: {fileID: 835451650119584041}
   - component: {fileID: 112118542222013199}
-  - component: {fileID: 8119289472428168912}
-  - component: {fileID: 7719772631528357243}
+  - component: {fileID: 975107001735453699}
   m_Layer: 8
   m_Name: Weapon_Projectile
   m_TagString: Weapon_Projectile
@@ -28,13 +27,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2788556448846239719}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1.5, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &4716551512109970854
 SpriteRenderer:
@@ -105,6 +104,12 @@ Rigidbody2D:
   m_AngularDrag: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
@@ -119,6 +124,25 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -135,7 +159,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.33333334, y: 0.21166226}
   m_EdgeRadius: 0
---- !u!114 &8119289472428168912
+--- !u!114 &975107001735453699
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -144,25 +168,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2788556448846239719}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 28e4ec9ee6ec97841ae3fe42a58e0c20, type: 3}
+  m_Script: {fileID: 11500000, guid: a50f98a913d84fe88c148b24ca90813d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 10
-  _timeToDestroy: 3
-  _damage: 2
---- !u!114 &7719772631528357243
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2788556448846239719}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3ad7a4a3b3753c84b8f388a7e483d7e2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _visionRadius: 8
-  _enemyLayerMask:
-    serializedVersion: 2
-    m_Bits: 64
+  _bulletConfig: {fileID: 11400000, guid: e6788d8398d4f384d9fd3c0e289e34ed, type: 2}

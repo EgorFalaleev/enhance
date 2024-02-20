@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 625611947774647844}
   - component: {fileID: 4774394521206661803}
   - component: {fileID: -4011507270103017331}
-  - component: {fileID: -5082432447181079214}
+  - component: {fileID: 7304593878897731516}
   m_Layer: 7
   m_Name: Enemy_Projectile
   m_TagString: Enemy_Projectile
@@ -27,13 +27,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8027913780797553765}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1.5, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &625611947774647844
 SpriteRenderer:
@@ -104,6 +104,12 @@ Rigidbody2D:
   m_AngularDrag: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
@@ -118,6 +124,25 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -134,7 +159,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.33333334, y: 0.21166226}
   m_EdgeRadius: 0
---- !u!114 &-5082432447181079214
+--- !u!114 &7304593878897731516
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -143,9 +168,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8027913780797553765}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 28e4ec9ee6ec97841ae3fe42a58e0c20, type: 3}
+  m_Script: {fileID: 11500000, guid: 47be7eb7717d46b3898bf142060fb466, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 8
-  _timeToDestroy: 4
-  _damage: 1
+  _bulletConfig: {fileID: 11400000, guid: 7b607d6139bb8e640b7ead20953c2589, type: 2}
