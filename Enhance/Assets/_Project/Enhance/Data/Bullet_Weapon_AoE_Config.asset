@@ -15,4 +15,5 @@ MonoBehaviour:
   <BulletPrefab>k__BackingField: {fileID: 4529449556431175778, guid: 5cdef376bc8bd874ebbb0f8dab14689b, type: 3}
   <Speed>k__BackingField: 5
   <Damage>k__BackingField: 1
-  <LifeTime>k__BackingField: 6
+  <LifeTime>k__BackingField: 5
+  <DetectionRadius>k__BackingField: 10

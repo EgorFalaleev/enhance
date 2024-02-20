@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _weaponConfig: {fileID: 11400000, guid: a23802200b82fba4eb19b8205255f35b, type: 2}
-  _bulletConfig: {fileID: 11400000, guid: e6788d8398d4f384d9fd3c0e289e34ed, type: 2}
+  _bulletConfig: {fileID: 11400000, guid: 3ff9b6fa8554da040b058bc30395ee3e, type: 2}
 --- !u!1 &3247022566325955673
 GameObject:
   m_ObjectHideFlags: 0

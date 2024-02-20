@@ -16,3 +16,4 @@ MonoBehaviour:
   <Speed>k__BackingField: 10
   <Damage>k__BackingField: 2
   <LifeTime>k__BackingField: 8
+  <DetectionRadius>k__BackingField: 10
