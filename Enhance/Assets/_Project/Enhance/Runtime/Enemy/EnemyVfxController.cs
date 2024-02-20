@@ -5,11 +5,10 @@ namespace Enhance.Runtime.Enemy
 {
     public class EnemyVfxController : MonoBehaviour
     {
-        [Header("Flash parameters")]
-        [SerializeField] private float _flashDurationInSeconds = 0.2f;
+        [Header("Flash parameters")] [SerializeField]
+        private float _flashDurationInSeconds = 0.2f;
 
-        [Header("Death vfx")]
-        [SerializeField] private GameObject _deathParticleSystem;
+        [Header("Death vfx")] [SerializeField] private GameObject _deathParticleSystem;
 
         private SpriteRenderer _spriteRenderer;
         private Color _originalColor;
@@ -42,7 +41,8 @@ namespace Enhance.Runtime.Enemy
                 StopCoroutine(_flashCoroutine);
             }
 
-            _flashCoroutine = StartCoroutine(FlashCoroutine());
+            if (gameObject.activeSelf)
+                _flashCoroutine = StartCoroutine(FlashCoroutine());
         }
 
         private IEnumerator FlashCoroutine()

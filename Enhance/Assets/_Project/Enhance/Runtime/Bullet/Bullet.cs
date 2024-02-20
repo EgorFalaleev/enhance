@@ -56,7 +56,6 @@ namespace Enhance.Runtime.Bullet
 
             if (damageableObject != null)
             {
-                Debug.Log($"damage from {gameObject.name} to {objectToDealDamage.name}");
                 damageableObject.TakeDamage(_bulletConfig.Damage);
             }
         }
@@ -68,11 +67,6 @@ namespace Enhance.Runtime.Bullet
             _rb.velocity = direction.normalized * _bulletConfig.Speed;
 
             transform.right = direction;
-        }
-
-        public int GetDamage()
-        {
-            return _bulletConfig.Damage;
         }
     }
 }
