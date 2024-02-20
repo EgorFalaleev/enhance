@@ -6,8 +6,9 @@ namespace Enhance.Runtime.Enemy
     {
         [SerializeField] private int _numberOfEnemiesToSpawn = 2;
 
-        void Start()
+        protected override void Start()
         {
+            _spawnCenter = transform;
             GetComponent<EnemyHealthController>().OnDie += EnemySplitController_OnDie;
         }
 
@@ -15,7 +16,7 @@ namespace Enhance.Runtime.Enemy
         {
             for (int i = 0; i < _numberOfEnemiesToSpawn; i++)
             {
-                SpawnSpecificObject(_prefabsToSpawn[0]);
+                SpawnSpecificObject(_spawnerConfig.PrefabsToSpawn[0]);
             }
         }
     }

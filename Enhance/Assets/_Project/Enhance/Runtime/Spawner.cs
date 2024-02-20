@@ -1,14 +1,25 @@
+using System;
 using System.Collections.Generic;
+using Enhance.Data;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace Enhance.Runtime
 {
     public abstract class Spawner : MonoBehaviour
     {
+        [SerializeField] protected SpawnerConfigSO _spawnerConfig;
+        
         [SerializeField] protected List<GameObject> _prefabsToSpawn;
-        [SerializeField] protected Transform _spawnCenter;
         [SerializeField] protected float _minSpawnRadius = 8f;
         [SerializeField] protected float _maxSpawnRadius = 10f;
+
+        protected Transform _spawnCenter;
+
+        protected virtual void Start()
+        {
+            _spawnCenter = GameObject.FindGameObjectWithTag(Tags.PLAYER).transform;
+        }
 
         protected virtual void Update()
         {
@@ -25,8 +36,8 @@ namespace Enhance.Runtime
 
         protected void SpawnRandomObject()
         {
-            int randomObjectIndex = Random.Range(0, _prefabsToSpawn.Count);
-            GameObject objectToSpawn = _prefabsToSpawn[randomObjectIndex];
+            var randomObjectIndex = Random.Range(0, _spawnerConfig.PrefabsToSpawn.Count);
+            var objectToSpawn = _spawnerConfig.PrefabsToSpawn[randomObjectIndex];
 
             SpawnSpecificObject(objectToSpawn);
         }
@@ -38,11 +49,11 @@ namespace Enhance.Runtime
 
         private Vector3 GenerateRandomSpawnPosition()
         {
-            float randomAngle = Random.Range(0, Mathf.PI * 2);
-            float radius = Random.Range(_minSpawnRadius, _maxSpawnRadius);
+            var randomAngle = Random.Range(0, Mathf.PI * 2);
+            var radius = Random.Range(_spawnerConfig.MinSpawnRadius, _spawnerConfig.MaxSpawnRadius);
 
             // generate a point on a circle
-            Vector3 spawnPosition = new Vector3(transform.position.x + Mathf.Sin(randomAngle) * radius, transform.position.y + Mathf.Cos(randomAngle) * radius, transform.position.z);
+            var spawnPosition = new Vector3(transform.position.x + Mathf.Sin(randomAngle) * radius, transform.position.y + Mathf.Cos(randomAngle) * radius, transform.position.z);
 
             return spawnPosition;
         }

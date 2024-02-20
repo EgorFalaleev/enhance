@@ -7,10 +7,10 @@ namespace Enhance.Runtime.Weapon
         [SerializeField] private float _timeTillNextWeaponSpawn = 5f;
 
         private float _timer = 0f;
-        private LevelUpSystem _levelUpSystem;
 
-        void Start()
+        protected override void Start()
         {
+            base.Start();
             SpawnRandomObject();
         }
 
@@ -29,8 +29,6 @@ namespace Enhance.Runtime.Weapon
 
         public void SetLevelUpSystem(LevelUpSystem levelUpSystem)
         {
-            _levelUpSystem = levelUpSystem;
-
             levelUpSystem.OnLevelChanged += LevelUpSystem_OnLevelChanged;
         }
 

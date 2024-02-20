@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ae2b2337e6a4280a87dfb99c76ac224, type: 3}
+  m_Name: Spawner_Enemy_Config
+  m_EditorClassIdentifier: 
+  <PrefabsToSpawn>k__BackingField:
+  - {fileID: 7033670284700621850, guid: 206177294f2a8f946b2c80db96810c1e, type: 3}
+  - {fileID: 2240532377615570089, guid: 2fc07cbeaa83ef54598c5cf631e1d5df, type: 3}
+  - {fileID: 5635717500219866862, guid: 6204e4cb2ef70ef4b94497e15c6d92cd, type: 3}
+  <MinSpawnRadius>k__BackingField: 16
+  <MaxSpawnRadius>k__BackingField: 22
+  <TimeTillNextObjectSpawn>k__BackingField: 3
