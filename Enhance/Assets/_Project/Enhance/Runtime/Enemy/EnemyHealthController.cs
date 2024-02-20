@@ -30,7 +30,7 @@ namespace Enhance.Runtime.Enemy
         {
             if (collision.gameObject.CompareTag(Tags.WEAPON_PROJECTILE))
             {
-                TakeDamage(collision.gameObject.GetComponent<Bullet>().GetDamage());
+                TakeDamage(collision.gameObject.GetComponent<Bullet.Bullet>().GetDamage());
             }
 
             // collision with player kills enemy
@@ -44,7 +44,7 @@ namespace Enhance.Runtime.Enemy
         {
             if (collision.CompareTag(Tags.WEAPON_PROJECTILE))
             {
-                TakeDamage(collision.gameObject.GetComponent<Bullet>().GetDamage());
+                TakeDamage(collision.gameObject.GetComponent<Bullet.Bullet>().GetDamage());
             }
 
             // destroy enemy on collision with weapon

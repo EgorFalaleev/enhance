@@ -29,7 +29,7 @@ namespace Enhance.Runtime.Player
         {
             if (collision.gameObject.CompareTag(Tags.ENEMY_PROJECTILE))
             {
-                TakeDamage(collision.gameObject.GetComponent<Bullet>().GetDamage());
+                TakeDamage(collision.gameObject.GetComponent<Bullet.Bullet>().GetDamage());
             }
             // bumping into enemy always deals 1 damage
             else if (collision.gameObject.CompareTag(Tags.ENEMY))

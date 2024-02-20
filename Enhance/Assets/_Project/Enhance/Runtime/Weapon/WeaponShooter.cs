@@ -7,7 +7,7 @@ namespace Enhance.Runtime.Weapon
     {
         [SerializeField] private WeaponConfigSO _weaponConfig;
         [SerializeField] private BulletConfigSO _bulletConfig;
-        
+
         public bool IsWeaponAttached { get; set; }
 
         private float _timer = 0f;
@@ -18,7 +18,7 @@ namespace Enhance.Runtime.Weapon
             // don't shoot if weapon is not attached
             if (!IsWeaponAttached)
                 return;
-            
+
             _timer += Time.deltaTime;
 
             if (_timer > _weaponConfig.ShootingCooldown)
@@ -32,7 +32,5 @@ namespace Enhance.Runtime.Weapon
         {
             ObjectPoolingManager.SpawnObject(bulletConfig.BulletPrefab, shootPosition.position, Quaternion.identity);
         }
-        
-        
     }
 }
