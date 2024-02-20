@@ -4,8 +4,6 @@ namespace Enhance.Runtime.Weapon
 {
     public class WeaponSpawner : Spawner
     {
-        [SerializeField] private float _timeTillNextWeaponSpawn = 5f;
-
         private float _timer = 0f;
 
         protected override void Start()
@@ -20,7 +18,7 @@ namespace Enhance.Runtime.Weapon
 
             _timer += Time.deltaTime;
 
-            if (_timer > _timeTillNextWeaponSpawn)
+            if (_timer > _spawnerConfig.TimeTillNextObjectSpawn)
             {
                 _timer = 0f;
                 SpawnRandomObject();

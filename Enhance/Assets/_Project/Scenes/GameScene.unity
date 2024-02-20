@@ -1491,16 +1491,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _spawnerConfig: {fileID: 11400000, guid: ff42fbddd75ad484cbbb4266f35a46ac, type: 2}
-  _prefabsToSpawn:
-  - {fileID: 7033670284700621850, guid: 206177294f2a8f946b2c80db96810c1e, type: 3}
-  - {fileID: 2240532377615570089, guid: 2fc07cbeaa83ef54598c5cf631e1d5df, type: 3}
-  - {fileID: 5635717500219866862, guid: 6204e4cb2ef70ef4b94497e15c6d92cd, type: 3}
-  _minSpawnRadius: 16
-  _maxSpawnRadius: 22
-  _timeTillNextWave: 10
-  _timeTillSingleEnemy: 3
-  _maxEnemiesToSpawnPerWave: 25
-  _enemiesPerWaveDifference: 2
+  _wavesSpawnerConfig: {fileID: 11400000, guid: 10771220907b3774489d9134210bb3d0, type: 2}
 --- !u!4 &504070672
 Transform:
   m_ObjectHideFlags: 0
@@ -3395,11 +3386,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _spawnerConfig: {fileID: 11400000, guid: e9b3731ba1596024994753d3ab8d9641, type: 2}
-  _prefabsToSpawn:
-  - {fileID: 3247022566325955673, guid: 496f9992e2a3c8c4a9dc95df9144db1b, type: 3}
-  - {fileID: 3247022566325955673, guid: 6a21d2048cf58624fb93fabb32ec6522, type: 3}
-  _minSpawnRadius: 2
-  _maxSpawnRadius: 5
   _timeTillNextWeaponSpawn: 3
 --- !u!1 &1550407413
 GameObject:

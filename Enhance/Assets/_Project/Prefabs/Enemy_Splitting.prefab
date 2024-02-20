@@ -191,11 +191,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b6a2234a9382184d8104edc9f37e8e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _prefabsToSpawn:
-  - {fileID: 5635717500219866862, guid: acd4c7d079ae3364db0d0479d49f5058, type: 3}
-  _spawnCenter: {fileID: 5635717500219866858}
-  _minSpawnRadius: 1
-  _maxSpawnRadius: 2
+  _spawnerConfig: {fileID: 11400000, guid: c3feab77aea884d4580f42b5a9f507e7, type: 2}
   _numberOfEnemiesToSpawn: 2
 --- !u!114 &5513083157863194568
 MonoBehaviour:

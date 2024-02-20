@@ -10,10 +10,6 @@ namespace Enhance.Runtime
     {
         [SerializeField] protected SpawnerConfigSO _spawnerConfig;
         
-        [SerializeField] protected List<GameObject> _prefabsToSpawn;
-        [SerializeField] protected float _minSpawnRadius = 8f;
-        [SerializeField] protected float _maxSpawnRadius = 10f;
-
         protected Transform _spawnCenter;
 
         protected virtual void Start()
