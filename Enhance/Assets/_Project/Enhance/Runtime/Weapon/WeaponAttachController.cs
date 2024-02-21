@@ -9,24 +9,29 @@ namespace Enhance.Runtime.Weapon
         [SerializeField] private WeaponConfigSO _weaponConfig;
 
         public event EventHandler OnDie;
-        
-        public int CurrentHealth { get; private set; }
 
-        private const float WEAPON_ATTACH_MODIFIER = 1.25f;
-        private const float PLAYER_ATTACH_MODIFIER = 0.9f;
+        public int CurrentHealth { get; private set; }
 
         private bool _isAttached;
         private float _timer = 0f;
+        private Transform _parent;
+        private Transform _attachedObjectTransform;
+        private LineRenderer _lineRenderer;
 
         private void Start()
         {
             CurrentHealth = _weaponConfig.MaxHealth;
+            _parent = transform.parent.gameObject.transform;
+            _lineRenderer = GetComponent<LineRenderer>();
         }
 
         private void Update()
         {
             if (_isAttached)
+            {
+                DrawAttachmentLine(transform.position, _attachedObjectTransform.position);
                 return;
+            }
 
             _timer += Time.deltaTime;
             
@@ -49,18 +54,24 @@ namespace Enhance.Runtime.Weapon
                 var direction = transform.position - collision.transform.position;
 
                 // attach to a collision GO
-                transform.SetParent(collision.transform, false);
-                transform.localPosition = collision.CompareTag(Tags.WEAPON) ? direction.normalized * WEAPON_ATTACH_MODIFIER: direction.normalized * PLAYER_ATTACH_MODIFIER;
+                _parent.SetParent(collision.transform, false);
+                _parent.localPosition = direction.normalized;
 
-                // change scale to 1 if attached to another weapon to prevent getting smaller
-                if (collision.CompareTag(Tags.WEAPON))
-                    transform.localScale = Vector3.one;
-
+                _attachedObjectTransform = collision.transform;
+                
                 _isAttached = true;
 
                 // weapon can shoot now
-                GetComponentInChildren<WeaponShooter>().IsWeaponAttached = true;
+                //GetComponentInChildren<WeaponShooter>().IsWeaponAttached = true;
             }
+        }
+
+        private void DrawAttachmentLine(Vector3 from, Vector3 to)
+        {
+            _lineRenderer.positionCount = 2;
+            
+            _lineRenderer.SetPosition(0, from);
+            _lineRenderer.SetPosition(1, to);
         }
 
         public void TakeDamage(int amount)
@@ -77,7 +88,7 @@ namespace Enhance.Runtime.Weapon
         {
             if (OnDie != null)
                 OnDie(this, EventArgs.Empty);
-            
+
             Destroy(gameObject);
         }
     }

@@ -17,7 +17,7 @@ namespace Enhance.Runtime.Weapon
 
         void Start()
         {
-            _weaponAttachController = GetComponent<WeaponAttachController>();
+            _weaponAttachController = GetComponentInChildren<WeaponAttachController>();
             _weaponAttachController.OnDie += WeaponVfxController_OnDie;
 
             _playerController = GameObject.FindGameObjectWithTag(Tags.PLAYER).GetComponent<PlayerController>();
