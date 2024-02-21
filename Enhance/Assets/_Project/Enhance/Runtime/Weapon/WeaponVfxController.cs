@@ -13,12 +13,12 @@ namespace Enhance.Runtime.Weapon
         [SerializeField] private TrailRenderer _trailRenderer;
 
         private PlayerController _playerController;
-        private WeaponAttachController _weaponAttachController;
+        private WeaponHealthController _weaponHealthController;
 
         void Start()
         {
-            _weaponAttachController = GetComponentInChildren<WeaponAttachController>();
-            _weaponAttachController.OnDie += WeaponVfxController_OnDie;
+            _weaponHealthController = GetComponent<WeaponHealthController>();
+            _weaponHealthController.OnDie += WeaponVfxController_OnDie;
 
             _playerController = GameObject.FindGameObjectWithTag(Tags.PLAYER).GetComponent<PlayerController>();
             _playerController.OnDashStart += _playerController_OnDashStart;
@@ -43,16 +43,6 @@ namespace Enhance.Runtime.Weapon
             _playerController.OnDashEnd -= _playerController_OnDashEnd;
 
             ObjectPoolingManager.SpawnObject(_deathParticleSystem, transform.position, Quaternion.identity);
-        }
-
-        public void StartDashing()
-        {
-            _trailRenderer.emitting = true;
-        }
-
-        public void StopDashing()
-        {
-            _trailRenderer.emitting = false;
         }
     }
 }

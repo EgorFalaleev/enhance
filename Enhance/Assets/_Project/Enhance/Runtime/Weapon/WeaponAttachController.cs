@@ -4,23 +4,19 @@ using UnityEngine;
 
 namespace Enhance.Runtime.Weapon
 {
-    public class WeaponAttachController : MonoBehaviour, IDamageable
+    public class WeaponAttachController : MonoBehaviour
     {
         [SerializeField] private WeaponConfigSO _weaponConfig;
 
-        public event EventHandler OnDie;
-
-        public int CurrentHealth { get; private set; }
-
+        public event EventHandler OnWeaponAttached;
+        
         private bool _isAttached;
-        private float _timer = 0f;
         private Transform _parent;
         private Transform _attachedObjectTransform;
         private LineRenderer _lineRenderer;
 
         private void Start()
         {
-            CurrentHealth = _weaponConfig.MaxHealth;
             _parent = transform.parent.gameObject.transform;
             _lineRenderer = GetComponent<LineRenderer>();
         }
@@ -30,23 +26,11 @@ namespace Enhance.Runtime.Weapon
             if (_isAttached)
             {
                 DrawAttachmentLine(transform.position, _attachedObjectTransform.position);
-                return;
             }
-
-            _timer += Time.deltaTime;
-            
-            if (_timer >= _weaponConfig.LifeTime)
-                Die();
         }
 
         private void OnTriggerEnter2D(Collider2D collision)
         {
-            // enemy contact with weapon destroys it
-            if (collision.CompareTag(Tags.ENEMY))
-            {
-                TakeDamage(CurrentHealth);
-            }
-
             // can attach only once 
             if (!_isAttached)
             {
@@ -63,6 +47,8 @@ namespace Enhance.Runtime.Weapon
 
                 // weapon can shoot now
                 //GetComponentInChildren<WeaponShooter>().IsWeaponAttached = true;
+                if (OnWeaponAttached != null)
+                    OnWeaponAttached(this, EventArgs.Empty);
             }
         }
 
@@ -72,24 +58,6 @@ namespace Enhance.Runtime.Weapon
             
             _lineRenderer.SetPosition(0, from);
             _lineRenderer.SetPosition(1, to);
-        }
-
-        public void TakeDamage(int amount)
-        {
-            CurrentHealth -= amount;
-
-            if (CurrentHealth <= 0)
-            {
-                Die();
-            }
-        }
-
-        public void Die()
-        {
-            if (OnDie != null)
-                OnDie(this, EventArgs.Empty);
-
-            Destroy(gameObject);
         }
     }
 }

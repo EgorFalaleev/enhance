@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2668739313186694618}
   - component: {fileID: 5552584289641200114}
   - component: {fileID: 6788677215564263154}
-  m_Layer: 10
+  m_Layer: 11
   m_Name: AttachCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -232,6 +232,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _weaponConfig: {fileID: 11400000, guid: fb841e7542e303b428b71c730c62b3e3, type: 2}
   _bulletConfig: {fileID: 11400000, guid: e6788d8398d4f384d9fd3c0e289e34ed, type: 2}
+  _weaponAttachController: {fileID: 5552584289641200114}
 --- !u!1 &3247022566325955673
 GameObject:
   m_ObjectHideFlags: 0
@@ -246,6 +247,7 @@ GameObject:
   - component: {fileID: 3247022566325955666}
   - component: {fileID: -8866822476430353816}
   - component: {fileID: 5979822562047612303}
+  - component: {fileID: -2436085985035274729}
   m_Layer: 10
   m_Name: Weapon_Single_Projectile
   m_TagString: Weapon
@@ -511,3 +513,16 @@ TrailRenderer:
   m_Autodestruct: 0
   m_Emitting: 0
   m_ApplyActiveColorSpace: 0
+--- !u!114 &-2436085985035274729
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3247022566325955673}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89588185b6bb43ecb6d2261eff04861a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _weaponConfig: {fileID: 11400000, guid: a23802200b82fba4eb19b8205255f35b, type: 2}
