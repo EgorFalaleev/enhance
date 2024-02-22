@@ -35,6 +35,10 @@ namespace Enhance.Runtime.Weapon
             // can attach only once 
             if (!_isAttached)
             {
+                if (collision.gameObject.GetComponent<WeaponAttachController>() != null &&
+                    !collision.gameObject.GetComponent<WeaponAttachController>()._isAttached)
+                    return;
+                
                 // calculate the direction of attachment
                 var direction = transform.position - collision.transform.position;
 
