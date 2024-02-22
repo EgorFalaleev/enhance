@@ -46,7 +46,7 @@ namespace Enhance.Runtime.Weapon
 
                 _distanceToPlayer = Vector3.Distance(transform.position,
                     GameObject.FindGameObjectWithTag(Tags.PLAYER).transform.position);
-                WeaponSpawner.AddDistance(_distanceToPlayer);
+                DistanceToPlayerCalculator.AddDistance(_distanceToPlayer);
 
                 _isAttached = true;
 
@@ -59,7 +59,7 @@ namespace Enhance.Runtime.Weapon
         private void OnDisable()
         {
             if (_isAttached)
-                WeaponSpawner.RemoveDistance(_distanceToPlayer);
+                DistanceToPlayerCalculator.RemoveDistance(_distanceToPlayer);
         }
 
         private void DrawAttachmentLine(Vector3 from, Vector3 to)
