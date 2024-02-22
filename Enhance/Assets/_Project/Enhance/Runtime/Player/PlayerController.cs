@@ -83,11 +83,6 @@ namespace Enhance.Runtime.Player
             }
         }
 
-        public bool IsDashing()
-        {
-            return _isDashing;
-        }
-
         private IEnumerator Dash()
         {
             _canDash = false;

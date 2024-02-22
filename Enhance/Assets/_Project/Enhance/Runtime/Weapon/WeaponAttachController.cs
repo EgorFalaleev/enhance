@@ -38,25 +38,8 @@ namespace Enhance.Runtime.Weapon
                 if (collision.gameObject.GetComponent<WeaponAttachController>() != null &&
                     !collision.gameObject.GetComponent<WeaponAttachController>()._isAttached)
                     return;
-                
-                // calculate the direction of attachment
-                var direction = transform.position - collision.transform.position;
 
-                // attach to a collision GO
-                _parent.SetParent(collision.transform, false);
-                _parent.localPosition = direction.normalized;
-
-                _attachedObjectTransform = collision.transform;
-
-                _distanceToPlayer = Vector3.Distance(transform.position,
-                    GameObject.FindGameObjectWithTag(Tags.PLAYER).transform.position);
-                DistanceToPlayerCalculator.AddDistance(_distanceToPlayer);
-
-                _isAttached = true;
-
-                // weapon can shoot now
-                if (OnWeaponAttached != null)
-                    OnWeaponAttached(this, EventArgs.Empty);
+                AttachToTransform(collision.transform);
             }
         }
 
@@ -64,6 +47,28 @@ namespace Enhance.Runtime.Weapon
         {
             if (_isAttached)
                 DistanceToPlayerCalculator.RemoveDistance(_distanceToPlayer);
+        }
+
+        private void AttachToTransform(Transform destinationTransform)
+        {
+            // calculate the direction of attachment
+            var direction = transform.position - destinationTransform.position;
+
+            // attach to another gameobject
+            _parent.SetParent(destinationTransform, false);
+            _parent.localPosition = direction.normalized;
+
+            _attachedObjectTransform = destinationTransform;
+
+            _distanceToPlayer = Vector3.Distance(transform.position,
+                GameObject.FindGameObjectWithTag(Tags.PLAYER).transform.position);
+            DistanceToPlayerCalculator.AddDistance(_distanceToPlayer);
+
+            _isAttached = true;
+
+            // weapon can shoot now
+            if (OnWeaponAttached != null)
+                OnWeaponAttached(this, EventArgs.Empty);
         }
 
         private void DrawAttachmentLine(Vector3 from, Vector3 to)

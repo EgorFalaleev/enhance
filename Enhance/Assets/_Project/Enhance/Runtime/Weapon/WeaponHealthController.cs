@@ -37,7 +37,7 @@ namespace Enhance.Runtime.Weapon
             if (_timer >= _weaponConfig.LifeTime)
                 Die();
         }
-
+        
         private void OnTriggerEnter2D(Collider2D other)
         {
             // enemy contact with weapon destroys it

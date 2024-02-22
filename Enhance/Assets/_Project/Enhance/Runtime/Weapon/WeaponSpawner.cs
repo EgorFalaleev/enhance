@@ -46,14 +46,12 @@ namespace Enhance.Runtime.Weapon
         public static void AddDistance(float distance)
         {
             _weaponToPlayerDistances.Add(distance);
-            Debug.Log("added element. List: " + _weaponToPlayerDistances.Count);
             UpdateMaxOffset();
         }
 
         public static void RemoveDistance(float distance)
         {
             _weaponToPlayerDistances.Remove(distance);
-            Debug.Log("removed element. List: " + _weaponToPlayerDistances.Count);
             UpdateMaxOffset();
         }
 
@@ -64,9 +62,8 @@ namespace Enhance.Runtime.Weapon
             else
             {
                 _weaponToPlayerDistances.Sort();
-                // max distance is always in the last element
+                // max distance is always the last element in the list
                 MaxDistance = _weaponToPlayerDistances[^1];
-                Debug.Log(MaxDistance);
             }
         }
     }
