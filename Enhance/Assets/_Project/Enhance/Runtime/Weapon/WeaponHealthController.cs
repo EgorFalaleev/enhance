@@ -13,14 +13,25 @@ namespace Enhance.Runtime.Weapon
         public event EventHandler OnDie;
 
         private float _timer = 0f;
+        private bool _isAttached;
 
         private void Start()
         {
             CurrentHealth = _weaponConfig.MaxHealth;
+
+            GetComponentInChildren<WeaponAttachController>().OnWeaponAttached += WeaponAttachController_OnWeaponAttached;
+        }
+
+        private void WeaponAttachController_OnWeaponAttached(object sender, EventArgs e)
+        {
+            _isAttached = true;
         }
 
         private void Update()
         {
+            if (_isAttached)
+                return;
+            
             _timer += Time.deltaTime;
 
             if (_timer >= _weaponConfig.LifeTime)
@@ -40,7 +51,6 @@ namespace Enhance.Runtime.Weapon
         {
             CurrentHealth -= amount;
 
-            Debug.Log(CurrentHealth);
             if (CurrentHealth <= 0)
             {
                 Die();
