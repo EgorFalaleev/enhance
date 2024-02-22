@@ -9,11 +9,12 @@ namespace Enhance.Runtime.Weapon
         [SerializeField] private WeaponConfigSO _weaponConfig;
 
         public event EventHandler OnWeaponAttached;
-        
+
         private bool _isAttached;
         private Transform _parent;
         private Transform _attachedObjectTransform;
         private LineRenderer _lineRenderer;
+        private float _distanceToPlayer;
 
         private void Start()
         {
@@ -42,20 +43,29 @@ namespace Enhance.Runtime.Weapon
                 _parent.localPosition = direction.normalized;
 
                 _attachedObjectTransform = collision.transform;
-                
+
+                _distanceToPlayer = Vector3.Distance(transform.position,
+                    GameObject.FindGameObjectWithTag(Tags.PLAYER).transform.position);
+                WeaponSpawner.AddDistance(_distanceToPlayer);
+
                 _isAttached = true;
 
                 // weapon can shoot now
-                //GetComponentInChildren<WeaponShooter>().IsWeaponAttached = true;
                 if (OnWeaponAttached != null)
                     OnWeaponAttached(this, EventArgs.Empty);
             }
         }
 
+        private void OnDisable()
+        {
+            if (_isAttached)
+                WeaponSpawner.RemoveDistance(_distanceToPlayer);
+        }
+
         private void DrawAttachmentLine(Vector3 from, Vector3 to)
         {
             _lineRenderer.positionCount = 2;
-            
+
             _lineRenderer.SetPosition(0, from);
             _lineRenderer.SetPosition(1, to);
         }

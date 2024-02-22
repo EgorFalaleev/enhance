@@ -21,38 +21,37 @@ namespace Enhance.Runtime
         {
             transform.position = _spawnCenter.position;
         }
-
-        protected void SpawnMultipleObjects(int numberOfObjectsToSpawn)
+        
+        protected void SpawnMultipleObjects(int numberOfObjectsToSpawn, float offset = 0f)
         {
             for (int i = 0; i < numberOfObjectsToSpawn; i++)
             {
-                SpawnRandomObject();
+                SpawnRandomObject(offset);
             }
         }
-
-        protected void SpawnRandomObject()
+        
+        protected void SpawnRandomObject(float offset = 0f)
         {
             var randomObjectIndex = Random.Range(0, _spawnerConfig.PrefabsToSpawn.Count);
             var objectToSpawn = _spawnerConfig.PrefabsToSpawn[randomObjectIndex];
 
-            SpawnSpecificObject(objectToSpawn);
+            SpawnSpecificObject(objectToSpawn, offset);
         }
-
-        protected void SpawnSpecificObject(GameObject objectToSpawn)
+        
+        protected void SpawnSpecificObject(GameObject objectToSpawn, float offset = 0f)
         {
-            ObjectPoolingManager.SpawnObject(objectToSpawn, GenerateRandomSpawnPosition(), Quaternion.identity);
+            ObjectPoolingManager.SpawnObject(objectToSpawn, GenerateRandomSpawnPosition(offset), Quaternion.identity);
         }
-
-        private Vector3 GenerateRandomSpawnPosition()
+        
+        private Vector3 GenerateRandomSpawnPosition(float offset = 0f)
         {
             var randomAngle = Random.Range(0, Mathf.PI * 2);
-            var radius = Random.Range(_spawnerConfig.MinSpawnRadius, _spawnerConfig.MaxSpawnRadius);
+            var radius = Random.Range(offset + _spawnerConfig.MinSpawnRadius, offset + _spawnerConfig.MaxSpawnRadius);
 
             // generate a point on a circle
             var spawnPosition = new Vector3(transform.position.x + Mathf.Sin(randomAngle) * radius, transform.position.y + Mathf.Cos(randomAngle) * radius, transform.position.z);
 
             return spawnPosition;
         }
-
     }
 }
