@@ -3386,7 +3386,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _spawnerConfig: {fileID: 11400000, guid: e9b3731ba1596024994753d3ab8d9641, type: 2}
-  _timeTillNextWeaponSpawn: 3
 --- !u!1 &1550407413
 GameObject:
   m_ObjectHideFlags: 0
