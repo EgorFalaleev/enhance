@@ -6,8 +6,8 @@ namespace Enhance.Runtime
 {
     public class ObjectPoolingManager : MonoBehaviour
     {
-        public static List<PooledObjectInfo> ObjectPools = new();
-        public static List<GameObject> PooledObjectsContainers = new();
+        private static List<PooledObjectInfo> ObjectPools = new();
+        private static List<GameObject> PooledObjectsContainers = new();
 
         private static GameObject _mainContainer;
 

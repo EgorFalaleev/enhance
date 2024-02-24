@@ -1,6 +1,4 @@
-﻿using UnityEngine;
-
-namespace Enhance.Runtime.Bullet
+﻿namespace Enhance.Runtime.Bullet
 {
     public class WeaponSingleBullet : WeaponBullet
     {
