@@ -13,10 +13,11 @@ namespace Enhance.Runtime.Player
 
         [SerializeField] private PlayerConfigSO _playerConfig;
 
-        private PlayerInput playerInput;
+        private IInput _input;
+        private int _inputHorizontal;
+        private int _inputVertical;
+        
         private Rigidbody2D body;
-        private int _horizontal;
-        private int _vertical;
         private bool _isAlive;
 
         [Header("Dash properties")]
@@ -26,7 +27,7 @@ namespace Enhance.Runtime.Player
 
         private void Awake()
         {
-            playerInput = new PlayerInput();
+            _input = new PlayerInputController();
         }
 
         void Start()
@@ -45,10 +46,8 @@ namespace Enhance.Runtime.Player
 
             if (!_isAlive)
                 return;
-
-            // get move axes
-            _horizontal = Mathf.RoundToInt(playerInput.Player.Move.ReadValue<Vector2>().x);
-            _vertical = Mathf.RoundToInt(playerInput.Player.Move.ReadValue<Vector2>().y);
+            
+            HandleInputs();
         }
 
         private void FixedUpdate()
@@ -59,20 +58,20 @@ namespace Enhance.Runtime.Player
 
             if (!_isAlive)
                 return;
-
-            // move player
-            var direction = new Vector2(_horizontal, _vertical).normalized;
-            body.velocity = _playerConfig.MoveSpeed * Time.fixedDeltaTime * direction;
+            
+            Move(_playerConfig.MoveSpeed * Time.fixedDeltaTime);
         }
 
-        private void OnEnable()
+        private void HandleInputs()
         {
-            playerInput.Player.Enable();
+            _inputHorizontal = _input.Horizontal;
+            _inputVertical = _input.Vertical;
         }
 
-        private void OnDisable()
+        private void Move(float speed)
         {
-            playerInput.Player.Disable();
+            var direction = new Vector2(_inputHorizontal, _inputVertical).normalized;
+            body.velocity = direction * speed;
         }
 
         public void Dash(InputAction.CallbackContext context)
@@ -91,10 +90,8 @@ namespace Enhance.Runtime.Player
             if (OnDashStart != null)
                 OnDashStart(this, EventArgs.Empty);
 
-            // calculate dash direction
-            var direction = new Vector2(_horizontal, _vertical).normalized;
-            body.velocity = direction * _playerConfig.DashingPower;
-
+            Move(_playerConfig.DashingPower);
+            
             _trailRenderer.emitting = true;
 
             yield return new WaitForSeconds(_playerConfig.DashingTime);
