@@ -4,81 +4,79 @@ using UnityEngine;
 
 namespace Enhance.Runtime.Weapon
 {
-    public class WeaponAttachController : MonoBehaviour, IDamageable
+    public class WeaponAttachController : MonoBehaviour
     {
         [SerializeField] private WeaponConfigSO _weaponConfig;
 
-        public event EventHandler OnDie;
-        
-        public int CurrentHealth { get; private set; }
-
-        private const float WEAPON_ATTACH_MODIFIER = 1.25f;
-        private const float PLAYER_ATTACH_MODIFIER = 0.9f;
+        public event EventHandler OnWeaponAttached;
 
         private bool _isAttached;
-        private float _timer = 0f;
+        private Transform _parent;
+        private Transform _attachedObjectTransform;
+        private LineRenderer _lineRenderer;
+        private float _distanceToPlayer;
 
         private void Start()
         {
-            CurrentHealth = _weaponConfig.MaxHealth;
+            _parent = transform.parent.gameObject.transform;
+            _lineRenderer = GetComponent<LineRenderer>();
         }
 
         private void Update()
         {
             if (_isAttached)
-                return;
-
-            _timer += Time.deltaTime;
-            
-            if (_timer >= _weaponConfig.LifeTime)
-                Die();
+            {
+                DrawAttachmentLine(transform.position, _attachedObjectTransform.position);
+            }
         }
 
         private void OnTriggerEnter2D(Collider2D collision)
         {
-            // enemy contact with weapon destroys it
-            if (collision.CompareTag(Tags.ENEMY))
-            {
-                TakeDamage(CurrentHealth);
-            }
-
             // can attach only once 
             if (!_isAttached)
             {
-                // calculate the direction of attachment
-                var direction = transform.position - collision.transform.position;
+                if (collision.gameObject.GetComponent<WeaponAttachController>() != null &&
+                    !collision.gameObject.GetComponent<WeaponAttachController>()._isAttached)
+                    return;
 
-                // attach to a collision GO
-                transform.SetParent(collision.transform, false);
-                transform.localPosition = collision.CompareTag(Tags.WEAPON) ? direction.normalized * WEAPON_ATTACH_MODIFIER: direction.normalized * PLAYER_ATTACH_MODIFIER;
-
-                // change scale to 1 if attached to another weapon to prevent getting smaller
-                if (collision.CompareTag(Tags.WEAPON))
-                    transform.localScale = Vector3.one;
-
-                _isAttached = true;
-
-                // weapon can shoot now
-                GetComponentInChildren<WeaponShooter>().IsWeaponAttached = true;
+                AttachToTransform(collision.transform);
             }
         }
 
-        public void TakeDamage(int amount)
+        private void OnDisable()
         {
-            CurrentHealth -= amount;
-
-            if (CurrentHealth <= 0)
-            {
-                Die();
-            }
+            if (_isAttached)
+                DistanceToPlayerCalculator.RemoveDistance(_distanceToPlayer);
         }
 
-        public void Die()
+        private void AttachToTransform(Transform destinationTransform)
         {
-            if (OnDie != null)
-                OnDie(this, EventArgs.Empty);
-            
-            Destroy(gameObject);
+            // calculate the direction of attachment
+            var direction = transform.position - destinationTransform.position;
+
+            // attach to another gameobject
+            _parent.SetParent(destinationTransform, false);
+            _parent.localPosition = direction.normalized;
+
+            _attachedObjectTransform = destinationTransform;
+
+            _distanceToPlayer = Vector3.Distance(transform.position,
+                GameObject.FindGameObjectWithTag(Tags.PLAYER).transform.position);
+            DistanceToPlayerCalculator.AddDistance(_distanceToPlayer);
+
+            _isAttached = true;
+
+            // weapon can shoot now
+            if (OnWeaponAttached != null)
+                OnWeaponAttached(this, EventArgs.Empty);
+        }
+
+        private void DrawAttachmentLine(Vector3 from, Vector3 to)
+        {
+            _lineRenderer.positionCount = 2;
+
+            _lineRenderer.SetPosition(0, from);
+            _lineRenderer.SetPosition(1, to);
         }
     }
 }

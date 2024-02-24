@@ -1,3 +1,4 @@
+using System;
 using Enhance.Data;
 using UnityEngine;
 
@@ -7,16 +8,25 @@ namespace Enhance.Runtime.Weapon
     {
         [SerializeField] private WeaponConfigSO _weaponConfig;
         [SerializeField] private BulletConfigSO _bulletConfig;
+        [SerializeField] private WeaponAttachController _weaponAttachController;
 
-        public bool IsWeaponAttached { get; set; }
-
+        private bool _isWeaponAttached;
         private float _timer = 0f;
-        private Transform _target;
+
+        private void Start()
+        {
+            _weaponAttachController.OnWeaponAttached += WeaponAttachController_OnWeaponAttached;
+        }
+
+        private void WeaponAttachController_OnWeaponAttached(object sender, EventArgs e)
+        {
+            _isWeaponAttached = true;
+        }
 
         private void Update()
         {
             // don't shoot if weapon is not attached
-            if (!IsWeaponAttached)
+            if (!_isWeaponAttached)
                 return;
 
             _timer += Time.deltaTime;
