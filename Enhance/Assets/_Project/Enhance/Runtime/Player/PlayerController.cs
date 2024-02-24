@@ -17,7 +17,7 @@ namespace Enhance.Runtime.Player
         private int _inputHorizontal;
         private int _inputVertical;
         
-        private Rigidbody2D body;
+        private Rigidbody2D _rb;
         private bool _isAlive;
 
         [Header("Dash properties")]
@@ -32,7 +32,7 @@ namespace Enhance.Runtime.Player
 
         void Start()
         {
-            body = GetComponent<Rigidbody2D>();
+            _rb = GetComponent<Rigidbody2D>();
             _canDash = true;
             _isAlive = true;
             GetComponent<PlayerHealthHandler>().OnDie += PlayerController_OnDie;
@@ -71,7 +71,7 @@ namespace Enhance.Runtime.Player
         private void Move(float speed)
         {
             var direction = new Vector2(_inputHorizontal, _inputVertical).normalized;
-            body.velocity = direction * speed;
+            _rb.velocity = direction * speed;
         }
 
         public void Dash(InputAction.CallbackContext context)
