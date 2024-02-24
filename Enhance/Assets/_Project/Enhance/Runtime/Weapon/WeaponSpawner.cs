@@ -7,7 +7,6 @@ namespace Enhance.Runtime.Weapon
     {
         private float _timer = 0f;
 
-
         protected override void Start()
         {
             base.Start();
@@ -55,7 +54,7 @@ namespace Enhance.Runtime.Weapon
             UpdateMaxOffset();
         }
 
-        public static void UpdateMaxOffset()
+        private static void UpdateMaxOffset()
         {
             if (_weaponToPlayerDistances.Count == 0)
                 MaxDistance = 0f;
