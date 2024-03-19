@@ -5,7 +5,7 @@ namespace Enhance.Runtime
     public class LevelUpSystem
     {
         public event EventHandler OnExperienceChanged;
-        public event EventHandler OnLevelChanged;
+        public event EventHandler<int> OnLevelChanged;
 
         public int Level { get; private set; }
 
@@ -43,7 +43,7 @@ namespace Enhance.Runtime
         }
 
         // equation for required exp calculation from https://oldschool.runescape.wiki/w/Experience
-        public int CalculateRequiredExp(int level)
+        private int CalculateRequiredExp(int level)
         {
             int requiredExp = 0;
 
@@ -64,7 +64,7 @@ namespace Enhance.Runtime
 
             // notify subscribers about lvl change
             if (OnLevelChanged != null)
-                OnLevelChanged(this, EventArgs.Empty);
+                OnLevelChanged(this, Level);
         }
     }
 }

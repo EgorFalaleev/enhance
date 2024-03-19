@@ -13,8 +13,7 @@ namespace Enhance.Runtime.Player
         private SpriteRenderer _spriteRenderer;
         private Color _originalColor;
         private Coroutine _flashCoroutine;
-
-
+        
         void Start()
         {
             _spriteRenderer = GetComponent<SpriteRenderer>();

@@ -1,6 +1,5 @@
 using System;
 using Enhance.Data;
-using Enhance.Runtime.UI;
 using UnityEngine;
 
 namespace Enhance.Runtime.Player
@@ -9,8 +8,6 @@ namespace Enhance.Runtime.Player
     {
         [SerializeField] private PlayerConfigSO _playerConfig;
         [SerializeField] private GameStatsController _gameStatsController;
-        // TODO: refactor, view inside logic 
-        [SerializeField] private GameOverScreen _gameOverScreen;
 
         public int CurrentHealth { get; private set; }
 
@@ -43,19 +40,16 @@ namespace Enhance.Runtime.Player
 
             if (CurrentHealth <= 0)
             {
-                if (OnDie != null)
-                    OnDie(this, EventArgs.Empty);
-                
                 Die();
             }
         }
 
         public void Die()
         {
-            _gameStatsController.Level = GetComponent<Player>().LevelSystem.Level;
             _gameStatsController.SetHighScore(_gameStatsController.EnemiesKilled);
-            // TODO: need to find something better than that
-            _gameOverScreen.SetupGameOverScreen(_gameStatsController.Level, _gameStatsController.EnemiesKilled, _gameStatsController.GetHighScore());
+            
+            if (OnDie != null)
+                OnDie(this, EventArgs.Empty);
         
             GetComponent<SpriteRenderer>().enabled = false;
             GetComponent<PlayerController>().enabled = false;
