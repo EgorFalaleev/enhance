@@ -1,3 +1,5 @@
+using System;
+using Enhance.Runtime.Player;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -6,17 +8,38 @@ namespace Enhance.Runtime.UI
 {
     public class GameOverScreen : MonoBehaviour
     {
+        [Header("UI Components")] 
+        [SerializeField] private GameObject _gameOverScreen;
         [SerializeField] private TMP_Text _levelNumberText;
         [SerializeField] private TMP_Text _enemiesKilledNumberText;
         [SerializeField] private TMP_Text _highScoreText;
 
-        public void SetupGameOverScreen(int level, int enemiesKilled, int highScore)
-        {
-            gameObject.SetActive(true);
+        [Header("References")] 
+        [SerializeField] private PlayerHealthHandler _playerHealthHandler;
+        [SerializeField] private GameStatsController _gameStatsController;
 
-            _levelNumberText.text = level.ToString();
-            _enemiesKilledNumberText.text = enemiesKilled.ToString();
-            _highScoreText.text = highScore.ToString();
+        private void OnEnable()
+        {
+            _playerHealthHandler.OnDie += HandlePlayerDeath;
+        }
+
+        private void OnDisable()
+        {
+            _playerHealthHandler.OnDie -= HandlePlayerDeath;
+        }
+
+        private void HandlePlayerDeath(object sender, EventArgs e)
+        {
+            _gameOverScreen.SetActive(true);
+            
+            SetupGameOverScreen();
+        }
+
+        private void SetupGameOverScreen()
+        {
+            _levelNumberText.text = _gameStatsController.Level.ToString();
+            _enemiesKilledNumberText.text = _gameStatsController.EnemiesKilled.ToString();
+            _highScoreText.text = _gameStatsController.GetHighScore().ToString();
         }
 
         public void GoToMainMenu()
