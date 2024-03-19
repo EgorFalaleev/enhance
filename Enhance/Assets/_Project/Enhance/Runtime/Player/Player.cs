@@ -7,15 +7,17 @@ namespace Enhance.Runtime.Player
     public class Player : MonoBehaviour
     {
         [SerializeField] private GameObject _levelWindow;
-        [SerializeField] private GameObject _weaponSpawner;
+        [SerializeField] private WeaponSpawner _weaponSpawner;
+        [SerializeField] private GameStatsController _gameStatsController; 
 
         public LevelUpSystem LevelSystem { get; private set; }
 
-        void Start()
+        private void Start()
         {
             LevelSystem = new LevelUpSystem();
             _levelWindow.GetComponent<LevelUpUIController>().SetLevelUpSystem(LevelSystem);
-            _weaponSpawner.GetComponent<WeaponSpawner>().SetLevelUpSystem(LevelSystem);
+            _weaponSpawner.SetLevelUpSystem(LevelSystem);
+            _gameStatsController.SetupLevelUpSystem(LevelSystem);
         }
     }
 }

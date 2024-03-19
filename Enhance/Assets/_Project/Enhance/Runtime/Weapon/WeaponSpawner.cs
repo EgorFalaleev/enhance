@@ -31,7 +31,7 @@ namespace Enhance.Runtime.Weapon
             levelUpSystem.OnLevelChanged += LevelUpSystem_OnLevelChanged;
         }
 
-        private void LevelUpSystem_OnLevelChanged(object sender, System.EventArgs e)
+        private void LevelUpSystem_OnLevelChanged(object sender, int level)
         {
             SpawnRandomObject(DistanceToPlayerCalculator.MaxDistance);
         }

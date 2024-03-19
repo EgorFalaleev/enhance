@@ -20,18 +20,18 @@ namespace Enhance.Runtime.UI
             SetExperienceBarFill(levelUpSystem.GetExperiencePercentage());
 
             // subscribe to exp and lvl change
-            levelUpSystem.OnLevelChanged += LevelUpSystem_OnLevelChanged;
-            levelUpSystem.OnExperienceChanged += LevelUpSystem_OnExperienceChanged;
+            levelUpSystem.OnLevelChanged += HandleLevelChange;
+            levelUpSystem.OnExperienceChanged += HandleExperienceChange;
         }
 
-        private void LevelUpSystem_OnExperienceChanged(object sender, System.EventArgs e)
+        private void HandleExperienceChange(object sender, System.EventArgs e)
         {
             SetExperienceBarFill(_levelUpSystem.GetExperiencePercentage());
         }
 
-        private void LevelUpSystem_OnLevelChanged(object sender, System.EventArgs e)
+        private void HandleLevelChange(object sender, int level)
         {
-            SetLevelText(_levelUpSystem.Level);
+            SetLevelText(level);
         }
 
         private void SetExperienceBarFill(float experiencePercentage)
