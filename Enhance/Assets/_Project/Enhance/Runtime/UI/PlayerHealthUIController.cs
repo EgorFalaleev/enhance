@@ -12,13 +12,13 @@ namespace Enhance.Runtime.UI
 
         private PlayerHealthHandler _playerHealthHandler;
 
-        void Start()
+        private void Start()
         {
             _playerHealthHandler = GameObject.FindGameObjectWithTag(Tags.PLAYER).GetComponent<PlayerHealthHandler>();
-            _playerHealthHandler.OnDamageTaken += _playerHealthHandler_OnDamageTaken;
+            _playerHealthHandler.OnDamageTaken += HandlePlayerDamageTaken;
         }
 
-        private void _playerHealthHandler_OnDamageTaken(object sender, System.EventArgs e)
+        private void HandlePlayerDamageTaken(object sender, System.EventArgs e)
         {
             SetHeartImages(_playerHealthHandler.CurrentHealth);
         }
