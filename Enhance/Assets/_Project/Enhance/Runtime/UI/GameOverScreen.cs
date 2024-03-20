@@ -16,7 +16,7 @@ namespace Enhance.Runtime.UI
 
         [Header("References")] 
         [SerializeField] private PlayerHealthHandler _playerHealthHandler;
-        [SerializeField] private GameStatsController _gameStatsController;
+        // [SerializeField] private GameStatsController _gameStatsController;
 
         private void OnEnable()
         {
@@ -37,9 +37,9 @@ namespace Enhance.Runtime.UI
 
         private void SetupGameOverScreen()
         {
-            _levelNumberText.text = _gameStatsController.Level.ToString();
-            _enemiesKilledNumberText.text = _gameStatsController.EnemiesKilled.ToString();
-            _highScoreText.text = _gameStatsController.GetHighScore().ToString();
+            _levelNumberText.text = GameStatsController.Instance.Level.ToString();
+            _enemiesKilledNumberText.text = GameStatsController.Instance.EnemiesKilled.ToString();
+            _highScoreText.text = GameStatsController.Instance.GetHighScore().ToString();
         }
 
         public void GoToMainMenu()

@@ -7,7 +7,6 @@ namespace Enhance.Runtime.Player
     public class PlayerHealthHandler : MonoBehaviour, IDamageable
     {
         [SerializeField] private PlayerConfigSO _playerConfig;
-        [SerializeField] private GameStatsController _gameStatsController;
 
         public int CurrentHealth { get; private set; }
 
@@ -18,7 +17,6 @@ namespace Enhance.Runtime.Player
         {
             Time.timeScale = 1f;
 
-            _gameStatsController.ResetStats();
             CurrentHealth = _playerConfig.MaxHealth;
         }
 
@@ -46,8 +44,6 @@ namespace Enhance.Runtime.Player
 
         public void Die()
         {
-            _gameStatsController.SetHighScore(_gameStatsController.EnemiesKilled);
-            
             if (OnDie != null)
                 OnDie(this, EventArgs.Empty);
         

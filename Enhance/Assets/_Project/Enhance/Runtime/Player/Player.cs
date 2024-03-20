@@ -8,7 +8,6 @@ namespace Enhance.Runtime.Player
     {
         [SerializeField] private GameObject _levelWindow;
         [SerializeField] private WeaponSpawner _weaponSpawner;
-        [SerializeField] private GameStatsController _gameStatsController; 
 
         public LevelUpSystem LevelSystem { get; private set; }
 
@@ -17,7 +16,7 @@ namespace Enhance.Runtime.Player
             LevelSystem = new LevelUpSystem();
             _levelWindow.GetComponent<LevelUpUIController>().SetLevelUpSystem(LevelSystem);
             _weaponSpawner.SetLevelUpSystem(LevelSystem);
-            _gameStatsController.SetupLevelUpSystem(LevelSystem);
+            GameStatsController.Instance.SetupLevelUpSystem(LevelSystem);
         }
     }
 }

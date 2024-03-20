@@ -7,7 +7,6 @@ namespace Enhance.Runtime.Enemy
     public class EnemyHealthController : MonoBehaviour, IDamageable
     {
         [SerializeField] private EnemyConfigSO _enemyConfig;
-        [SerializeField] private GameStatsController _gameStatsController;
 
         private SpriteRenderer _spriteRenderer;
 
@@ -59,18 +58,18 @@ namespace Enhance.Runtime.Enemy
 
             if (CurrentHealth <= 0)
             {
-                if (OnDie != null)
-                    OnDie(this, EventArgs.Empty);
-
                 Die();
             }
         }
 
         public void Die()
         {
+            if (OnDie != null)
+                OnDie(this, EventArgs.Empty);
+            
             FindObjectOfType<Player.Player>().GetComponent<Player.Player>().LevelSystem
                 .AddExperience(_enemyConfig.ExperienceAmount);
-            _gameStatsController.EnemiesKilled++;
+            GameStatsController.Instance.EnemiesKilled++;
 
             ObjectPoolingManager.ReturnObjectToPool(gameObject);
         }

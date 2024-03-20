@@ -499,7 +499,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: -112.98816, y: 108}
+  m_AnchoredPosition: {x: -112.98828, y: 108}
   m_SizeDelta: {x: -1393.3647, y: 80.8721}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &163362541
@@ -1096,7 +1096,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: 0.000061035156, y: -339}
+  m_AnchoredPosition: {x: 0, y: -339}
   m_SizeDelta: {x: -1474.9614, y: 71.0866}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &377046570
@@ -3705,6 +3705,50 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1604496996}
   m_CullTransparentMesh: 1
+--- !u!1 &1698507147
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1698507149}
+  - component: {fileID: 1698507148}
+  m_Layer: 0
+  m_Name: GameStatsController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1698507148
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1698507147}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad6c01ab180782541860664e7d6ae7ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &1698507149
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1698507147}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1829257530
 GameObject:
   m_ObjectHideFlags: 0
@@ -4255,7 +4299,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 715c00625a1102e439a1ed5487efc931, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _gameStats: {fileID: 11400000, guid: 5c81fab1c992bd04abb23de73b4401e4, type: 2}
   _enemiesKilledNumberText: {fileID: 174895594}
 --- !u!1 &1981776733
 GameObject:
@@ -4377,7 +4420,6 @@ MonoBehaviour:
   _enemiesKilledNumberText: {fileID: 863020432}
   _highScoreText: {fileID: 1117233843}
   _playerHealthHandler: {fileID: 2027788887994448628}
-  _gameStatsController: {fileID: 11400000, guid: 5c81fab1c992bd04abb23de73b4401e4, type: 2}
 --- !u!1 &1988349189
 GameObject:
   m_ObjectHideFlags: 0
@@ -4915,3 +4957,4 @@ SceneRoots:
   - {fileID: 829162438}
   - {fileID: 2065047611}
   - {fileID: 360076381}
+  - {fileID: 1698507149}
